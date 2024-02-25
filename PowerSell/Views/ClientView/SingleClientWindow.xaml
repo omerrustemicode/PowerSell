@@ -1,4 +1,4 @@
-﻿<Window x:Class="PowerSell.Views.MainWindow"
+﻿<Window x:Class="PowerSell.Views.ClientView.SingleClientWindow"
         xmlns:local="clr-namespace:PowerSell.Localization"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

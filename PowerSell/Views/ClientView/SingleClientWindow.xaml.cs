@@ -6,14 +6,14 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PowerSell.Views
+namespace PowerSell.Views.ClientView
 {
-    public partial class MainWindow : Window
+    public partial class SingleClientWindow : Window
     {
         public ObservableCollection<Service> Services { get; set; } = new ObservableCollection<Service>();
         private LocalizationManager _localizationManager;
 
-        public MainWindow()
+        public SingleClientWindow()
         {
             // Initialize the LocalizationManager without specifying a language folder
             _localizationManager = new LocalizationManager();
