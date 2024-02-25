@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\PowerSell\PowerSell\App.xaml
-1-161598581
+3-16856108
 
-8488758123
-14-1665618700
-Views\ClientView\SingleClientWindow.xaml;
+10-1409109322
+18-14339658
+Views\ClientView\KeyboardWindow.xaml;Views\ClientView\SingleClientWindow.xaml;Views\Dashboard.xaml;
 
-False
+True
 

@@ -1,0 +1,32 @@
+﻿<Window x:Class="PowerSell.Views.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dashboard" Height="450" Width="800">
+    <Grid>
+        <!-- Left Side -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Side Content - Services -->
+        <ListBox x:Name="servicesListBox" Grid.Column="0" Background="#222222" Margin="10">
+            <!-- You can customize the ListBox items template as needed -->
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding ClientName}" Foreground="White"/>
+                        <Button Content="{Binding ServiceName}" Width="100" Height="50" Margin="5" Background="{Binding ServiceStatusColor}" Click="ServiceButton_Click"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Right Side - Fixed Buttons -->
+        <StackPanel Grid.Column="1" Background="#444444">
+            <Button Content="To Go" Width="100" Height="50" Margin="5" Background="#666666" Foreground="White" Click="ToGoButton_Click"/>
+            <Button Content="Reports" Width="100" Height="50" Margin="5" Background="#666666" Foreground="White" Click="ReportsButton_Click"/>
+            <Button Content="Logout" Width="100" Height="50" Margin="5" Background="#666666" Foreground="White" Click="LogoutButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
