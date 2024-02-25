@@ -52,6 +52,15 @@ namespace PowerSell.Views.ClientView
                     Worker = "Omer"
                 });
             }
+
         }
+
+        private void Transport_Btn(object sender, RoutedEventArgs e)
+        {
+            // Open the KeyboardWindow
+            var keyboardWindow = new KeyboardWindow();
+            keyboardWindow.ShowDialog();
+        }
+
     }
 }

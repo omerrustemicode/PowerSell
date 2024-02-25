@@ -61,29 +61,38 @@ namespace PowerSell.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.
+        ///   Looks up a localized string similar to Smetka.
         /// </summary>
-        public static string Button1 {
+        public static string Bill {
             get {
-                return ResourceManager.GetString("Button1", resourceCulture);
+                return ResourceManager.GetString("Bill", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.
+        ///   Looks up a localized string similar to Poracka.
         /// </summary>
-        public static string Button2 {
+        public static string Order {
             get {
-                return ResourceManager.GetString("Button2", resourceCulture);
+                return ResourceManager.GetString("Order", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 333.
+        ///   Looks up a localized string similar to P+.
         /// </summary>
-        public static string Button3 {
+        public static string PrintService {
             get {
-                return ResourceManager.GetString("Button3", resourceCulture);
+                return ResourceManager.GetString("PrintService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transporti.
+        /// </summary>
+        public static string Transport {
+            get {
+                return ResourceManager.GetString("Transport", resourceCulture);
             }
         }
     }

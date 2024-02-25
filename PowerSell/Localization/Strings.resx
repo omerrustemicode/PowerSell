@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Button1" xml:space="preserve">
-    <value>1</value>
+  <data name="Bill" xml:space="preserve">
+    <value>Smetka</value>
   </data>
-  <data name="Button2" xml:space="preserve">
-    <value>2</value>
+  <data name="Order" xml:space="preserve">
+    <value>Poracka</value>
   </data>
-  <data name="Button3" xml:space="preserve">
-    <value>333</value>
+  <data name="PrintService" xml:space="preserve">
+    <value>P+</value>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>Transporti</value>
   </data>
 </root>

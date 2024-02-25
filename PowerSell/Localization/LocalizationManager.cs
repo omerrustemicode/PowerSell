@@ -12,8 +12,9 @@ namespace PowerSell.Localization
             _resourceManager = new ResourceManager("PowerSell.Localization.Strings", typeof(LocalizationManager).Assembly);
         }
 
-        public string Button1 => _resourceManager.GetString("Button1");
-        public string Button2 => _resourceManager.GetString("Button2");
-        public string Button3 => _resourceManager.GetString("Button3");
+        public string Transport => _resourceManager.GetString("Transport");
+        public string Bill => _resourceManager.GetString("Bill");
+        public string Order => _resourceManager.GetString("Order");
+        public string PrintService => _resourceManager.GetString("PrintService");
     }
 }

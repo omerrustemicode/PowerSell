@@ -14,6 +14,7 @@ namespace PowerSell.Models
         public double TotalPrice { get; set; }
         public DateTime DateOrderPlaced { get; set; }
         public string Worker { get; set; }
+        public string Coment { get; set; }
         // Add more properties as needed
     }
 }
