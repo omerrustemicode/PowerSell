@@ -1,18 +1,22 @@
-﻿using PowerSell.Models;
+﻿using PowerSell.Localization;
+using PowerSell.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PowerSell
+namespace PowerSell.Views
 {
     public partial class MainWindow : Window
     {
         public ObservableCollection<Service> Services { get; set; } = new ObservableCollection<Service>();
+        private LocalizationManager _localizationManager;
 
         public MainWindow()
         {
+            // Initialize the LocalizationManager without specifying a language folder
+            _localizationManager = new LocalizationManager();
             InitializeComponent();
             serviceDataGrid.ItemsSource = Services;
         }
