@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientServices.cs" />
     <Compile Include="Models\ServiceCategory.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 037921e4684cc3ef4e0f64124da16e6a8b662711
     <Page Include="Views\ClientView\KeyboardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

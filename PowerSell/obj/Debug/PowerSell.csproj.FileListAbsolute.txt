@@ -13,7 +13,10 @@ D:\Projects\PowerSell\PowerSell\bin\Debug\Xamarin.Forms.Xaml.xml
 D:\Projects\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.AssemblyReference.cache
 D:\Projects\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.SuggestedBindingRedirects.cache
 D:\Projects\PowerSell\PowerSell\obj\Debug\Views\ClientView\KeyboardWindow.baml
+<<<<<<< HEAD
 D:\Projects\PowerSell\PowerSell\obj\Debug\Views\Dashboard.baml
+=======
+>>>>>>> 037921e4684cc3ef4e0f64124da16e6a8b662711
 D:\Projects\PowerSell\PowerSell\obj\Debug\Views\ClientView\KeyboardWindow.g.cs
 D:\Projects\PowerSell\PowerSell\obj\Debug\Views\ClientView\SingleClientWindow.g.cs
 D:\Projects\PowerSell\PowerSell\obj\Debug\Views\Dashboard.g.cs
