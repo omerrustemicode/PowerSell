@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using PowerSell.Models;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace PowerSell.Views
@@ -10,23 +11,29 @@ namespace PowerSell.Views
         public Dashboard()
         {
             InitializeComponent();
-            // Initialize your clients and services, and set the DataContext
+
+            // Adding a test client to the Clients collection
+            var testClient = Client.GetTestClient();
+            Clients.Add(testClient);
+
+            // Set the DataContext to the Clients collection
             DataContext = this;
         }
 
+
         private void ServiceButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle service button click
+            // Handle button click if needed
         }
 
         private void ToGoButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle To Go button click
+            // Handle To Go button click if needed
         }
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle Reports button click
+            // Handle Reports button click if needed
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -34,17 +41,5 @@ namespace PowerSell.Views
             // Handle Logout button click
             Close();
         }
-    }
-
-    public class Client
-    {
-        public string ClientName { get; set; }
-        public ObservableCollection<Service> Services { get; set; } = new ObservableCollection<Service>();
-    }
-
-    public class Service
-    {
-        public string ServiceName { get; set; }
-        public string ServiceStatusColor { get; set; }
     }
 }

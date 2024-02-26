@@ -1,4 +1,4 @@
-﻿using PowerSell.Localization;
+﻿﻿using PowerSell.Localization;
 using PowerSell.Models;
 using System;
 using System.Collections.ObjectModel;

@@ -70,6 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientServices.cs" />
+    <Compile Include="Models\ServiceCategory.cs" />
+    <Compile Include="Models\ServiceSubCategory.cs" />
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
