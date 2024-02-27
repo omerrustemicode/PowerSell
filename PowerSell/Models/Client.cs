@@ -69,14 +69,22 @@ namespace PowerSell.Models
                             ServiceId = 3,
                             ServiceName = "Service C",
                             ServicePrice = 60,
-                            ServiceDate = new DateTime(2023, 2, 24, 10, 30, 0)
+                            ServiceDate = new DateTime(2023, 2, 24, 10, 30, 0),
+                              Workers = new ObservableCollection<User>
+                            {
+                                new User { UserId = 1, UserName = "Worker2" }
+                            }
                         },
                         new ClientServices
                         {
                             ServiceId = 4,
                             ServiceName = "Service D",
                             ServicePrice = 80,
-                            ServiceDate = new DateTime(2024, 2, 24, 10, 30, 0)
+                            ServiceDate = new DateTime(2024, 2, 24, 10, 30, 0),
+                              Workers = new ObservableCollection<User>
+                            {
+                                new User { UserId = 1, UserName = "Worker3" }
+                            }
                         },
                         // Add more services as needed
                     }

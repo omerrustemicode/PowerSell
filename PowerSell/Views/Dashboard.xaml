@@ -10,7 +10,7 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="servicesListBox" ItemsSource="{Binding Clients}" Grid.Column="0" Background="#222222" Margin="10,10,10,10" Visibility="Visible" Grid.ColumnSpan="2">
+        <ListBox x:Name="servicesListBox" ItemsSource="{Binding Clients}" Grid.Column="0" Background="#2C3E50" Margin="10,10,10,10" Visibility="Visible" Grid.ColumnSpan="2">
             <!-- Set the ItemsPanel to a WrapPanel -->
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -29,14 +29,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-
-
-
         <!-- Right Side - Fixed Buttons -->
-        <StackPanel Grid.Column="2" Background="#444444">
-            <Button Content="To Go" Width="100" Height="50" Margin="5" Background="#666666" Foreground="White" Click="ToGoButton_Click"/>
-            <Button Content="Reports" Width="100" Height="50" Margin="5" Background="#666666" Foreground="White" Click="ReportsButton_Click"/>
-            <Button Content="Logout" Width="100" Height="50" Margin="5" Background="#666666" Foreground="White" Click="LogoutButton_Click"/>
+        <StackPanel Grid.Column="2" Background="#2C3E50">
+            <Button Content="To Go" Width="100" Height="50" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
+            <Button Content="Reports" Width="100" Height="50" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
+            <Button Content="Logout" Width="100" Height="50" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

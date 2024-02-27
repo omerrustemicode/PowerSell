@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Keyboard" Height="800" Width="900">
+        Title="Keyboard" Height="600" Width="900">
     <Grid>
         <!-- Sample buttons for automatic text -->
         <WrapPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10" Width="900">
@@ -39,7 +39,7 @@
 
             <!-- Virtual Keyboard -->
         <!-- Customize the keyboard layout based on your needs -->
-        <UniformGrid Rows="4" Columns="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="900" Height="400">
+        <UniformGrid Rows="4" Columns="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="900" Height="300">
             <Button Content="1" Click="KeyboardButton_Click"/>
             <Button Content="2" Click="KeyboardButton_Click"/>
             <Button Content="3" Click="KeyboardButton_Click"/>

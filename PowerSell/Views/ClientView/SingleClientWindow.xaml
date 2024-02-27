@@ -20,21 +20,20 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left Side Content - DataGrid -->
-        <DataGrid x:Name="serviceDataGrid" Grid.Column="0" Background="#222222">
+        <DataGrid x:Name="serviceDataGrid" Grid.Column="0" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E">
             <!-- You can customize the DataGrid as needed -->
         </DataGrid>
-
         <!-- Middle Line (GridSplitter) -->
-        <GridSplitter Grid.Column="1" Width="5" Background="#333333" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+        <GridSplitter Grid.Column="1" Width="5" Background="#34495E" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
 
         <!-- Right Side -->
-        <StackPanel Grid.Column="2" Background="#444444">
+        <StackPanel Grid.Column="2" Background="#2C3E50">
             <!-- Fixed-size buttons -->
             <WrapPanel>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Width="50" Height="50" Margin="5" Background="#666666" Foreground="White" Click="Transport_Btn"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Width="50" Height="50" Margin="5" Background="#666666" Foreground="White" Click="Button_Click"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Order}" Width="50" Height="50" Margin="5" Background="#666666" Foreground="White" Click="Button_Click"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Width="50" Height="50" Margin="5" Background="#666666" Foreground="White" Click="Button_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Transport_Btn"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Order}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
             </WrapPanel>
 
             <!-- Separator Line with fixed width -->
@@ -42,8 +41,8 @@
 
             <!-- More buttons or customize as needed -->
             <WrapPanel>
-                <Button Content="Button 4" Width="50" Height="50" Margin="5" Background="#666666" Foreground="White" Click="Button_Click"/>
-                <Button Content="Button 5" Width="50" Height="50" Margin="5" Background="#666666" Foreground="White" Click="Button_Click"/>
+                <Button Content="Button 4" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
+                <Button Content="Button 5" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
             </WrapPanel>
         </StackPanel>
 
