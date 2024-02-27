@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-D:\Projects\PowerSell\PowerSell\obj\Debug\
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\
 PowerSell
 none
 false
 DEBUG;TRACE
-D:\Projects\PowerSell\PowerSell\App.xaml
-<<<<<<< HEAD
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\App.xaml
 3-16856108
 
 14-597125728
-18-14339658
+18-1897438122
 Views\ClientView\KeyboardWindow.xaml;Views\ClientView\SingleClientWindow.xaml;Views\Dashboard.xaml;
-=======
-2-139931644
-
-91047731962
-18-14339658
-Views\ClientView\KeyboardWindow.xaml;Views\ClientView\SingleClientWindow.xaml;
->>>>>>> 037921e4684cc3ef4e0f64124da16e6a8b662711
 
 False
 

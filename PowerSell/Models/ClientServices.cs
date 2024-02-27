@@ -10,7 +10,7 @@ namespace PowerSell.Models
     {
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
-        public decimal ServicePrice { get; set; }
+        public double ServicePrice { get; set; }
         public string ServiceCategory { get; set; }
         public DateTime ServiceDate { get; set; }
     }

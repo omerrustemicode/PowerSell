@@ -10,24 +10,26 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Side Content - Services -->
         <ListBox x:Name="servicesListBox" ItemsSource="{Binding Clients}" Grid.Column="0" Background="#222222" Margin="10,10,10,10" Visibility="Visible" Grid.ColumnSpan="2">
+            <!-- Set the ItemsPanel to a WrapPanel -->
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
             <!-- You can customize the ListBox items template as needed -->
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding ClientName}" Foreground="White"/>
-                        <ItemsControl ItemsSource="{Binding Services}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Content="{Binding ServiceName}" Width="100" Height="50" Margin="5" Background="Red" Click="ServiceButton_Click"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <!--<TextBlock Text="{Binding ClientName}" Foreground="White"/>-->
+                        <Button Content="{Binding ClientName}" Width="100" Height="50" Margin="5" Background="Red" Click="ServiceButton_Click"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+
 
 
         <!-- Right Side - Fixed Buttons -->
