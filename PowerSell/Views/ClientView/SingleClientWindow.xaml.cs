@@ -26,7 +26,7 @@ namespace PowerSell.Views.ClientView
                 Quantity = 1,
                 TotalPrice = clientService.ServicePrice,
                 DateOrderPlaced = clientService.ServiceDate,
-                Worker = "Omer"
+                Worker = string.Join(", ", clientService.Workers.Select(worker => worker.UserName))
             }));
 
             serviceDataGrid.ItemsSource = Services;

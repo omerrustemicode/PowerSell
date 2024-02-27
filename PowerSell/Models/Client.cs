@@ -12,8 +12,8 @@ namespace PowerSell.Models
         public string ClientEmail { get; set; }
         public DateTime ClientRegDate { get; set; }
         public ObservableCollection<ClientServices> Services { get; set; } = new ObservableCollection<ClientServices>();
-
         public string ServicesNames => string.Join(", ", Services.Select(service => service.ServiceName));
+        public string WorkerNames => string.Join(", ", Services.SelectMany(service => service.Workers.Select(worker => worker.UserName)));
 
         public static ObservableCollection<Client> GetTestClients()
         {
@@ -26,6 +26,7 @@ namespace PowerSell.Models
                     ClientPhone = "123-456-7890",
                     ClientEmail = "john.doe@example.com",
                     ClientRegDate = DateTime.Now,
+                  
                     Services = new ObservableCollection<ClientServices>
                     {
                         new ClientServices
@@ -33,14 +34,23 @@ namespace PowerSell.Models
                             ServiceId = 1,
                             ServiceName = "Service A",
                             ServicePrice = 50,
-                            ServiceDate = DateTime.Now
+                            ServiceDate = DateTime.Now,
+                            Workers = new ObservableCollection<User>
+                            {
+                                new User { UserId = 1, UserName = "Worker1" }
+                            }
+
                         },
                         new ClientServices
                         {
                             ServiceId = 2,
                             ServiceName = "Service B",
                             ServicePrice = 75,
-                            ServiceDate = DateTime.Now
+                            ServiceDate = DateTime.Now,
+                               Workers = new ObservableCollection<User>
+                            {
+                                new User { UserId = 1, UserName = "Worker1" }
+                            }
                         },
                         // Add more services as needed
                     }
