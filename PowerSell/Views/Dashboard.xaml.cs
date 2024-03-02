@@ -1,5 +1,6 @@
 ﻿using PowerSell.Models;
 using PowerSell.Views.ClientView;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -7,53 +8,60 @@ using System.Windows.Controls;
 
 namespace PowerSell.Views
 {
+    // Dashboard.xaml.cs
     public partial class Dashboard : Window
     {
-        public ObservableCollection<Client> Clients { get; set; } = new ObservableCollection<Client>();
+        public ObservableCollection<Tables> Tables { get; set; } = new ObservableCollection<Tables>();
 
         public Dashboard()
         {
             InitializeComponent();
 
-            // Adding a test client to the Clients collection
-            var testClients = Client.GetTestClients();
-            Clients = testClients;
-
-            // Set the DataContext to the Clients collection
-            DataContext = this;
-        }
-
-        private void ServiceButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Ensure the DataContext is set and the sender is a Button
-            if (DataContext is Dashboard dashboard && sender is Button button)
+            using (var dbContext = new PowerSellDbContext())
             {
-                // Get the client associated with the clicked button
-                var selectedClient = dashboard.Clients.FirstOrDefault(client => client.ClientName == button.Content.ToString());
+                var tablesFromDb = dbContext.Tables.ToList();
 
-                if (selectedClient != null)
+                // Clear existing items
+                Tables.Clear();
+
+                // Map tables from the database to your view model
+                foreach (var table in tablesFromDb)
                 {
-                    // Open the SingleClientWindow and pass the selected client
-                    SingleClientWindow singleClientWindow = new SingleClientWindow(selectedClient);
-                    singleClientWindow.Show();  // or .ShowDialog() if you want it to be modal
+                    Tables.Add(new Tables { TableId = table.TableId, TableName = table.TableName });
                 }
+            }
+
+            DataContext = this; // Set the DataContext to allow binding
+        }
+    
+
+
+     private void TableButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Assuming Tables is a collection of objects with a property TableId
+            if (sender is Button button && button.DataContext is Tables tableModel)
+            {
+                // Navigate to SingleClientWindow with TableId parameter
+                SingleClientWindow singleClientWindow = new SingleClientWindow(tableModel.TableId);
+                singleClientWindow.Show();
             }
         }
 
+
         private void ToGoButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle To Go button click if needed
+            // Handle To Go button click event
         }
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle Reports button click if needed
+            // Handle Reports button click event
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle Logout button click
-            Close();
+            // Handle Logout button click event
         }
     }
+
 }

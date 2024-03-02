@@ -5,35 +5,49 @@
     <Grid>
         <!-- Left Side -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="31*"/>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
+     
+        <!-- Tables Buttons using ListBox with UniformGrid -->
+<ListBox x:Name="tablesListBox" ItemsSource="{Binding Tables}" Grid.Column="0" Background="#2C3E50" Margin="10,10,3,10" Visibility="Visible">
+    <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+            <UniformGrid Rows="15" Columns="8" />
+            <!-- Adjust Rows and Columns based on your preference -->
+        </ItemsPanelTemplate>
+    </ListBox.ItemsPanel>
 
-        <ListBox x:Name="servicesListBox" ItemsSource="{Binding Clients}" Grid.Column="0" Background="#2C3E50" Margin="10,10,10,10" Visibility="Visible" Grid.ColumnSpan="2">
-            <!-- Set the ItemsPanel to a WrapPanel -->
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+    <ListBox.ItemTemplate>
+        <DataTemplate>
+            <Button Content="{Binding TableName}" Width="180" Height="110" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
+            BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="0" ShadowDepth="0" Color="#3498DB"/>
+                </Button.Effect>
+            </Button>
+        </DataTemplate>
+    </ListBox.ItemTemplate>
 
-            <!-- You can customize the ListBox items template as needed -->
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <!--<TextBlock Text="{Binding ClientName}" Foreground="White"/>-->
-                        <Button Content="{Binding ClientName}" Width="100" Height="50" Margin="5" Background="Red" Click="ServiceButton_Click"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+    <!-- Disable vertical scrolling -->
+    <ListBox.Template>
+        <ControlTemplate TargetType="ListBox">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ItemsPresenter />
+            </ScrollViewer>
+        </ControlTemplate>
+    </ListBox.Template>
+</ListBox>
+
+
+
 
         <!-- Right Side - Fixed Buttons -->
         <StackPanel Grid.Column="2" Background="#2C3E50">
-            <Button Content="To Go" Width="100" Height="50" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
-            <Button Content="Reports" Width="100" Height="50" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
-            <Button Content="Logout" Width="100" Height="50" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
+            <Button Content="To Go" Width="180" Height="100" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
+            <Button Content="Reports" Width="180" Height="100" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
+            <Button Content="Logout" Width="180" Height="100" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

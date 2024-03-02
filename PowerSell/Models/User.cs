@@ -11,7 +11,5 @@ public class User
     public DateTime LastLogin { get; set; }
     public string UserType { get; set; }
 
-    // Foreign key relationship
-    public int? ServiceId { get; set; }
-    public virtual ClientServices Service { get; set; }
+
 }

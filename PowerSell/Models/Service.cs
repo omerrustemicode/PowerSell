@@ -8,13 +8,12 @@ namespace PowerSell.Models
 {
     public class Service
     {
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public int Quantity { get; set; }
-        public double TotalPrice { get; set; }
-        public DateTime DateOrderPlaced { get; set; }
-        public string Worker { get; set; }
-        public string Coment { get; set; }
-        // Add more properties as needed
+        public int ServiceId { get; set; }
+        public string ServiceName { get; set; }
+        public decimal Quantity { get; set; }
+        public double ServicePrice { get; set; }
+        public ServiceCategory ServiceCategory { get; set; }
+        public ServiceSubCategory ServiceSubCategory { get; set; }
+        public DateTime ServiceDateCreated { get; set; }
     }
 }

@@ -9,29 +9,20 @@ namespace PowerSell.Views.ClientView
 {
     public partial class SingleClientWindow : Window
     {
-        public ObservableCollection<Service> Services { get; set; } = new ObservableCollection<Service>();
         private LocalizationManager _localizationManager;
+        public int TableId { get; private set; }
 
-        public SingleClientWindow(Client client)
+        public SingleClientWindow(int tableId)
         {
-            // Initialize the LocalizationManager without specifying a language folder
-            _localizationManager = new LocalizationManager();
             InitializeComponent();
-
-            // Set the Services property based on the client's services
-            Services = new ObservableCollection<Service>(client.Services.Select(clientService => new Service
-            {
-                Name = clientService.ServiceName,
-                Price = clientService.ServicePrice,
-                Quantity = 1,
-                TotalPrice = clientService.ServicePrice,
-                DateOrderPlaced = clientService.ServiceDate,
-                Worker = string.Join(", ", clientService.Workers.Select(worker => worker.UserName))
-            }));
-
-            serviceDataGrid.ItemsSource = Services;
+            TableId = tableId;
+            Loaded += SingleClientWindow_Loaded;
         }
-
+        private void SingleClientWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Use TableId as needed when the window is loaded
+            // Example: Update UI elements based on TableId
+        }
         // Event handler for button clicks
         private void Button_Click(object sender, RoutedEventArgs e)
         {
