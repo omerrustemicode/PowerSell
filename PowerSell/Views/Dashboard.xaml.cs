@@ -19,7 +19,7 @@ namespace PowerSell.Views
 
             using (var dbContext = new PowerSellDbContext())
             {
-                var tablesFromDb = dbContext.Tables.ToList();
+                 var tablesFromDb = dbContext.Tables.ToList();
 
                 // Clear existing items
                 Tables.Clear();
@@ -33,10 +33,10 @@ namespace PowerSell.Views
 
             DataContext = this; // Set the DataContext to allow binding
         }
-    
 
 
-     private void TableButton_Click(object sender, RoutedEventArgs e)
+
+        private void TableButton_Click(object sender, RoutedEventArgs e)
         {
             // Assuming Tables is a collection of objects with a property TableId
             if (sender is Button button && button.DataContext is Tables tableModel)
@@ -46,6 +46,7 @@ namespace PowerSell.Views
                 singleClientWindow.Show();
             }
         }
+
 
 
         private void ToGoButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +61,7 @@ namespace PowerSell.Views
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle Logout button click event
+            this.Close();
         }
     }
 

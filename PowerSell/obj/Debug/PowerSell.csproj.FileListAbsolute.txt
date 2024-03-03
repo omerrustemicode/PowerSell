@@ -59,6 +59,8 @@ D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell_MarkupCompile.cach
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell_MarkupCompile.lref
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\Views\ClientView\SingleClientWindow.baml
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.g.resources
+D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedClietnsToOrders.resources
+D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.AddTables.resources
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Properties.Resources.resources
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Localization.Strings.resources
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.GenerateResource.cache

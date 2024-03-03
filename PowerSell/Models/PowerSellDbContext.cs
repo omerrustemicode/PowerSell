@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,6 +15,13 @@ namespace PowerSell.Models
         }
 
         public DbSet<Tables> Tables { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<ServiceCategory> ServiceCategory { get; set; }
+        public DbSet<ServiceSubCategory> ServiceSubCategory { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Service> Service { get; set; }
+                
         // Add other DbSet properties for your entities
 
         // Override OnModelCreating if you need to configure entity relationships
@@ -21,6 +29,7 @@ namespace PowerSell.Models
         {
             // Example:
             // modelBuilder.Entity<YourEntity>().HasMany(x => x.YourRelatedEntity).WithRequired(x => x.YourEntity);
+         
         }
     }
 }

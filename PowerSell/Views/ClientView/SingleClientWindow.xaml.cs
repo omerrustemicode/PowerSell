@@ -1,28 +1,48 @@
-﻿using PowerSell.Localization;
-using PowerSell.Models;
+﻿using PowerSell.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Data.Entity;
 using System.Windows;
-using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace PowerSell.Views.ClientView
 {
     public partial class SingleClientWindow : Window
     {
-        private LocalizationManager _localizationManager;
+        // Declare dbContext at the class level
+        private readonly PowerSellDbContext dbContext = new PowerSellDbContext();
+
         public int TableId { get; private set; }
 
         public SingleClientWindow(int tableId)
         {
             InitializeComponent();
             TableId = tableId;
-            Loaded += SingleClientWindow_Loaded;
+
+            // Check for active orders and populate the DataGrid
+            LoadOrdersData();
         }
-        private void SingleClientWindow_Loaded(object sender, RoutedEventArgs e)
+
+        private void LoadOrdersData()
         {
-            // Use TableId as needed when the window is loaded
-            // Example: Update UI elements based on TableId
+            // Assuming you have a method to retrieve active orders by TableId
+            List<Orders> orders = GetActiveOrdersByTableId(TableId);
+
+            // Bind the orders to the DataGrid
+            dataGridOrders.ItemsSource = orders;
         }
+
+        // Replace this with your actual method to retrieve orders from the database
+        private List<Orders> GetActiveOrdersByTableId(int tableId)
+        {
+            // Implement your logic to retrieve orders from the database based on the tableId
+            // For example:
+            // return dbContext.Orders.Where(o => o.TableId == tableId && o.IsPaid == false).ToList();
+            //return new List<Orders>(); // Replace this with your actual logic
+            return dbContext.Orders.Where(o => o.TableId == tableId).ToList();
+        }
+
         // Event handler for button clicks
         private void Button_Click(object sender, RoutedEventArgs e)
         {
