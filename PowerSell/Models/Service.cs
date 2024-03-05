@@ -17,5 +17,6 @@ namespace PowerSell.Models
         public ServiceCategory ServiceCategory { get; set; }
         public ServiceSubCategory ServiceSubCategory { get; set; }
         public DateTime ServiceDateCreated { get; set; }
+        public ICollection<Orders> Orders { get; set; }
     }
 }

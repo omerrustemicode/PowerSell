@@ -26,22 +26,39 @@ namespace PowerSell.Views.ClientView
 
         private void LoadOrdersData()
         {
-            // Assuming you have a method to retrieve active orders by TableId
-            List<Orders> orders = GetActiveOrdersByTableId(TableId);
-
-            // Bind the orders to the DataGrid
+            List<OrderDTO> orders = GetActiveOrdersByTableId(TableId);
             dataGridOrders.ItemsSource = orders;
         }
 
-        // Replace this with your actual method to retrieve orders from the database
-        private List<Orders> GetActiveOrdersByTableId(int tableId)
+
+        public class OrderDTO
         {
-            // Implement your logic to retrieve orders from the database based on the tableId
-            // For example:
-            // return dbContext.Orders.Where(o => o.TableId == tableId && o.IsPaid == false).ToList();
-            //return new List<Orders>(); // Replace this with your actual logic
-            return dbContext.Orders.Where(o => o.TableId == tableId).ToList();
+            public int OrdersId { get; set; }
+            public DateTime ServiceDateCreated { get; set; }
+            public decimal ServicePrice { get; set; }
+            public decimal Quantity { get; set; }
+            public string ServiceName { get; set; }
+            // Add other properties as needed
         }
+
+        private List<OrderDTO> GetActiveOrdersByTableId(int tableId)
+        {
+            return dbContext.Orders
+                .Include(o => o.Service)  // Include the related Service
+                .Where(o => o.TableId == tableId)
+                .Select(o => new OrderDTO
+                {
+                    OrdersId = o.OrdersId,
+                    ServiceDateCreated = o.ServiceDateCreated,
+                    ServicePrice = o.ServicePrice,
+                    Quantity = o.Quantity,
+                    ServiceName = o.Service.ServiceName,  // Access ServiceName from related Service
+                                                          // Map other properties as needed
+                })
+                .ToList();
+        }
+
+
 
         // Event handler for button clicks
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,6 +71,11 @@ namespace PowerSell.Views.ClientView
             // Open the KeyboardWindow
             var keyboardWindow = new KeyboardWindow();
             keyboardWindow.ShowDialog();
+        }
+
+        private void dataGridOrders_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

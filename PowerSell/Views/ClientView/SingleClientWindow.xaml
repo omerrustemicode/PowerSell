@@ -20,15 +20,23 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left Side Content - DataGrid -->
-        <!-- Left Side Content - DataGrid -->
-        <DataGrid x:Name="dataGridOrders" Grid.Column="0" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E">
-      
-        </DataGrid>
-        <!-- Buttons for Edit and Delete in the Middle -->
-        <StackPanel Grid.Column="2" Background="#2C3E50" HorizontalAlignment="Center">
-            <Button Content="Edit" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
-            <Button Content="Delete" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
-        </StackPanel>
+        <DockPanel Grid.Column="0" Background="#2C3E50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
+            <!-- Your existing DataGrid -->
+            <StackPanel DockPanel.Dock="top" Orientation="Horizontal" Grid.Column="2">
+            <DataGrid x:Name="dataGridOrders" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrders_SelectionChanged" Grid.ColumnSpan="2" Margin="0,0,4,0">
+                <!-- DataGrid columns go here -->
+            </DataGrid>
+            </StackPanel>
+
+            <!-- StackPanel for buttons on a new line -->
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                <Button Content="Edit" Click="Button_Click" Margin="5"/>
+                <Button Content="Delete" Click="Button_Click" Margin="5"/>
+                <Button Content="Add" Click="Button_Click" Margin="5"/>
+            </StackPanel>
+        </DockPanel>
+
+
         <!-- Middle Line (GridSplitter) -->
         <GridSplitter Grid.Column="1" Width="5" Background="#34495E" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
 

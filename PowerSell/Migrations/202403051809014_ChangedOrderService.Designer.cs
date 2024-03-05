@@ -7,13 +7,13 @@ namespace PowerSell.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddTables : IMigrationMetadata
+    public sealed partial class ChangedOrderService : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedOrderService));
         
         string IMigrationMetadata.Id
         {
-            get { return "202403031927263_AddTables"; }
+            get { return "202403051809014_ChangedOrderService"; }
         }
         
         string IMigrationMetadata.Source

@@ -81,9 +81,9 @@
     <Compile Include="Migrations\202403031923479_ChangedClietnsToOrders.designer.cs">
       <DependentUpon>202403031923479_ChangedClietnsToOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202403031927263_AddTables.cs" />
-    <Compile Include="Migrations\202403031927263_AddTables.designer.cs">
-      <DependentUpon>202403031927263_AddTables.cs</DependentUpon>
+    <Compile Include="Migrations\202403051809014_ChangedOrderService.cs" />
+    <Compile Include="Migrations\202403051809014_ChangedOrderService.designer.cs">
+      <DependentUpon>202403051809014_ChangedOrderService.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
@@ -145,8 +145,8 @@
     <EmbeddedResource Include="Migrations\202403031923479_ChangedClietnsToOrders.resx">
       <DependentUpon>202403031923479_ChangedClietnsToOrders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403031927263_AddTables.resx">
-      <DependentUpon>202403031927263_AddTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202403051809014_ChangedOrderService.resx">
+      <DependentUpon>202403051809014_ChangedOrderService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

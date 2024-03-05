@@ -11,8 +11,6 @@ namespace PowerSell.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrdersId { get; set; }
 
-        public string ServiceName { get; set; }
-
         public decimal Quantity { get; set; }
 
         public decimal ServicePrice { get; set; }
