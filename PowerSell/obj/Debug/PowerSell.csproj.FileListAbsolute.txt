@@ -68,3 +68,11 @@ D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.CopyComplet
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.exe
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.pdb
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedOrderService.resources
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\bin\Debug\EntityFramework.dll
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\bin\Debug\EntityFramework.xml
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedClietnsToOrders.resources
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedOrderService.resources
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\Views\ClientView\AddClient.g.cs
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\Views\ClientView\AddClient.baml

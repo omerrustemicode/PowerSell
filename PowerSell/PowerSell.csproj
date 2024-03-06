@@ -94,9 +94,16 @@
     <Compile Include="Models\ServiceSubCategory.cs" />
     <Compile Include="Models\Tables.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Views\ClientView\AddClient.xaml.cs">
+      <DependentUpon>AddClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ClientView\AddClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientView\KeyboardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

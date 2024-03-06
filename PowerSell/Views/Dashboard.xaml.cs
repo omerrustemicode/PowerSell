@@ -16,10 +16,9 @@ namespace PowerSell.Views
         public Dashboard()
         {
             InitializeComponent();
-
             using (var dbContext = new PowerSellDbContext())
             {
-                 var tablesFromDb = dbContext.Tables.ToList();
+                var tablesFromDb = dbContext.Tables.ToList();
 
                 // Clear existing items
                 Tables.Clear();
@@ -27,9 +26,25 @@ namespace PowerSell.Views
                 // Map tables from the database to your view model
                 foreach (var table in tablesFromDb)
                 {
-                    Tables.Add(new Tables { TableId = table.TableId, TableName = table.TableName });
+                    var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
+
+                    // Fetch orders for the current table from the Orders table
+                    var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
+
+                    // Add order information to the view model table
+                    foreach (var order in ordersForTable)
+                    {
+                        viewModelTable.Orders.Add(new Orders
+                        {
+                            ServicePrice = order.ServicePrice
+                            // Add any other properties you need from the Order table
+                        });
+                    }
+
+                    Tables.Add(viewModelTable);
                 }
             }
+
 
             DataContext = this; // Set the DataContext to allow binding
         }

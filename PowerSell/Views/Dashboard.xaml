@@ -21,12 +21,31 @@
 
     <ListBox.ItemTemplate>
         <DataTemplate>
-            <Button Content="{Binding TableName}" Width="180" Height="110" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
-            BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="0" ShadowDepth="0" Color="#3498DB"/>
-                </Button.Effect>
-            </Button>
+                    <Button Width="180" Height="110" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
+                    BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+                        <Button.Content>
+                            <StackPanel>
+                                <TextBlock Text="{Binding TableName}" />
+                                <!-- Display Orders information -->
+                                <ItemsControl ItemsSource="{Binding Orders}" >
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding ServicePrice}" />
+                                                <!-- Add other properties as needed -->
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Button.Content>
+
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="0" ShadowDepth="0" Color="#3498DB"/>
+                        </Button.Effect>
+                    </Button>
+               
         </DataTemplate>
     </ListBox.ItemTemplate>
 

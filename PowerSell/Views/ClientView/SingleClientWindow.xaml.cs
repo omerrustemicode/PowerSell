@@ -77,5 +77,18 @@ namespace PowerSell.Views.ClientView
         {
 
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of the AddClient window
+            AddClient addClientWindow = new AddClient();
+
+            // Set properties on the AddClient window
+            addClientWindow.SingleClientWindowReference = this; // Example: Pass a reference to SingleClientWindow
+
+            // Show the AddClient window as a dialog
+            addClientWindow.ShowDialog();
+        }
+
     }
 }

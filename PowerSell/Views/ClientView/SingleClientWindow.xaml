@@ -32,7 +32,7 @@
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                 <Button Content="Edit" Click="Button_Click" Margin="5"/>
                 <Button Content="Delete" Click="Button_Click" Margin="5"/>
-                <Button Content="Add" Click="Button_Click" Margin="5"/>
+                <Button Content="Add" Click="AddButton_Click" Margin="5"/>
             </StackPanel>
         </DockPanel>
 
