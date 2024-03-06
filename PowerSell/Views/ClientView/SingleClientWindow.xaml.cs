@@ -80,15 +80,13 @@ namespace PowerSell.Views.ClientView
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Create an instance of the AddClient window
+            // Assuming AddClient.xaml is in the same namespace as SingleClientWindow.xaml
             AddClient addClientWindow = new AddClient();
 
-            // Set properties on the AddClient window
-            addClientWindow.SingleClientWindowReference = this; // Example: Pass a reference to SingleClientWindow
-
-            // Show the AddClient window as a dialog
+            // Show the AddClientWindow as a dialog
             addClientWindow.ShowDialog();
         }
+
 
     }
 }

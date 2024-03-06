@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PowerSell.Views.ClientView"
         mc:Ignorable="d"
-        Title="AddClient" Height="450" Width="800">
-    <Grid>
-        
+       Title="Add Client" Height="300" Width="400">
+    <Grid Background="#2C3E50" >
+        <StackPanel Margin="10">
+            <TextBlock Text="Name:" />
+            <TextBox x:Name="NameTextBox" />
+
+            <TextBlock Text="Phone:" />
+            <TextBox x:Name="PhoneTextBox" />
+
+            <TextBlock Text="Email:" />
+            <TextBox x:Name="EmailTextBox" />
+
+            <Button Content="Save" Click="SaveButton_Click" Margin="5" Background="#3498DB"/>
+        </StackPanel>
     </Grid>
 </Window>

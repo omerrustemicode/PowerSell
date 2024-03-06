@@ -30,9 +30,9 @@
 
             <!-- StackPanel for buttons on a new line -->
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-                <Button Content="Edit" Click="Button_Click" Margin="5"/>
-                <Button Content="Delete" Click="Button_Click" Margin="5"/>
-                <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+                <Button Content="Edit" Click="Button_Click" Margin="5" Background="#3498DB"/>
+                <Button Content="Delete" Click="Button_Click" Margin="5" Background="#3498DB"/>
+                <Button Content="Add" Click="AddButton_Click" Margin="5" Background="#3498DB"/>
             </StackPanel>
         </DockPanel>
 
