@@ -85,15 +85,23 @@
     <Compile Include="Migrations\202403051809014_ChangedOrderService.designer.cs">
       <DependentUpon>202403051809014_ChangedOrderService.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403061530386_ChangedModelOfSubCategories.cs" />
+    <Compile Include="Migrations\202403061530386_ChangedModelOfSubCategories.designer.cs">
+      <DependentUpon>202403061530386_ChangedModelOfSubCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403071447031_ChangedServiceWithCategory.cs" />
+    <Compile Include="Migrations\202403071447031_ChangedServiceWithCategory.designer.cs">
+      <DependentUpon>202403071447031_ChangedServiceWithCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\OrdersConfirmed.cs" />
     <Compile Include="Models\PowerSellDbContext.cs" />
     <Compile Include="Models\ServiceCategory.cs" />
-    <Compile Include="Models\ServiceSubCategory.cs" />
     <Compile Include="Models\Tables.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Services\RelayCommand.cs" />
     <Compile Include="Views\ClientView\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
@@ -155,6 +163,12 @@
     <EmbeddedResource Include="Migrations\202403051809014_ChangedOrderService.resx">
       <DependentUpon>202403051809014_ChangedOrderService.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403061530386_ChangedModelOfSubCategories.resx">
+      <DependentUpon>202403061530386_ChangedModelOfSubCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403071447031_ChangedServiceWithCategory.resx">
+      <DependentUpon>202403071447031_ChangedServiceWithCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -174,7 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

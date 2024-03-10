@@ -36,4 +36,13 @@ namespace PowerSell.Models
         // Collection of users associated with this service
         public virtual ICollection<User> Workers { get; set; } = new List<User>(); //Need to Get WorkerName when create a order
     }
+    public class OrderDTO
+    {
+        public int OrdersId { get; set; }
+        public DateTime ServiceDateCreated { get; set; }
+        public decimal ServicePrice { get; set; }
+        public decimal Quantity { get; set; }
+        public string ServiceName { get; set; }
+        // Add other properties as needed
+    }
 }

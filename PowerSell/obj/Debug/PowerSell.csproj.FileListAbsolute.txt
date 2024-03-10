@@ -76,3 +76,5 @@ C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.CopyComplete
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.exe
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.pdb
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedModelOfSubCategories.resources
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedServiceWithCategory.resources

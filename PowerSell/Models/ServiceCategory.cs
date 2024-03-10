@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PowerSell.Models
 {
@@ -13,6 +8,15 @@ namespace PowerSell.Models
     {
         [Key]
         public int CategoryId { get; set; }
-            public string CategoryName { get; set; }   
+        public string CategoryName { get; set; }
+
+        [ForeignKey("ParentCategory")]
+        public int? CategoryParentId { get; set; }
+
+        public virtual ServiceCategory ParentCategory { get; set; }
+
+        [ForeignKey("Service")]
+        public int? ServiceId { get; set; }
+        public virtual Service Service { get; set; }
     }
 }
