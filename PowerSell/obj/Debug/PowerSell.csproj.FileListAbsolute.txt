@@ -78,3 +78,7 @@ C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.pdb
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedModelOfSubCategories.resources
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedServiceWithCategory.resources
+D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\Views\ClientView\AddClient.g.cs
+D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\Views\ClientView\AddClient.baml
+D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedModelOfSubCategories.resources
+D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.ChangedServiceWithCategory.resources

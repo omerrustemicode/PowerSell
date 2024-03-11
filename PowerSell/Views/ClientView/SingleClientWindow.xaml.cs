@@ -1,13 +1,12 @@
 ﻿using PowerSell.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Data.Entity;
 using PowerSell.Services;
+using System.Linq;
 
 namespace PowerSell.Views.ClientView
 {
@@ -16,6 +15,7 @@ namespace PowerSell.Views.ClientView
         public ObservableCollection<ServiceCategory> YourServiceCategoriesCollection { get; set; }
         public ICommand YourCommandForButtonClick { get; set; }
         private readonly PowerSellDbContext dbContext = new PowerSellDbContext();
+        private Stack<int> navigationStack = new Stack<int>();
 
         public int TableId { get; private set; }
 
@@ -23,10 +23,9 @@ namespace PowerSell.Views.ClientView
         {
             InitializeComponent();
             TableId = tableId;
-
             YourServiceCategoriesCollection = new ObservableCollection<ServiceCategory>();
             LoadCategories();
-
+            LoadOrdersData();
             YourCommandForButtonClick = new RelayCommand(ExecuteYourCommandForButtonClick);
         }
 
@@ -69,7 +68,7 @@ namespace PowerSell.Views.ClientView
             foreach (ServiceCategory category in categories)
             {
                 Button categoryButton = CreateCategoryButton(category);
-                YourWrapPanel.Children.Add(categoryButton);
+                CattegoryServiceWrap.Children.Add(categoryButton);
             }
         }
 
@@ -89,29 +88,47 @@ namespace PowerSell.Views.ClientView
             return categoryButton;
         }
 
+        private int currentCategoryId = 0; // Add a field to track the current category
+
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button clickedButton && clickedButton.Tag is int categoryId)
+            if (sender is Button clickedButton && clickedButton.Tag is int categoryId && categoryId != currentCategoryId)
             {
+                navigationStack.Push(categoryId);
+                currentCategoryId = categoryId; // Update the current category
                 ExecuteYourCommandForButtonClick(categoryId);
             }
         }
+
+
 
         private void ExecuteYourCommandForButtonClick(object parameter)
         {
             if (parameter is int categoryId)
             {
-                List<ServiceCategory> subcategories = GetSubcategories(categoryId);
+                List<ServiceCategory> categoriesToDisplay = new List<ServiceCategory>();
 
-                YourWrapPanel.Children.Clear();
-
-                foreach (ServiceCategory subcategory in subcategories)
+                if (categoryId == 0)
                 {
-                    Button subcategoryButton = CreateCategoryButton(subcategory);
-                    YourWrapPanel.Children.Add(subcategoryButton);
+                    // Display top-level categories
+                    categoriesToDisplay = GetAllCategories();
+                }
+                else
+                {
+                    // Display subcategories
+                    categoriesToDisplay = GetSubcategories(categoryId);
+                }
+
+                CattegoryServiceWrap.Children.Clear();
+
+                foreach (ServiceCategory category in categoriesToDisplay)
+                {
+                    Button categoryButton = CreateCategoryButton(category);
+                    CattegoryServiceWrap.Children.Add(categoryButton);
                 }
             }
         }
+
 
         private List<ServiceCategory> GetSubcategories(int parentCategoryId)
         {
@@ -124,6 +141,24 @@ namespace PowerSell.Views.ClientView
         {
             // Your existing button click logic
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (navigationStack.Count > 0)
+            {
+                int categoryId = navigationStack.Pop();
+                ExecuteYourCommandForButtonClick(categoryId);
+
+                // Clear the navigation stack to go back to the top-level categories
+                if (navigationStack.Count == 0)
+                {
+                    currentCategoryId = -1; // Update the current category
+                    LoadCategories();
+                }
+            }
+        }
+
+
 
         private void Transport_Btn(object sender, RoutedEventArgs e)
         {
