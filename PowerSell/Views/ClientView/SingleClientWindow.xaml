@@ -44,10 +44,8 @@
 
             <!-- Separator Line with fixed width -->
             <Separator Width="Auto" Height="1" Background="White" Margin="0,5,0,5"/>
-            <Button Content="Back" Click="BackButton_Click" Margin="5" Background="#3498DB" Foreground="White" Width="80" Height="30"/>
 
-            <!-- More buttons or customize as needed -->
-            <WrapPanel x:Name="CattegoryServiceWrap">
+            <WrapPanel x:Name="CategoryServiceWrap">
                 <!-- Binding YourServiceCategoriesCollection to the ItemsSource -->
                 <ItemsControl ItemsSource="{Binding YourServiceCategoriesCollection}">
                     <ItemsControl.ItemsPanel>
@@ -59,17 +57,22 @@
                         <DataTemplate>
                             <!-- Bind the Button's Command to YourCommandForButtonClick -->
                             <Button Content="{Binding CategoryName}" 
-                                    Width="80" 
-                                    Height="30" 
-                                    Margin="5" 
-                                    Background="#3498DB" 
-                                    Foreground="White" 
-                                    Command="{Binding Path=DataContext.YourCommandForButtonClick, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
-                                    CommandParameter="{Binding CategoryId}" />
+                        Width="80" 
+                        Height="30" 
+                        Margin="5" 
+                        Background="#3498DB" 
+                        Foreground="White" 
+                        Command="{Binding Path=DataContext.YourCommandForButtonClick, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                        CommandParameter="{Binding CategoryId}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </WrapPanel>
+            <!-- Panel for displaying subcategories -->
+            <WrapPanel x:Name="SubcategoryServiceWrap" Margin="10" Orientation="Horizontal"/>
+            <!-- Panel for displaying services -->
+            <WrapPanel x:Name="ServiceWrap" Margin="10" Orientation="Horizontal"/>
+
         </StackPanel>
     </Grid>
 </Window>

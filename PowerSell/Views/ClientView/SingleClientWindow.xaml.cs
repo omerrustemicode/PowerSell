@@ -52,8 +52,44 @@ namespace PowerSell.Views.ClientView
 
         private void LoadCategories()
         {
-            List<ServiceCategory> categories = GetAllCategories();
-            PopulateCategoryButtons(categories);
+            ExecuteYourCommandForButtonClick(0); // Display top-level categories initially
+        }
+
+        private void ExecuteYourCommandForButtonClick(object parameter)
+        {
+            if (parameter is int categoryId)
+            {
+                if (categoryId == 0)
+                {
+                    // Display top-level categories
+                    List<ServiceCategory> categoriesToDisplay = GetAllCategories();
+                    DisplayCategories(categoriesToDisplay);
+                }
+                else
+                {
+                    // Display subcategories of the clicked category if they exist
+                    List<ServiceCategory> subcategoriesToDisplay = GetSubcategories(categoryId);
+                    DisplaySubcategories(subcategoriesToDisplay);
+
+                    // Display services associated with the selected category
+                    List<Service> servicesToDisplay = GetServicesByCategory(categoryId);
+                    DisplayServices(servicesToDisplay);
+                }
+            }
+        }
+
+        private List<ServiceCategory> GetSubcategories(int parentCategoryId)
+        {
+            return dbContext.ServiceCategory
+                .Where(category => category.CategoryParentId == parentCategoryId)
+                .ToList();
+        }
+
+        private List<Service> GetServicesByCategory(int categoryId)
+        {
+            return dbContext.Service
+                .Where(s => s.CategoryId == categoryId)
+                .ToList();
         }
 
         private List<ServiceCategory> GetAllCategories()
@@ -63,12 +99,25 @@ namespace PowerSell.Views.ClientView
                             .ToList();
         }
 
-        private void PopulateCategoryButtons(List<ServiceCategory> categories)
+        private void DisplayCategories(List<ServiceCategory> categories)
         {
+            CategoryServiceWrap.Children.Clear();
+
             foreach (ServiceCategory category in categories)
             {
                 Button categoryButton = CreateCategoryButton(category);
-                CattegoryServiceWrap.Children.Add(categoryButton);
+                CategoryServiceWrap.Children.Add(categoryButton);
+            }
+        }
+
+        private void DisplaySubcategories(List<ServiceCategory> subcategories)
+        {
+            SubcategoryServiceWrap.Children.Clear();
+
+            foreach (ServiceCategory subcategory in subcategories)
+            {
+                Button subcategoryButton = CreateSubcategoryButton(subcategory);
+                SubcategoryServiceWrap.Children.Add(subcategoryButton);
             }
         }
 
@@ -77,8 +126,8 @@ namespace PowerSell.Views.ClientView
             Button categoryButton = new Button
             {
                 Content = category.CategoryName,
-                Width = 100,
-                Height = 30,
+                Width = 130,
+                Height = 50,
                 Margin = new Thickness(5),
                 Tag = category.CategoryId
             };
@@ -88,78 +137,77 @@ namespace PowerSell.Views.ClientView
             return categoryButton;
         }
 
-        private int currentCategoryId = 0; // Add a field to track the current category
+        private Button CreateSubcategoryButton(ServiceCategory subcategory)
+        {
+            Button subcategoryButton = new Button
+            {
+                Content = subcategory.CategoryName,
+                Width = 130,
+                Height = 50,
+                Margin = new Thickness(5),
+                Tag = subcategory.CategoryId
+            };
+
+            subcategoryButton.Click += SubcategoryButton_Click;
+
+            return subcategoryButton;
+        }
 
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button clickedButton && clickedButton.Tag is int categoryId && categoryId != currentCategoryId)
+            if (sender is Button clickedButton && clickedButton.Tag is int categoryId && categoryId != -1) // Update condition to prevent clicking on the same category
             {
                 navigationStack.Push(categoryId);
-                currentCategoryId = categoryId; // Update the current category
                 ExecuteYourCommandForButtonClick(categoryId);
             }
         }
 
-
-
-        private void ExecuteYourCommandForButtonClick(object parameter)
+        private void SubcategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            if (parameter is int categoryId)
+            if (sender is Button clickedButton && clickedButton.Tag is int categoryId && categoryId != -1)
             {
-                List<ServiceCategory> categoriesToDisplay = new List<ServiceCategory>();
-
-                if (categoryId == 0)
-                {
-                    // Display top-level categories
-                    categoriesToDisplay = GetAllCategories();
-                }
-                else
-                {
-                    // Display subcategories
-                    categoriesToDisplay = GetSubcategories(categoryId);
-                }
-
-                CattegoryServiceWrap.Children.Clear();
-
-                foreach (ServiceCategory category in categoriesToDisplay)
-                {
-                    Button categoryButton = CreateCategoryButton(category);
-                    CattegoryServiceWrap.Children.Add(categoryButton);
-                }
-            }
-        }
-
-
-        private List<ServiceCategory> GetSubcategories(int parentCategoryId)
-        {
-            return dbContext.ServiceCategory
-                .Where(category => category.CategoryParentId == parentCategoryId)
-                .ToList();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Your existing button click logic
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (navigationStack.Count > 0)
-            {
-                int categoryId = navigationStack.Pop();
+                navigationStack.Push(categoryId);
                 ExecuteYourCommandForButtonClick(categoryId);
-
-                // Clear the navigation stack to go back to the top-level categories
-                if (navigationStack.Count == 0)
-                {
-                    currentCategoryId = -1; // Update the current category
-                    LoadCategories();
-                }
             }
         }
 
+        private void DisplayServices(List<Service> services)
+        {
+            ServiceWrap.Children.Clear();
 
+            foreach (Service service in services)
+            {
+                Button serviceButton = CreateServiceButton(service);
+                ServiceWrap.Children.Add(serviceButton);
+            }
+        }
 
+        private Button CreateServiceButton(Service service)
+        {
+            Button serviceButton = new Button
+            {
+                Content = service.ServiceName,
+                Width = 130,
+                Height = 50,
+                Margin = new Thickness(5),
+                Tag = service.ServiceId // Assuming ServiceId is unique
+            };
+
+            serviceButton.Click += ServiceButton_Click;
+
+            return serviceButton;
+        }
+
+        private void ServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button clickedButton && clickedButton.Tag is int serviceId)
+            {
+                // Handle service button click event here
+                // You can navigate to another window, display details, etc.
+            }
+        }
+
+   
         private void Transport_Btn(object sender, RoutedEventArgs e)
         {
             var keyboardWindow = new KeyboardWindow();
@@ -175,6 +223,12 @@ namespace PowerSell.Views.ClientView
         {
             AddClient addClientWindow = new AddClient();
             addClientWindow.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Handle button click event here
+            // This method is currently empty, you can add your logic as needed
         }
     }
 }
