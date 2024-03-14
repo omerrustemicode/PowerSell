@@ -83,3 +83,4 @@ D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.CopyComplet
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.exe
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.pdb
 D:\Projects\PowerSell\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.AddedCategoryIdToService.resources
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.AddedCategoryIdToService.resources

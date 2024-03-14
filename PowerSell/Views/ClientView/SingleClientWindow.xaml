@@ -11,19 +11,29 @@
     </Window.Resources>
 
     <Grid>
+      
         <!-- Left Side -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridOrders" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrders_SelectionChanged" Grid.ColumnSpan="2" Margin="0,0,4,0">
+        <DataGrid x:Name="dataGridOrdersNew" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,443" ItemsSource="{Binding YourOrdersCollection}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <DataGrid x:Name="dataGridOrders" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrders_SelectionChanged" Grid.ColumnSpan="2" Margin="0,439,4,0">
             <!-- DataGrid columns go here -->
         </DataGrid>
         <!-- Left Side Content - DataGrid -->
 
         <!-- StackPanel for buttons on a new line -->
-        <StackPanel Orientation="Horizontal" Margin="10,368,10,316" Height="93" Opacity="0.8" Cursor="Hand">
+        <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand">
             <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Delete" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB"  Width="100"/>

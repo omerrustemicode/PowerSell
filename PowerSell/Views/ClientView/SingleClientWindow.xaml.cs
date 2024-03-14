@@ -190,7 +190,7 @@ namespace PowerSell.Views.ClientView
                 Width = 130,
                 Height = 50,
                 Margin = new Thickness(5),
-                Tag = service.ServiceId // Assuming ServiceId is unique
+                DataContext = service // Set the DataContext to the Service object
             };
 
             serviceButton.Click += ServiceButton_Click;
@@ -198,16 +198,25 @@ namespace PowerSell.Views.ClientView
             return serviceButton;
         }
 
+
         private void ServiceButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button clickedButton && clickedButton.Tag is int serviceId)
+            if (sender is Button clickedButton && clickedButton.DataContext is Service service)
             {
-                // Handle service button click event here
-                // You can navigate to another window, display details, etc.
+                // Create a new ServiceOrder object with the details of the selected service
+                Service newServiceOrder = new Service
+                {
+                    ServiceName = service.ServiceName,
+                    ServicePrice = service.ServicePrice,
+                    Quantity = 1 // You can set a default quantity here
+                };
+
+                // Add the new ServiceOrder to the data grid
+                dataGridOrdersNew.Items.Add(newServiceOrder);
             }
         }
 
-   
+
         private void Transport_Btn(object sender, RoutedEventArgs e)
         {
             var keyboardWindow = new KeyboardWindow();
@@ -215,6 +224,10 @@ namespace PowerSell.Views.ClientView
         }
 
         private void dataGridOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Handle selection changes if needed
+        }
+        private void dataGridOrdersNew_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Handle selection changes if needed
         }
