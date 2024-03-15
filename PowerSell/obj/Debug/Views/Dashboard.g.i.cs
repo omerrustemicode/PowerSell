@@ -9,7 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using PowerSell.Localization;
 using System;
 using System.Diagnostics;
 using System.Windows;

@@ -20,9 +20,11 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="dataGridOrdersNew" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,443" ItemsSource="{Binding YourOrdersCollection}">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}"/>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
             </DataGrid.Columns>
         </DataGrid>
 

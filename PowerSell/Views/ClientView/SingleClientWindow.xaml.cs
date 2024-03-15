@@ -7,6 +7,10 @@ using System.Windows.Input;
 using System.Data.Entity;
 using PowerSell.Services;
 using System.Linq;
+using System.Windows.Media;
+using MaterialDesignThemes.Wpf;
+using MaterialDesignColors;
+using Aspose.Slides.Theme;
 
 namespace PowerSell.Views.ClientView
 {
@@ -193,28 +197,52 @@ namespace PowerSell.Views.ClientView
                 DataContext = service // Set the DataContext to the Service object
             };
 
+            // Apply Material Design styles
+            serviceButton.Background = (Brush)new BrushConverter().ConvertFrom("#00bcd4"); // Aqua color
+            serviceButton.Foreground = Brushes.White; // White text color
+            serviceButton.Style = (Style)App.Current.Resources["MaterialDesignFlatButton"];
+
             serviceButton.Click += ServiceButton_Click;
 
             return serviceButton;
         }
 
 
+
         private void ServiceButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button clickedButton && clickedButton.DataContext is Service service)
             {
-                // Create a new ServiceOrder object with the details of the selected service
-                Service newServiceOrder = new Service
-                {
-                    ServiceName = service.ServiceName,
-                    ServicePrice = service.ServicePrice,
-                    Quantity = 1 // You can set a default quantity here
-                };
+                // Check if the service already exists in the data grid
+                var existingService = dataGridOrdersNew.Items.Cast<Service>()
+                                            .FirstOrDefault(s => s.ServiceId == service.ServiceId);
 
-                // Add the new ServiceOrder to the data grid
-                dataGridOrdersNew.Items.Add(newServiceOrder);
+                if (existingService != null)
+                {
+                    // If the service exists, increase the quantity
+                    existingService.Quantity++;
+
+                    // Refresh the data grid to reflect the changes
+                    dataGridOrdersNew.Items.Refresh();
+                }
+                else
+                {
+                    // If the service doesn't exist, create a new Service object
+                    Service newServiceOrder = new Service
+                    {
+                        ServiceId = service.ServiceId,
+                        ServiceName = service.ServiceName,
+                        ServicePrice = service.ServicePrice,
+                        Quantity = 1, // Set the default quantity here
+                    };
+
+                    // Add the new ServiceOrder to the data grid
+                    dataGridOrdersNew.Items.Add(newServiceOrder);
+                }
             }
         }
+
+
 
 
         private void Transport_Btn(object sender, RoutedEventArgs e)
