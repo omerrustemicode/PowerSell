@@ -13,7 +13,7 @@ namespace PowerSell.Views
     {
         public ObservableCollection<Tables> Tables { get; set; } = new ObservableCollection<Tables>();
 
-        public Dashboard()
+        public Dashboard(int userId)
         {
             InitializeComponent();
             using (var dbContext = new PowerSellDbContext())

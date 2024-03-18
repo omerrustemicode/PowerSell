@@ -7,6 +7,7 @@ namespace PowerSell.Models
     public class ServiceCategory
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 

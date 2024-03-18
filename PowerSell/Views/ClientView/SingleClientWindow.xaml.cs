@@ -11,10 +11,12 @@ using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignColors;
 using Aspose.Slides.Theme;
+using System;
+using MahApps.Metro.Controls;
 
 namespace PowerSell.Views.ClientView
 {
-    public partial class SingleClientWindow : Window
+    public partial class SingleClientWindow : MetroWindow
     {
         public ObservableCollection<ServiceCategory> YourServiceCategoriesCollection { get; set; }
         public ICommand YourCommandForButtonClick { get; set; }
@@ -265,7 +267,34 @@ namespace PowerSell.Views.ClientView
             AddClient addClientWindow = new AddClient();
             addClientWindow.ShowDialog();
         }
+        private void PrintService_Click(object sender, RoutedEventArgs e)
+        {
+            // Save data to Orders table
+            foreach (Service service in dataGridOrdersNew.Items.Cast<Service>())  // Changed type to Service
+            {
+                // Assuming Orders table has OrdersId, ServiceId, Quantity, ServicePrice columns
+                dbContext.Orders.Add(new Orders
+                {
+                    // Map properties from Service to Order
+                    OrdersId = service.ServiceId,  // Assuming OrdersId exists in Orders table
+                    ServiceId = service.ServiceId,
+                    Quantity = service.Quantity,  // Call a method to get quantity (optional)
+                    ServicePrice = service.ServicePrice,
+                    TableId = TableId  // Add TableId to associate orders with the table
+                });
+            }
 
+            try
+            {
+                dbContext.SaveChanges();  // Save changes to the database
+                MessageBox.Show("Orders saved successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving orders: " + ex.Message);
+            }
+        }
+  
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Handle button click event here

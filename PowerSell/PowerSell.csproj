@@ -41,11 +41,17 @@
     <Reference Include="Aspose.Slides, Version=24.2.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.Slides.NET.24.2.0\lib\net4.0-client\Aspose.Slides.dll</HintPath>
     </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.4.10\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.3.0.0\lib\net462\MaterialDesignColors.dll</HintPath>
@@ -61,7 +67,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -113,6 +122,14 @@
     <Compile Include="Migrations\202403141222083_TotalPriceAdded.designer.cs">
       <DependentUpon>202403141222083_TotalPriceAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403161540124_TotalPriceOnOrders.cs" />
+    <Compile Include="Migrations\202403161540124_TotalPriceOnOrders.designer.cs">
+      <DependentUpon>202403161540124_TotalPriceOnOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403171339480_FixedOrdersAndSomeTables.cs" />
+    <Compile Include="Migrations\202403171339480_FixedOrdersAndSomeTables.designer.cs">
+      <DependentUpon>202403171339480_FixedOrdersAndSomeTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Orders.cs" />
@@ -122,12 +139,19 @@
     <Compile Include="Models\Tables.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\RelayCommand.cs" />
+    <Compile Include="Views\Account\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientView\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Account\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientView\AddClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -194,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403141222083_TotalPriceAdded.resx">
       <DependentUpon>202403141222083_TotalPriceAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403161540124_TotalPriceOnOrders.resx">
+      <DependentUpon>202403161540124_TotalPriceOnOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403171339480_FixedOrdersAndSomeTables.resx">
+      <DependentUpon>202403171339480_FixedOrdersAndSomeTables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,5 +1,6 @@
-﻿<Window x:Class="PowerSell.Views.ClientView.SingleClientWindow"
+﻿<mah:MetroWindow x:Class="PowerSell.Views.ClientView.SingleClientWindow"
         xmlns:local="clr-namespace:PowerSell.Localization"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,7 +19,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridOrdersNew" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,443" ItemsSource="{Binding YourOrdersCollection}">
+        <DataGrid x:Name="dataGridOrdersNew" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,443" ItemsSource="{Binding YourOrdersCollection}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}"/>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
@@ -51,7 +52,7 @@
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Transport_Btn"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Order}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="PrintService_Click"/>
             </WrapPanel>
 
             <!-- Separator Line with fixed width -->
@@ -87,4 +88,4 @@
 
         </StackPanel>
     </Grid>
-</Window>
+</mah:MetroWindow>
