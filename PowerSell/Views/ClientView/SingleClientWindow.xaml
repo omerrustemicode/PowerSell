@@ -30,7 +30,7 @@
         </DataGrid>
 
 
-        <DataGrid x:Name="dataGridOrders" Background="#2C3E50" AlternatingRowBackground="WhiteSmoke" RowBackground="White" IsReadOnly="True" SelectionMode="Single" BorderBrush="#34495E" SelectionChanged="dataGridOrders_SelectionChanged" Grid.ColumnSpan="2" Margin="0,439,4,0">
+        <DataGrid x:Name="dataGridOrders" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" BorderBrush="White" SelectionChanged="dataGridOrders_SelectionChanged" Grid.ColumnSpan="2" Margin="0,439,4,0">
             <!-- DataGrid columns go here -->
         </DataGrid>
         <!-- Left Side Content - DataGrid -->
@@ -40,6 +40,11 @@
             <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Delete" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB"  Width="100"/>
+            <Button Content="Name: {Binding NameLabel.Content}" Click="ShowClientDetails_Click" />
+            <Label x:Name="NameLabel" Content="Name:" Visibility="Hidden" />
+            <Label x:Name="PhoneLabel" Content="Phone:" Visibility="Hidden" />
+            <Label x:Name="EmailLabel" Content="Email:" Visibility="Hidden"/>
+
         </StackPanel>
 
         <!-- Middle Line (GridSplitter) -->

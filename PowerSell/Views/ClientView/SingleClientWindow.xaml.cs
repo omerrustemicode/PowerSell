@@ -13,6 +13,7 @@ using MaterialDesignColors;
 using Aspose.Slides.Theme;
 using System;
 using MahApps.Metro.Controls;
+using System.Xml;
 
 namespace PowerSell.Views.ClientView
 {
@@ -22,7 +23,6 @@ namespace PowerSell.Views.ClientView
         public ICommand YourCommandForButtonClick { get; set; }
         private readonly PowerSellDbContext dbContext = new PowerSellDbContext();
         private Stack<int> navigationStack = new Stack<int>();
-
         public int TableId { get; private set; }
 
         public SingleClientWindow(int tableId)
@@ -32,6 +32,7 @@ namespace PowerSell.Views.ClientView
             YourServiceCategoriesCollection = new ObservableCollection<ServiceCategory>();
             LoadCategories();
             LoadOrdersData();
+
             YourCommandForButtonClick = new RelayCommand(ExecuteYourCommandForButtonClick);
         }
 
@@ -132,8 +133,8 @@ namespace PowerSell.Views.ClientView
             Button categoryButton = new Button
             {
                 Content = category.CategoryName,
-                Width = 130,
-                Height = 50,
+                Width = 150,
+                Height = 60,
                 Margin = new Thickness(5),
                 Tag = category.CategoryId
             };
@@ -148,8 +149,8 @@ namespace PowerSell.Views.ClientView
             Button subcategoryButton = new Button
             {
                 Content = subcategory.CategoryName,
-                Width = 130,
-                Height = 50,
+                Width = 150,
+                Height = 60,
                 Margin = new Thickness(5),
                 Tag = subcategory.CategoryId
             };
@@ -261,12 +262,35 @@ namespace PowerSell.Views.ClientView
         {
             // Handle selection changes if needed
         }
-
+        private SingleClientWindow singleClientWindow;
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddClient addClientWindow = new AddClient();
-            addClientWindow.ShowDialog();
+            // Open the AddClient dialog and pass the instance of SingleClientWindow
+            AddClient addClient = new AddClient(this);
+            addClient.ShowDialog();
         }
+        private void ShowClientDetails_Click(object sender, RoutedEventArgs e)
+        {
+            string name = NameLabel.Content?.ToString(); // Get the client's name from the label
+            string phone = PhoneLabel.Content?.ToString(); // Get the client's phone from the label
+            string email = EmailLabel.Content?.ToString(); // Get the client's email from the label
+
+            // Display the client details in a message box
+            MessageBox.Show($"Name: {name}\nPhone: {phone}\nEmail: {email}", "Client Details", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        // Method to update the UI with the newly added client
+        public void UpdateClient(Client newClient)
+        {
+            // Update the labels with the new client information
+            NameLabel.Content = newClient.ClientName;
+            PhoneLabel.Content = newClient.ClientPhone;
+            EmailLabel.Content = newClient.ClientEmail;
+
+            // Reload the data grid to remove the added items
+
+        }
+
         private void PrintService_Click(object sender, RoutedEventArgs e)
         {
             // Save data to Orders table
@@ -280,7 +304,13 @@ namespace PowerSell.Views.ClientView
                     ServiceId = service.ServiceId,
                     Quantity = service.Quantity,  // Call a method to get quantity (optional)
                     ServicePrice = service.ServicePrice,
-                    TableId = TableId  // Add TableId to associate orders with the table
+                    TableId = TableId, 
+                    ServiceDateCreated= service.ServiceDateCreated,
+                    IsReady = 0,
+                    IsPaid = false,
+                    ServiceDIscount= 0,
+                    ClientGetService = false,
+                    Total = service.Total
                 });
             }
 

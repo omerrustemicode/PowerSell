@@ -14,37 +14,46 @@ namespace PowerSell.Views.Account
         public Login()
         {
             InitializeComponent();
-
-
             Loaded += Login_Loaded;
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            // Show the loading indicator
+            LoadingGrid.Visibility = Visibility.Visible;
+            LoginGrid.Visibility = Visibility.Collapsed;
+
             string password = PasswordBox.Password;
 
+            // Simulate login delay (replace with actual login logic)
+            await Task.Delay(2000);
+
             // Validate username and password against database
-            User user = dbContext.Users
-                .FirstOrDefault(u => u.Password == password);
+            User user = dbContext.Users.FirstOrDefault(u => u.Password == password);
 
             if (user != null)
             {
+                // Close the loading indicator and show the login UI
+                LoadingGrid.Visibility = Visibility.Collapsed;
+                LoginGrid.Visibility = Visibility.Visible;
+
                 Dashboard dashboard = new Dashboard(user.UserId); // Pass user ID to Dashboard constructor
                 dashboard.Show();
                 Close(); // Close Login window
             }
             else
             {
+                // Close the loading indicator and show an error message
+                LoadingGrid.Visibility = Visibility.Collapsed;
+                LoginGrid.Visibility = Visibility.Visible;
+
                 MessageBox.Show("Invalid username or password. Please try again.");
             }
         }
 
-
-
         private async void Login_Loaded(object sender, RoutedEventArgs e)
         {
             await AnimateProgressBarAsync();
-            ShowLoginUI();
         }
 
         private async Task AnimateProgressBarAsync()
@@ -63,6 +72,9 @@ namespace PowerSell.Views.Account
             }
 
             ProgressBar.Value = ProgressBar.Maximum; // Ensure the progress bar reaches 100 at the end
+
+            // Show the login UI after the progress bar animation completes
+            ShowLoginUI();
         }
 
         private void ShowLoginUI()

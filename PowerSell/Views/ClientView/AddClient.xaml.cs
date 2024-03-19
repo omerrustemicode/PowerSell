@@ -1,4 +1,5 @@
-﻿using PowerSell.Models;
+﻿using MahApps.Metro.Controls;
+using PowerSell.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,16 @@ namespace PowerSell.Views.ClientView
     /// <summary>
     /// Interaction logic for AddClient.xaml
     /// </summary>
-    public partial class AddClient : Window
+    public partial class AddClient : MetroWindow
     {
-        public AddClient()
+        public Client NewClient { get; private set; }
+        private SingleClientWindow singleClientWindow;
+
+        public AddClient(SingleClientWindow window)
         {
             InitializeComponent();
+            singleClientWindow = window;
         }
-        // Other code...
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -57,18 +61,34 @@ namespace PowerSell.Views.ClientView
 
                     dbContext.Client.Add(newClient);
                     dbContext.SaveChanges();
+
+                    // Set the NewClient property to the newly added client
+                    NewClient = newClient;
+
+                    // Close the AddClientWindow
+                    this.Close();
+
+                    // Get the instance of SingleClientWindow
+                    SingleClientWindow singleClientWindow = Application.Current.Windows.OfType<SingleClientWindow>().FirstOrDefault();
+
+                    // Update the labels in SingleClientWindow with the new client information
+                    if (singleClientWindow != null)
+                    {
+                        singleClientWindow.NameLabel.Content = newClient.ClientName;
+                        singleClientWindow.PhoneLabel.Content = newClient.ClientPhone;
+                        singleClientWindow.EmailLabel.Content = newClient.ClientEmail;
+                    }
                 }
 
                 MessageBox.Show("Client added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                // Close the AddClientWindow
-                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
     }
 
 }
