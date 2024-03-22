@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.ObjectModel;
 
 namespace PowerSell.Models
 {
@@ -39,7 +40,10 @@ namespace PowerSell.Models
         public virtual Client Client { get; set; } // Navigation property for Client
 
         // Collection of users associated with this service
-        public virtual ICollection<User> Workers { get; set; } = new List<User>();
+        // Foreign key for User table
+        public int? UserId { get; set; }
+        public virtual User User { get; set; } // Navigation property for User
+
     }
     public class OrderDTO
     {
@@ -48,6 +52,7 @@ namespace PowerSell.Models
         public decimal ServicePrice { get; set; }
         public decimal Quantity { get; set; }
         public string ServiceName { get; set; }
+        public string UserName { get; set; }
         // Add other properties as needed
     }
 }

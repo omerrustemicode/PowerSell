@@ -4,19 +4,31 @@ using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.Controls;
 using PowerSell.Models; // Assuming PowerSell.Models contains User and PowerSellDbContext classes
+using PowerSell.Services; // Import the SessionManager namespace
 
 namespace PowerSell.Views.Account
 {
     public partial class Login : MetroWindow
     {
         private readonly PowerSellDbContext dbContext = new PowerSellDbContext();
-
+        private readonly System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         public Login()
         {
             InitializeComponent();
             Loaded += Login_Loaded;
-        }
 
+            // Set up the timer to update every second
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Update the UTC+1 time TextBlock
+            DateTime utcPlusOneTime = DateTime.UtcNow.AddHours(1);
+            UtcPlusOneTimeTextBlock.Text = $"{utcPlusOneTime.ToString("HH:mm:ss")}";
+
+        }
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             // Show the loading indicator
@@ -26,13 +38,16 @@ namespace PowerSell.Views.Account
             string password = PasswordBox.Password;
 
             // Simulate login delay (replace with actual login logic)
-            await Task.Delay(2000);
+            await Task.Delay(2500);
 
             // Validate username and password against database
             User user = dbContext.Users.FirstOrDefault(u => u.Password == password);
 
             if (user != null)
             {
+                // Set the user ID in the session manager
+                SessionManager.Instance.UserId = user.UserId;
+
                 // Close the loading indicator and show the login UI
                 LoadingGrid.Visibility = Visibility.Collapsed;
                 LoginGrid.Visibility = Visibility.Visible;

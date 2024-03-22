@@ -1,5 +1,7 @@
 ﻿using PowerSell.Models;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +16,7 @@ public class User
     public DateTime RegisteredDate { get; set; }
     public DateTime LastLogin { get; set; }
     public string UserType { get; set; }
-
+    // Navigation property to Orders
+    public virtual ICollection<Orders> Orders { get; set; }
 
 }

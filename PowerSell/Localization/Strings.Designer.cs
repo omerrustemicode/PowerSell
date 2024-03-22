@@ -61,7 +61,7 @@ namespace PowerSell.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Smetka.
+        ///   Looks up a localized string similar to Сметка.
         /// </summary>
         public static string Bill {
             get {
@@ -70,7 +70,7 @@ namespace PowerSell.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Poracka.
+        ///   Looks up a localized string similar to Порацка.
         /// </summary>
         public static string Order {
             get {
@@ -88,7 +88,7 @@ namespace PowerSell.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transporti.
+        ///   Looks up a localized string similar to Транспорт.
         /// </summary>
         public static string Transport {
             get {

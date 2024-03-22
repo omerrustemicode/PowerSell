@@ -27,6 +27,9 @@
                                         Value="0" />
             </StackPanel>
         </Grid>
+        <!-- TextBlock to display UTC+1 time -->
+        <TextBlock x:Name="UtcPlusOneTimeTextBlock" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontSize="50" FontWeight="Bold"/>
+
 
         <!-- Login Grid -->
         <Grid x:Name="LoginGrid" Visibility="Collapsed">

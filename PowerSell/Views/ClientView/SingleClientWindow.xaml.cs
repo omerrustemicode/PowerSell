@@ -14,6 +14,8 @@ using Aspose.Slides.Theme;
 using System;
 using MahApps.Metro.Controls;
 using System.Xml;
+using System.Drawing.Printing;
+using System.Threading.Tasks;
 
 namespace PowerSell.Views.ClientView
 {
@@ -24,7 +26,8 @@ namespace PowerSell.Views.ClientView
         private readonly PowerSellDbContext dbContext = new PowerSellDbContext();
         private Stack<int> navigationStack = new Stack<int>();
         public int TableId { get; private set; }
-
+        string userName = SessionManager.Instance.UserName;
+        int userid = SessionManager.Instance.UserId;
         public SingleClientWindow(int tableId)
         {
             InitializeComponent();
@@ -210,8 +213,6 @@ namespace PowerSell.Views.ClientView
             return serviceButton;
         }
 
-
-
         private void ServiceButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button clickedButton && clickedButton.DataContext is Service service)
@@ -245,9 +246,6 @@ namespace PowerSell.Views.ClientView
             }
         }
 
-
-
-
         private void Transport_Btn(object sender, RoutedEventArgs e)
         {
             var keyboardWindow = new KeyboardWindow();
@@ -262,7 +260,7 @@ namespace PowerSell.Views.ClientView
         {
             // Handle selection changes if needed
         }
-        private SingleClientWindow singleClientWindow;
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             // Open the AddClient dialog and pass the instance of SingleClientWindow
@@ -293,42 +291,222 @@ namespace PowerSell.Views.ClientView
 
         private void PrintService_Click(object sender, RoutedEventArgs e)
         {
-            // Save data to Orders table
-            foreach (Service service in dataGridOrdersNew.Items.Cast<Service>())  // Changed type to Service
-            {
-                // Assuming Orders table has OrdersId, ServiceId, Quantity, ServicePrice columns
-                dbContext.Orders.Add(new Orders
-                {
-                    // Map properties from Service to Order
-                    OrdersId = service.ServiceId,  // Assuming OrdersId exists in Orders table
-                    ServiceId = service.ServiceId,
-                    Quantity = service.Quantity,  // Call a method to get quantity (optional)
-                    ServicePrice = service.ServicePrice,
-                    TableId = TableId, 
-                    ServiceDateCreated= service.ServiceDateCreated,
-                    IsReady = 0,
-                    IsPaid = false,
-                    ServiceDIscount= 0,
-                    ClientGetService = false,
-                    Total = service.Total
-                });
-            }
-
             try
             {
+                // Save data to Orders table
+                foreach (Service service in dataGridOrdersNew.Items.Cast<Service>())
+                {
+                    dbContext.Orders.Add(new Orders
+                    {
+                        OrdersId = service.ServiceId,
+                        ServiceId = service.ServiceId,
+                        Quantity = service.Quantity,
+                        ServicePrice = service.ServicePrice,
+                        TableId = TableId,
+                        ServiceDateCreated = service.ServiceDateCreated,
+                        IsReady = 0,
+                        IsPaid = false,
+                        ServiceDIscount = 0,
+                        ClientGetService = false,
+                        Total = service.Total,
+                        UserId = userid
+                });
+                }
+
                 dbContext.SaveChanges();  // Save changes to the database
-                MessageBox.Show("Orders saved successfully!");
+                PrintButton_Click(sender, e);  // Call the print button click event
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving orders: " + ex.Message);
             }
         }
-  
+
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a PrintDocument instance
+            PrintDocument printDocument = new PrintDocument();
+
+            // Set up the PrintPage event handler
+            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+
+            // Start printing without showing the print dialog
+            printDocument.Print();
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            // Set the print size in millimeters
+            double printWidth = 72.1 * 10; // Convert inches to millimeters (1 inch = 25.4 mm)
+            double printHeight = 99999 * 10; // Set the height in millimeters
+
+            // Create a visual to print (e.g., a StackPanel)
+            StackPanel stackPanel = new StackPanel();
+
+            // Iterate through the items in the DataGrid
+            foreach (var item in dataGridOrdersNew.Items)
+            {
+                if (item is Service service)
+                {
+                    // Create a TextBlock for each service and add it to the stack panel
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Text = $"\n" +
+                                     $"--------------------------------------------------\n" +
+                                     $"            Сервис Име: {service.ServiceName}\n" +
+                                     $"            Цена: ${service.ServicePrice}\n" +
+                                     $"            Колицина: {service.Quantity}\n" +
+                                     $"           Тотал: {service.Total}\n" +
+                                     $"         Работник: {userName}\n" +
+                                     "--------------------------------------------------"; // Separator between items
+                    stackPanel.Children.Add(textBlock);
+                }
+            }
+
+            // Measure and arrange the stack panel for printing
+            Size visualSize = new Size(printWidth, printHeight);
+            stackPanel.Measure(visualSize);
+            stackPanel.Arrange(new Rect(new Point(0, 0), visualSize));
+            stackPanel.UpdateLayout();
+
+            // Render the stack panel to the print page
+            var printDialog = new PrintDialog();
+            printDialog.PrintVisual(stackPanel, "Print Document");
+
+            // Mark the event as handled to prevent additional printing
+            e.Cancel = true;
+        }
+
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Handle button click event here
             // This method is currently empty, you can add your logic as needed
         }
+        private async Task<bool> SaveOrdersToConfirmed()
+        {
+            try
+            {
+                // Select all orders with the matching TableId
+                var ordersToConfirm = dbContext.Orders
+                    .Where(o => o.TableId == TableId)
+                    .ToList();
+
+                // Add selected orders to OrdersConfirmed table
+                foreach (var order in ordersToConfirm)
+                {
+                    dbContext.OrdersConfirmed.Add(new OrdersConfirmed
+                    {
+                        OrdersId = order.OrdersId,
+                        ServiceId = order.ServiceId,
+                        Quantity = order.Quantity,
+                        ServicePrice = order.ServicePrice,
+                        TableId = order.TableId,
+                        ServiceDateCreated = order.ServiceDateCreated,
+                        ClientGetServiceDate = DateTime.Now,
+                        ServiceDateIsReady = DateTime.Now,
+                        IsReady = 1,
+                        IsPaid = true,
+                        ServiceDIscount = 0,
+                        ClientGetService = true,
+                        Total = order.Total,
+                        UserId = userid
+                        // Add other properties as needed
+                    });
+                }
+
+                await dbContext.SaveChangesAsync();
+                // Print the order details
+                PrintOrdersToPaper(ordersToConfirm);
+                // If insertion to OrdersConfirmed was successful, remove orders from Orders table
+                dbContext.Orders.RemoveRange(ordersToConfirm);
+                await dbContext.SaveChangesAsync();
+             
+                MessageBox.Show("Orders added to OrdersConfirmed and removed from Orders successfully!");
+                return true; // Return true to indicate successful execution
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error processing orders: " + ex.Message);
+                return false; // Return false to indicate failure
+            }
+        }
+
+        private async void BillButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Call the method to save orders to OrdersConfirmed and delete from Orders
+            await SaveOrdersToConfirmed();
+
+            // Add other actions or messages as needed
+        }
+
+        private void PrintOrdersToPaper(List<Orders> orders)
+        {
+            if (orders == null || orders.Count == 0)
+            {
+                MessageBox.Show("No orders to print.");
+                return;
+            }
+
+            // Create a PrintDocument instance
+            PrintDocument printDocument = new PrintDocument();
+
+            // Set up the PrintPage event handler
+            printDocument.PrintPage += new PrintPageEventHandler((sender, e) =>
+            {
+                // Set the print size in millimeters
+                double printWidth = 72.1 * 10; // Convert inches to millimeters (1 inch = 25.4 mm)
+                double printHeight = 99999 * 10; // Set the height in millimeters
+
+                // Create a visual to print (e.g., a StackPanel)
+                StackPanel stackPanel = new StackPanel();
+                stackPanel.HorizontalAlignment = HorizontalAlignment.Center; // Center the stack panel horizontally
+
+                // Create a TextBlock for the "Paid" label
+                TextBlock paidLabel = new TextBlock
+                {
+                    Text = "Paid",
+                    FontSize = 20,
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(0, 20, 0, 10) // Margin for spacing
+                };
+                stackPanel.Children.Add(paidLabel);
+
+                // Iterate through the orders and create TextBlocks for each order
+                foreach (var order in orders)
+                {
+                    if (order != null && order.Service != null)
+                    {
+                        TextBlock textBlock = new TextBlock();
+                        textBlock.Text = $"Service Name: {order.Service.ServiceName}\n" +
+                                            $"Quantity: {order.Quantity}\n" +
+                                            $"Price: ${order.ServicePrice}\n" +
+                                            "------------------------------------\n"; // Separator between items
+                        textBlock.HorizontalAlignment = HorizontalAlignment.Center; // Center the text horizontally
+                        stackPanel.Children.Add(textBlock);
+                    }
+                }
+
+                // Measure and arrange the stack panel for printing
+                Size visualSize = new Size(printWidth, printHeight);
+                stackPanel.Measure(visualSize);
+                stackPanel.Arrange(new Rect(new Point(0, 0), visualSize));
+                stackPanel.UpdateLayout();
+
+                // Render the stack panel to the print page
+                var printDialog = new PrintDialog();
+                printDialog.PrintVisual(stackPanel, "Print Document");
+
+                // Mark the event as handled to prevent additional printing
+                e.Cancel = true;
+            });
+
+            // Start printing without showing the print dialog
+            printDocument.Print();
+        }
+
+
     }
 }

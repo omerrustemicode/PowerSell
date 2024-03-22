@@ -18,6 +18,7 @@ namespace PowerSell.Models
         public DbSet<Orders> Orders { get; set; }
         public DbSet<ServiceCategory> ServiceCategory { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<OrdersConfirmed> OrdersConfirmed { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<Service> Service { get; set; }
                 

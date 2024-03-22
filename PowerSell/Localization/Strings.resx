@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bill" xml:space="preserve">
-    <value>Smetka</value>
+    <value>Сметка</value>
   </data>
   <data name="Order" xml:space="preserve">
-    <value>Poracka</value>
+    <value>Порацка</value>
   </data>
   <data name="PrintService" xml:space="preserve">
     <value>P+</value>
   </data>
   <data name="Transport" xml:space="preserve">
-    <value>Transporti</value>
+    <value>Транспорт</value>
   </data>
 </root>

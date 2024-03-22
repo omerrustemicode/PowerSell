@@ -40,7 +40,7 @@
             <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Delete" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB"  Width="100"/>
-            <Button Content="Name: {Binding NameLabel.Content}" Click="ShowClientDetails_Click" />
+            <Button Content="{Binding NameLabel.Content}" Click="ShowClientDetails_Click" />
             <Label x:Name="NameLabel" Content="Name:" Visibility="Hidden" />
             <Label x:Name="PhoneLabel" Content="Phone:" Visibility="Hidden" />
             <Label x:Name="EmailLabel" Content="Email:" Visibility="Hidden"/>
@@ -55,7 +55,7 @@
             <!-- Fixed-size buttons -->
             <WrapPanel>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Transport_Btn"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="BillButton_Click"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Order}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Button_Click"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Width="80" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="PrintService_Click"/>
             </WrapPanel>
