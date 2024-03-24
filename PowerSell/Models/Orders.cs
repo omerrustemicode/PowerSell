@@ -44,6 +44,8 @@ namespace PowerSell.Models
         public int? UserId { get; set; }
         public virtual User User { get; set; } // Navigation property for User
 
+        public int OrderListId { get; set; } // New property for OrderList ID
+
     }
     public class OrderDTO
     {

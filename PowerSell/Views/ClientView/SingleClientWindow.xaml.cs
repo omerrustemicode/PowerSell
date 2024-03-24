@@ -293,33 +293,71 @@ namespace PowerSell.Views.ClientView
         {
             try
             {
-                // Save data to Orders table
-                foreach (Service service in dataGridOrdersNew.Items.Cast<Service>())
+                using (var dbContext = new PowerSellDbContext())
                 {
-                    dbContext.Orders.Add(new Orders
-                    {
-                        OrdersId = service.ServiceId,
-                        ServiceId = service.ServiceId,
-                        Quantity = service.Quantity,
-                        ServicePrice = service.ServicePrice,
-                        TableId = TableId,
-                        ServiceDateCreated = service.ServiceDateCreated,
-                        IsReady = 0,
-                        IsPaid = false,
-                        ServiceDIscount = 0,
-                        ClientGetService = false,
-                        Total = service.Total,
-                        UserId = userid
-                });
+                    // Instantiate OrderManager
+                    var orderManager = new OrderManager(dbContext);
+
+                    // Get the TableId and UserId from your application logic
+                    int tableId = TableId; // Implement GetTableId() method to fetch the TableId
+                    int userId = userid; // Implement GetUserId() method to fetch the UserId
+
+                    // Get the collection of Service objects from your data grid
+                    var services = dataGridOrdersNew.Items.Cast<Service>();
+
+                    // Call PrintServiceClick method of OrderManager
+                    orderManager.PrintServiceClick(tableId, userId, services);
                 }
 
-                dbContext.SaveChanges();  // Save changes to the database
                 PrintButton_Click(sender, e);  // Call the print button click event
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving orders: " + ex.Message);
+            }
+        }
+
+        private void ReadyButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var dbContext = new PowerSellDbContext())
+                {
+                    int tableId = TableId;// Get the TableId for which to update IsReady status
+
+                    if (tableId > 0)
+                    {
+                        // Get all orders with the specified TableId
+                        var ordersToUpdate = dbContext.Orders.Where(o => o.TableId == tableId).ToList();
+
+                        if (ordersToUpdate.Count > 0)
+                        {
+                            // Update IsReady status for the found orders
+                            foreach (var order in ordersToUpdate)
+                            {
+                                order.IsReady = 1; // Set IsReady to 1
+                            }
+
+                            // Save changes to the database
+                            dbContext.SaveChanges();
+
+                            MessageBox.Show("Orders are marked as ready.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No orders found for the specified TableId.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid TableId. Please try again.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating IsReady status: " + ex.Message);
             }
         }
 
@@ -423,7 +461,6 @@ namespace PowerSell.Views.ClientView
                 dbContext.Orders.RemoveRange(ordersToConfirm);
                 await dbContext.SaveChangesAsync();
              
-                MessageBox.Show("Orders added to OrdersConfirmed and removed from Orders successfully!");
                 return true; // Return true to indicate successful execution
             }
             catch (Exception ex)

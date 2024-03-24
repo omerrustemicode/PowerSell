@@ -8,7 +8,7 @@
         Title="Login" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
    
     <Grid>
-        <Image Source="/Views/Logos/tufo.png" Stretch="Uniform" />
+        <Image Source="/Views/Logos/PowerSell_BG_Logo.jpeg" Stretch="Fill" />
 
         <!-- Loading Grid -->
         <Grid x:Name="LoadingGrid" IsHitTestVisible="False" Visibility="Visible" Background="Transparent" Width="800">

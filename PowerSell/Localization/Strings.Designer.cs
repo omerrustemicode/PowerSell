@@ -70,20 +70,20 @@ namespace PowerSell.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Порацка.
-        /// </summary>
-        public static string Order {
-            get {
-                return ResourceManager.GetString("Order", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to P+.
         /// </summary>
         public static string PrintService {
             get {
                 return ResourceManager.GetString("PrintService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Готово.
+        /// </summary>
+        public static string Ready {
+            get {
+                return ResourceManager.GetString("Ready", resourceCulture);
             }
         }
         
