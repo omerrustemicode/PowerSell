@@ -19,6 +19,7 @@ namespace PowerSell.Models
         // Collection of users associated with this service
         public virtual ICollection<User> Workers { get; set; } = new List<User>(); //Need to Get WorkerName when worker add clientservice
         public virtual ICollection<Orders> Orders { get; set; } = new List<Orders>(); //Need to Get WorkerName when worker add clientservice
+        public virtual ICollection<OrderList> OrderList { get; set; } = new List<OrderList>(); //Need to Get WorkerName when worker add clientservice
 
 
 

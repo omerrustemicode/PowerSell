@@ -1,7 +1,9 @@
 ﻿using PowerSell.Models;
 using PowerSell.Views.ClientView;
+using PowerSell.Views.ToGo;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,11 +22,13 @@ namespace PowerSell.Views
             InitializeComponent();
             LoadTablesFromDatabase();
             StartColorUpdateTimer();
+            StartTableUpdateTimer();
+            UpdateButtonColors();
             DataContext = this; // Set the DataContext to allow binding
         }
-
         private void LoadTablesFromDatabase()
         {
+           
             using (var dbContext = new PowerSellDbContext())
             {
                 var tablesFromDb = dbContext.Tables.ToList();
@@ -36,38 +40,68 @@ namespace PowerSell.Views
                 foreach (var table in tablesFromDb)
                 {
                     var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
-
-                    // Fetch orders for the current table from the Orders table
                     var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
 
-                    // Add order information to the view model table
-                    foreach (var order in ordersForTable)
+                    // Check if there are orders for the table
+                    if (ordersForTable.Any())
                     {
-                        viewModelTable.Orders.Add(new Orders
+                        // Get the OrderListId outside the LINQ query
+                        int orderListId = ordersForTable.First().OrderListId;
+
+                        var orderListForTable = dbContext.OrderList
+                            .Where(ol => ol.OrderListId == orderListId)
+                            .ToList();
+
+                        // Add order information to the view model table
+                        foreach (var orderList in orderListForTable)
                         {
-                            ServicePrice = order.ServicePrice,
-                            IsReady = order.IsReady // Add IsReady property
-                            // Add any other properties you need from the Order table
-                        });
+                            viewModelTable.OrderList.Add(new OrderList
+                            {
+                                Total = orderList.Total,
+                                IsReady = orderList.IsReady
+                                // Add any other properties you need from the OrderList table
+                            }); ;
+                        }
+                    }
+                    else
+                    {
+                        // Handle case where there are no orders for the table
+                        // You can add default or placeholder data if needed
                     }
 
                     Tables.Add(viewModelTable);
+                    UpdateButtonColors();
                 }
             }
+            
         }
+
 
         private void StartColorUpdateTimer()
         {
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
+            timer.Tick += ColorTimer_Tick;
             timer.Start();
         }
-
-        private void Timer_Tick(object sender, EventArgs e)
+        private void ColorTimer_Tick(object sender, EventArgs e)
         {
             UpdateButtonColors();
+
         }
+        private void StartTableUpdateTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Tick += TableTimer_Tick;
+            timer.Start();
+        }
+        private void TableTimer_Tick(object sender, EventArgs e)
+        {
+
+            LoadTablesFromDatabase();
+        }
+       
 
         private void UpdateButtonColors()
         {
@@ -77,7 +111,15 @@ namespace PowerSell.Views
                 {
                     var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
 
-                    bool hasPendingOrders = ordersForTable.Any(order => order.IsReady == 0);
+                    // Get OrderListIds for the orders of the current table
+                    var orderListIds = ordersForTable.Select(o => o.OrderListId).ToList();
+
+                    // Fetch OrderList items based on OrderListIds
+                    var orderListForTable = dbContext.OrderList
+                        .Where(ol => orderListIds.Contains(ol.OrderListId))
+                        .ToList();
+
+                    bool hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 0);
 
                     foreach (var item in tablesListBox.Items)
                     {
@@ -91,8 +133,9 @@ namespace PowerSell.Views
                                 if (hasPendingOrders)
                                 {
                                     button.Background = Brushes.Red; // Set button color to Red
+                            
                                 }
-                                else if(hasPendingOrders = ordersForTable.Any(order => order.IsReady == 1))
+                                else if (hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 1))
                                 {
                                     button.Background = Brushes.Green; // Set button color to Green
                                 }
@@ -117,7 +160,8 @@ namespace PowerSell.Views
 
         private void ToGoButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle To Go button click event
+            var ToGOWIndow = new ToGoWindow();
+            ToGOWIndow.ShowDialog();
         }
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)

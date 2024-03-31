@@ -16,6 +16,8 @@ using MahApps.Metro.Controls;
 using System.Xml;
 using System.Drawing.Printing;
 using System.Threading.Tasks;
+using System.Windows.Data;
+using DataGridTextColumn = MaterialDesignThemes.Wpf.DataGridTextColumn;
 
 namespace PowerSell.Views.ClientView
 {
@@ -34,16 +36,51 @@ namespace PowerSell.Views.ClientView
             TableId = tableId;
             YourServiceCategoriesCollection = new ObservableCollection<ServiceCategory>();
             LoadCategories();
-            LoadOrdersData();
+            LoadOrdersData(dataGridOrders);
 
             YourCommandForButtonClick = new RelayCommand(ExecuteYourCommandForButtonClick);
         }
 
-        private void LoadOrdersData()
+        private void LoadOrdersData(DataGrid dataGrid)
         {
             List<OrderDTO> orders = GetActiveOrdersByTableId(TableId);
-            dataGridOrders.ItemsSource = orders;
+
+            // Clear existing columns
+            dataGrid.Columns.Clear();
+
+            // Set AutoGenerateColumns to false
+            dataGrid.AutoGenerateColumns = false;
+
+            // Define columns you want to show
+            dataGrid.Columns.Add(new DataGridTextColumn
+            {
+                Header = "Order ID",
+                Binding = new Binding("OrderId")
+            });
+
+            dataGrid.Columns.Add(new DataGridTextColumn
+            {
+                Header = "Service Name",
+                Binding = new Binding("ServiceName")
+            });
+
+            dataGrid.Columns.Add(new DataGridTextColumn
+            {
+                Header = "Quantity",
+                Binding = new Binding("Quantity")
+            });
+
+            dataGrid.Columns.Add(new DataGridTextColumn
+            {
+                Header = "Service Price",
+                Binding = new Binding("ServicePrice")
+            });
+
+            // Set ItemsSource to display the selected columns
+            dataGrid.ItemsSource = orders;
         }
+
+
 
         private List<OrderDTO> GetActiveOrdersByTableId(int tableId)
         {
@@ -248,8 +285,7 @@ namespace PowerSell.Views.ClientView
 
         private void Transport_Btn(object sender, RoutedEventArgs e)
         {
-            var keyboardWindow = new KeyboardWindow();
-            keyboardWindow.ShowDialog();
+          
         }
 
         private void dataGridOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -288,6 +324,17 @@ namespace PowerSell.Views.ClientView
             // Reload the data grid to remove the added items
 
         }
+        private decimal CalculateTotal(IEnumerable<Service> services)
+        {
+            decimal total = 0;
+
+            foreach (var service in services)
+            {
+                total += service.Quantity * service.ServicePrice;
+            }
+
+            return total;
+        }
 
         private void PrintService_Click(object sender, RoutedEventArgs e)
         {
@@ -305,8 +352,21 @@ namespace PowerSell.Views.ClientView
                     // Get the collection of Service objects from your data grid
                     var services = dataGridOrdersNew.Items.Cast<Service>();
 
-                    // Call PrintServiceClick method of OrderManager
-                    orderManager.PrintServiceClick(tableId, userId, services);
+                    // Create an OrderList object
+                    var orderList = new OrderList
+                    {
+                        Total = CalculateTotal(services), // Calculate the total based on services
+                        Message = MessageLabel.Content.ToString(), // Get the message from your UI elements
+                        Transport = TransportLabel.Content.ToString(), // Get the transport details from your UI elements
+                        ClientName = NameLabel.Content?.ToString()// Get the client name from your UI elements
+                     };
+
+                    // Add the OrderList to the database
+                    dbContext.OrderList.Add(orderList);
+                    dbContext.SaveChanges(); // Save changes to get the OrderListId
+
+                    // Call PrintServiceClick method of OrderManager and pass OrderListId
+                    orderManager.PrintServiceClick(tableId, userId, services, orderList.OrderListId);
                 }
 
                 PrintButton_Click(sender, e);  // Call the print button click event
@@ -318,31 +378,44 @@ namespace PowerSell.Views.ClientView
             }
         }
 
+
         private void ReadyButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 using (var dbContext = new PowerSellDbContext())
                 {
-                    int tableId = TableId;// Get the TableId for which to update IsReady status
+                    int tableId = TableId; // Get the TableId for which to update IsReady status
 
                     if (tableId > 0)
                     {
-                        // Get all orders with the specified TableId
-                        var ordersToUpdate = dbContext.Orders.Where(o => o.TableId == tableId).ToList();
+                        var ordersForTable = dbContext.Orders.Where(o => o.TableId == TableId).ToList();
 
-                        if (ordersToUpdate.Count > 0)
+                        if (ordersForTable.Any())
                         {
-                            // Update IsReady status for the found orders
-                            foreach (var order in ordersToUpdate)
+                            int orderListId = ordersForTable.First().OrderListId; // Get OrderListId
+
+                            var orderListForTable = dbContext.OrderList
+                                .Where(ol => ol.OrderListId == orderListId)
+                                .ToList();
+
+                            if (orderListForTable.Count > 0)
                             {
-                                order.IsReady = 1; // Set IsReady to 1
+                                // Update IsReady status for the found orders
+                                foreach (var orderList in orderListForTable)
+                                {
+                                    orderList.IsReady = 1; // Set IsReady to 1
+                                }
+
+                                // Save changes to the database
+                                dbContext.SaveChanges();
+
+                                MessageBox.Show("Orders are marked as ready.");
                             }
-
-                            // Save changes to the database
-                            dbContext.SaveChanges();
-
-                            MessageBox.Show("Orders are marked as ready.");
+                            else
+                            {
+                                MessageBox.Show("No orders found for the specified TableId.");
+                            }
                         }
                         else
                         {
@@ -360,6 +433,8 @@ namespace PowerSell.Views.ClientView
                 MessageBox.Show("Error updating IsReady status: " + ex.Message);
             }
         }
+
+
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
@@ -444,12 +519,12 @@ namespace PowerSell.Views.ClientView
                         ServiceDateCreated = order.ServiceDateCreated,
                         ClientGetServiceDate = DateTime.Now,
                         ServiceDateIsReady = DateTime.Now,
-                        IsReady = 1,
                         IsPaid = true,
                         ServiceDIscount = 0,
                         ClientGetService = true,
                         Total = order.Total,
-                        UserId = userid
+                        UserId = userid,
+                        OrderListId = order.OrderListId
                         // Add other properties as needed
                     });
                 }
@@ -544,6 +619,35 @@ namespace PowerSell.Views.ClientView
             printDocument.Print();
         }
 
+        private void DeleteServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Get the selected items from the data grid
+                List<Service> selectedServices = dataGridOrdersNew.SelectedItems.Cast<Service>().ToList();
 
+                // Remove the selected items from the data grid
+                foreach (Service service in selectedServices)
+                {
+                    dataGridOrdersNew.Items.Remove(service);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting selected services: " + ex.Message);
+            }
+        }
+
+        public void UpdateMessageLabel(string message)
+        {
+            MessageLabel.Content = "Message: " + message;
+            MessageLabel.Visibility = Visibility.Visible; // Show the MessageLabel
+        }
+
+        private void MessageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var keyboardWindow = new KeyboardWindow();
+            keyboardWindow.ShowDialog();
+        }
     }
 }

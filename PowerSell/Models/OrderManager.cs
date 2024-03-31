@@ -14,7 +14,7 @@ namespace PowerSell.Models
             this.dbContext = dbContext;
         }
 
-        public void PrintServiceClick(int tableId, int userId, IEnumerable<Service> services)
+        public void PrintServiceClick(int tableId, int userId, IEnumerable<Service> services, int orderListId)
         {
             try
             {
@@ -27,13 +27,12 @@ namespace PowerSell.Models
                         Quantity = service.Quantity,
                         ServicePrice = service.ServicePrice,
                         TableId = tableId,
-                        ServiceDateCreated = service.ServiceDateCreated,
-                        IsReady = 0,
                         IsPaid = false,
                         ServiceDIscount = 0,
                         ClientGetService = false,
                         Total = service.Total,
-                        UserId = userId
+                        UserId = userId,
+                        OrderListId = orderListId // Assign the OrderListId here
                     });
                 }
 
@@ -41,8 +40,9 @@ namespace PowerSell.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving orders: " + ex.Message);
+                throw new Exception("Error saving orders: " + ex.Message);
             }
         }
+
     }
 }

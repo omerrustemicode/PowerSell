@@ -22,8 +22,6 @@ namespace PowerSell.Models
 
         public bool? IsPaid { get; set; } // Added nullable type indicator (?)
 
-        public int? IsReady { get; set; } // Added nullable type indicator (?)
-
         public bool? ClientGetService { get; set; } // Added nullable type indicator (?)
 
         public DateTime? ServiceDateCreated { get; set; } // Added nullable type indicator (?)

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\App.xaml
-5-1711328752
+7158836674
 
-481947465205
+57727349282
 321961955123
-Views\Account\Login.xaml;Views\ClientView\AddClient.xaml;Views\ClientView\KeyboardWindow.xaml;Views\ClientView\SingleClientWindow.xaml;Views\Dashboard.xaml;
+Views\Account\Login.xaml;Views\Admin\AdminDashboard.xaml;Views\ClientView\AddClient.xaml;Views\ClientView\KeyboardWindow.xaml;Views\ClientView\SingleClientWindow.xaml;Views\Dashboard.xaml;Views\ToGo\ToGoWindow.xaml;
 
-False
+True
 

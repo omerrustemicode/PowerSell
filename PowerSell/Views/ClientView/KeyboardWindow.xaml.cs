@@ -90,9 +90,17 @@ namespace PowerSell.Views.ClientView
                 errorTextBlock.Text = string.Empty;
             }
         }
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            string messageText = descriptionTextBox.Text; // Get the text from descriptionTextBox
 
-
-
+            // Assuming SingleClientWindow is already open or instantiated
+            if (App.Current.Windows.OfType<SingleClientWindow>().Any())
+            {
+                SingleClientWindow singleClientWindow = App.Current.Windows.OfType<SingleClientWindow>().First();
+                singleClientWindow.UpdateMessageLabel(messageText); // Call method in SingleClientWindow to update the message label
+            }
+        }
 
     }
 }

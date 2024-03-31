@@ -181,8 +181,21 @@
     <Compile Include="Migrations\202403240057052_24-03-2024-OrderManagerAdded.designer.cs">
       <DependentUpon>202403240057052_24-03-2024-OrderManagerAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403251150212_25-03-2024-OrderList.cs" />
+    <Compile Include="Migrations\202403251150212_25-03-2024-OrderList.designer.cs">
+      <DependentUpon>202403251150212_25-03-2024-OrderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403251204596_25-03-2024-OrderListToConfirmed.cs" />
+    <Compile Include="Migrations\202403251204596_25-03-2024-OrderListToConfirmed.designer.cs">
+      <DependentUpon>202403251204596_25-03-2024-OrderListToConfirmed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403290752406_29-03-2024-OrderList-IsReady.cs" />
+    <Compile Include="Migrations\202403290752406_29-03-2024-OrderList-IsReady.designer.cs">
+      <DependentUpon>202403290752406_29-03-2024-OrderList-IsReady.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\OrderList.cs" />
     <Compile Include="Models\OrderManager.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\OrdersConfirmed.cs" />
@@ -195,13 +208,23 @@
     <Compile Include="Views\Account\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\AdminDashboard.xaml.cs">
+      <DependentUpon>AdminDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientView\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ToGo\ToGoWindow.xaml.cs">
+      <DependentUpon>ToGoWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\Account\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\AdminDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,6 +260,10 @@
     <Page Include="Views\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToGo\ToGoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +316,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403240057052_24-03-2024-OrderManagerAdded.resx">
       <DependentUpon>202403240057052_24-03-2024-OrderManagerAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403251150212_25-03-2024-OrderList.resx">
+      <DependentUpon>202403251150212_25-03-2024-OrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403251204596_25-03-2024-OrderListToConfirmed.resx">
+      <DependentUpon>202403251204596_25-03-2024-OrderListToConfirmed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403290752406_29-03-2024-OrderList-IsReady.resx">
+      <DependentUpon>202403290752406_29-03-2024-OrderList-IsReady.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

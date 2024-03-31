@@ -79,7 +79,8 @@
             <!-- Add more buttons as needed -->
             <Button Content="Enter" Click="EnterButton_Click" Background="Green"/>
             <Button Content="Delete" Click="DeleteButton_Click" Background="Red"/>
-        </UniformGrid>
+                <Button Content="Save" Click="SaveButton_Click" Background="#3498DB"/>
+            </UniformGrid>
         </StackPanel>
     </Grid>
 </Window>

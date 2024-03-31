@@ -11,7 +11,7 @@
         </Grid.ColumnDefinitions>
      
         <!-- Tables Buttons using ListBox with UniformGrid -->
-<ListBox x:Name="tablesListBox" ItemsSource="{Binding Tables}" Grid.Column="0" Background="#2C3E50" Margin="10,10,3,10" Visibility="Visible">
+<ListBox x:Name="tablesListBox" ItemsSource="{Binding Tables}" Grid.Column="0" Background="#2C3E50" Margin="10,10,3,10" Visibility="Visible" TextBlock.TextAlignment="Center">
     <ListBox.ItemsPanel>
         <ItemsPanelTemplate>
             <UniformGrid Rows="15" Columns="8" />
@@ -22,23 +22,25 @@
     <ListBox.ItemTemplate>
         <DataTemplate>
                     <Button Width="180" Height="110" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
-                    BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-
+                    BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextBlock.TextAlignment="Center">
                         <Button.Content>
                             <StackPanel>
                                 <TextBlock Text="{Binding TableName}" />
-                                <!-- Display Orders information -->
-                                <ItemsControl ItemsSource="{Binding Orders}" >
+                                <!-- Display OrderList information -->
+                                <ItemsControl ItemsSource="{Binding OrderList}" >
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBlock Text="{Binding ServicePrice}" />
+                                                <TextBlock Text="{Binding Total}" />
                                                 <!-- Add other properties as needed -->
+                                                <!-- Add IsReady property from OrderList -->
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>
+
+
                         </Button.Content>
 
                         <Button.Effect>
