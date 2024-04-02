@@ -355,7 +355,6 @@ namespace PowerSell.Views.ToGo
                         Quantity = order.Quantity,
                         ServicePrice = order.ServicePrice,
                         TableId = order.TableId,
-                        ServiceDateCreated = order.ServiceDateCreated,
                         ClientGetServiceDate = DateTime.Now,
                         ServiceDateIsReady = DateTime.Now,
                         IsPaid = true,

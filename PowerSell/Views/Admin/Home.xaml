@@ -1,0 +1,16 @@
+﻿<UserControl xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"  x:Class="PowerSell.Views.Admin.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PowerSell.Views.Admin"
+             Loaded="Home_Loaded"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <mah:Tile x:Name="btnCountOrders" Width="200" Height="150" Click="btnCountOrders_Click" VerticalAlignment="Top" HorizontalAlignment="Left"  Grid.Column="1" />
+        <mah:Tile x:Name="btnCountPaid" Width="200" Height="150"  VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Column="1" />
+        <mah:Tile x:Name="btnCountNotPaid" Width="200" Height="150" VerticalAlignment="Top" HorizontalAlignment="Right"  Grid.Column="1" />
+    </Grid>
+</UserControl>

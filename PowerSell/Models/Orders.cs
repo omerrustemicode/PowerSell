@@ -17,19 +17,6 @@ namespace PowerSell.Models
         public decimal ServicePrice { get; set; } // Added nullable type indicator (?)
 
         public decimal Total { get; set; } // Added nullable type indicator (?)
-
-        public decimal? ServiceDIscount { get; set; } // Added nullable type indicator (?)
-
-        public bool? IsPaid { get; set; } // Added nullable type indicator (?)
-
-        public bool? ClientGetService { get; set; } // Added nullable type indicator (?)
-
-        public DateTime? ServiceDateCreated { get; set; } // Added nullable type indicator (?)
-
-        public DateTime? ClientGetServiceDate { get; set; } // Added nullable type indicator (?)
-
-        public DateTime? ServiceDateIsReady { get; set; } // Added nullable type indicator (?)
-
         public int? TableId { get; set; } // Added nullable type indicator (?)
         public virtual Tables Tables { get; set; }
         public int? ServiceId { get; set; } // Added nullable type indicator (?)
@@ -48,7 +35,6 @@ namespace PowerSell.Models
     public class OrderDTO
     {
         public int OrdersId { get; set; }
-        public DateTime ServiceDateCreated { get; set; }
         public decimal ServicePrice { get; set; }
         public decimal Quantity { get; set; }
         public string ServiceName { get; set; }

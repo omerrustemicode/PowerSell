@@ -338,45 +338,58 @@ namespace PowerSell.Views.ClientView
 
         private void PrintService_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (dataGridOrdersNew.Items.Count >0)
             {
-                using (var dbContext = new PowerSellDbContext())
-                {
-                    // Instantiate OrderManager
-                    var orderManager = new OrderManager(dbContext);
-
-                    // Get the TableId and UserId from your application logic
-                    int tableId = TableId; // Implement GetTableId() method to fetch the TableId
-                    int userId = userid; // Implement GetUserId() method to fetch the UserId
-
-                    // Get the collection of Service objects from your data grid
-                    var services = dataGridOrdersNew.Items.Cast<Service>();
-
-                    // Create an OrderList object
-                    var orderList = new OrderList
+                    try
                     {
-                        Total = CalculateTotal(services), // Calculate the total based on services
-                        Message = MessageLabel.Content.ToString(), // Get the message from your UI elements
-                        Transport = TransportLabel.Content.ToString(), // Get the transport details from your UI elements
-                        ClientName = NameLabel.Content?.ToString()// Get the client name from your UI elements
-                     };
+                        using (var dbContext = new PowerSellDbContext())
+                        {
 
-                    // Add the OrderList to the database
-                    dbContext.OrderList.Add(orderList);
-                    dbContext.SaveChanges(); // Save changes to get the OrderListId
+                            // Instantiate OrderManager
+                            var orderManager = new OrderManager(dbContext);
 
-                    // Call PrintServiceClick method of OrderManager and pass OrderListId
-                    orderManager.PrintServiceClick(tableId, userId, services, orderList.OrderListId);
-                }
+                            // Get the TableId and UserId from your application logic
+                            int tableId = TableId; // Implement GetTableId() method to fetch the TableId
+                            int userId = userid; // Implement GetUserId() method to fetch the UserId
 
-                PrintButton_Click(sender, e);  // Call the print button click event
-                this.Close();
+                            // Get the collection of Service objects from your data grid
+                            var services = dataGridOrdersNew.Items.Cast<Service>();
+
+                            // Create an OrderList object
+                            var orderList = new OrderList
+                            {
+                                Total = CalculateTotal(services), // Calculate the total based on services
+                                Message = MessageLabel.Content.ToString(), // Get the message from your UI elements
+                                Transport = TransportLabel.Content.ToString(), // Get the transport details from your UI elements
+                                ClientName = NameLabel.Content?.ToString(),// Get the client name from your UI elements
+                                IsReady = 0,
+                                ServiceDateCreated = DateTime.Now,
+                                TableId = tableId
+                            };
+
+                            // Add the OrderList to the database
+                            dbContext.OrderList.Add(orderList);
+                            dbContext.SaveChanges(); // Save changes to get the OrderListId
+
+                            // Call PrintServiceClick method of OrderManager and pass OrderListId
+                            orderManager.PrintServiceClick(tableId, userId, services, orderList.OrderListId);
+                        }
+
+                        PrintButton_Click(sender, e);  // Call the print button click event
+                        this.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error saving orders: " + ex.Message);
+                    }
+             }
+             else
+             {
+              MessageBox.Show("Нема Нарацки");
+              this.Close();
+             }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error saving orders: " + ex.Message);
-            }
-        }
 
 
         private void ReadyButton_Click(object sender, RoutedEventArgs e)
@@ -516,7 +529,6 @@ namespace PowerSell.Views.ClientView
                         Quantity = order.Quantity,
                         ServicePrice = order.ServicePrice,
                         TableId = order.TableId,
-                        ServiceDateCreated = order.ServiceDateCreated,
                         ClientGetServiceDate = DateTime.Now,
                         ServiceDateIsReady = DateTime.Now,
                         IsPaid = true,

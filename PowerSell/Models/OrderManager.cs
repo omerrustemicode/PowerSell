@@ -27,9 +27,6 @@ namespace PowerSell.Models
                         Quantity = service.Quantity,
                         ServicePrice = service.ServicePrice,
                         TableId = tableId,
-                        IsPaid = false,
-                        ServiceDIscount = 0,
-                        ClientGetService = false,
                         Total = service.Total,
                         UserId = userId,
                         OrderListId = orderListId // Assign the OrderListId here

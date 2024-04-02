@@ -17,7 +17,7 @@ namespace PowerSell.Views
         public ObservableCollection<Tables> Tables { get; set; } = new ObservableCollection<Tables>();
         private DispatcherTimer timer;
 
-        public Dashboard(int userId)
+        public Dashboard()
         {
             InitializeComponent();
             LoadTablesFromDatabase();

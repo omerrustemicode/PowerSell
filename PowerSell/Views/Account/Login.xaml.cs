@@ -43,7 +43,7 @@ namespace PowerSell.Views.Account
             // Validate username and password against database
             User user = dbContext.Users.FirstOrDefault(u => u.Password == password);
 
-            if (user != null)
+            if (user != null && user.UserType == "worker")
             {
                 // Set the user ID in the session manager
                 SessionManager.Instance.UserId = user.UserId;
@@ -52,7 +52,20 @@ namespace PowerSell.Views.Account
                 LoadingGrid.Visibility = Visibility.Collapsed;
                 LoginGrid.Visibility = Visibility.Visible;
 
-                Dashboard dashboard = new Dashboard(user.UserId); // Pass user ID to Dashboard constructor
+                Dashboard dashboard = new Dashboard(); // Pass user ID to Dashboard constructor
+                dashboard.Show();
+                Close(); // Close Login window
+            }
+            else if(user !=null & user.UserType =="admin")
+            {
+                // Set the user ID in the session manager
+                SessionManager.Instance.UserId = user.UserId;
+
+                // Close the loading indicator and show the login UI
+                LoadingGrid.Visibility = Visibility.Collapsed;
+                LoginGrid.Visibility = Visibility.Visible;
+
+                Admin.AdminDashboard dashboard = new Admin.AdminDashboard(); // Pass user ID to Dashboard constructor
                 dashboard.Show();
                 Close(); // Close Login window
             }
