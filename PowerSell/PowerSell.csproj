@@ -320,8 +320,8 @@
     <Compile Include="Views\Admin\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Admin\Raports.xaml.cs">
-      <DependentUpon>Raports.xaml</DependentUpon>
+    <Compile Include="Views\Admin\Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\Services.xaml.cs">
       <DependentUpon>Services.xaml</DependentUpon>
@@ -360,7 +360,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Admin\Raports.xaml">
+    <Page Include="Views\Admin\Reports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

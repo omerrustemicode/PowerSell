@@ -50,7 +50,7 @@ namespace PowerSell.Views.Admin
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
-            RightPanelContent.Content = new Raports(); // Load Reports.xaml into the RightPanelContent
+            RightPanelContent.Content = new Reports(); // Load Reports.xaml into the RightPanelContent
         }
 
         private void TablesButton_Click(object sender, RoutedEventArgs e)
