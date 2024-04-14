@@ -13,6 +13,7 @@ namespace PowerSell.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderListId { get; set; }
+
         public decimal Total { get; set; }
         public string Message { get; set; }
         public string Transport { get; set; }

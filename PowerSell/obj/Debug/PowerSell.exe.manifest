@@ -558,14 +558,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PowerSell.exe" size="505272">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PowerSell.exe" size="511416">
       <assemblyIdentity name="PowerSell" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>h4Z3/VnlTbM48q8lqs2yk5imVAw3f6hzmkuFVZqwuHE=</dsig:DigestValue>
+        <dsig:DigestValue>8cF0TBIW8kZTbY/Vq+eEKZG3e7FwEKXGoFVSBEPnXhA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
