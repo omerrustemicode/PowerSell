@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SettingsData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BackgroundColor>
+    <A>255</A>
+    <R>173</R>
+    <G>216</G>
+    <B>230</B>
+    <ScA>1</ScA>
+    <ScR>0.417885065</ScR>
+    <ScG>0.6866853</ScG>
+    <ScB>0.7912979</ScB>
+  </BackgroundColor>
+</SettingsData>

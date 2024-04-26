@@ -25,7 +25,7 @@ namespace PowerSell.Views.Account
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Update the UTC+1 time TextBlock
-            DateTime utcPlusOneTime = DateTime.UtcNow.AddHours(1);
+            DateTime utcPlusOneTime = DateTime.Now;
             UtcPlusOneTimeTextBlock.Text = $"{utcPlusOneTime.ToString("HH:mm:ss")}";
 
         }

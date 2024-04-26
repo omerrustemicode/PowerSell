@@ -518,36 +518,77 @@ namespace PowerSell.Views.ClientView
                 var ordersToConfirm = dbContext.Orders
                     .Where(o => o.TableId == TableId)
                     .ToList();
+                var orderListsToConfirm = dbContext.OrderList
+                    .Where(o => o.TableId == TableId)
+                    .ToList();
 
-                // Add selected orders to OrdersConfirmed table
-                foreach (var order in ordersToConfirm)
+                bool allPaid = false;
+
+                while (!allPaid)
                 {
-                    dbContext.OrdersConfirmed.Add(new OrdersConfirmed
+                    allPaid = true; // Assume all orders are paid unless proven otherwise
+
+                    foreach (var order in ordersToConfirm)
                     {
-                        OrdersId = order.OrdersId,
-                        ServiceId = order.ServiceId,
-                        Quantity = order.Quantity,
-                        ServicePrice = order.ServicePrice,
-                        TableId = order.TableId,
-                        ClientGetServiceDate = DateTime.Now,
-                        ServiceDateIsReady = DateTime.Now,
-                        IsPaid = true,
-                        ServiceDIscount = 0,
-                        ClientGetService = true,
-                        Total = order.Total,
-                        UserId = userid,
-                        OrderListId = order.OrderListId
-                        // Add other properties as needed
-                    });
+                        // Check if the order is already confirmed
+                        var confirmedOrder = dbContext.OrdersConfirmed.FirstOrDefault(o => o.OrdersId == order.OrdersId);
+
+                        if (confirmedOrder == null)
+                        {
+                            // Prompt the user for IsPaid status
+                            var result = MessageBox.Show($"Is order {order.OrdersId} paid?", "Is Paid", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                            // Update ClientGetServiceDate in OrderList
+                            var orderToUpdate = orderListsToConfirm.FirstOrDefault(o => o.OrderListId == order.OrderListId);
+                            if (orderToUpdate != null)
+                            {
+                                orderToUpdate.ClientGetServiceDate = DateTime.Now;
+                                orderToUpdate.IsPaid = result == MessageBoxResult.Yes; // Set IsPaid based on user input
+                            }
+
+                            // If the order is not paid, set allPaid to false
+                            if (result != MessageBoxResult.Yes)
+                            {
+                                allPaid = false;
+                                continue; // Skip adding to OrdersConfirmed if not paid
+                            }
+
+                            // Add selected order to OrdersConfirmed table
+                            dbContext.OrdersConfirmed.Add(new OrdersConfirmed
+                            {
+                                OrdersId = order.OrdersId,
+                                ServiceId = order.ServiceId,
+                                Quantity = order.Quantity,
+                                ServicePrice = order.ServicePrice,
+                                TableId = order.TableId,
+                                ClientGetServiceDate = DateTime.Now,
+                                ServiceDateIsReady = DateTime.Now,
+                                IsPaid = true, // Set IsPaid to true since it's confirmed
+                                ClientGetService = true, // Assuming client gets service for now
+                                Total = order.Total,
+                                UserId = userid,
+                                OrderListId = order.OrderListId
+                                // Add other properties as needed
+                            });
+                        }
+                    }
+
+                    if (!allPaid)
+                    {
+                        // If not all orders are paid, show a message and wait for further action
+                        MessageBox.Show("Not all orders are paid. Please confirm payment for all orders before proceeding.", "Payment Confirmation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
                 }
 
                 await dbContext.SaveChangesAsync();
                 // Print the order details
                 PrintOrdersToPaper(ordersToConfirm);
-                // If insertion to OrdersConfirmed was successful, remove orders from Orders table
+
+                // If insertion to OrdersConfirmed was successful and IsPaid is true, remove orders from Orders table
                 dbContext.Orders.RemoveRange(ordersToConfirm);
                 await dbContext.SaveChangesAsync();
-             
+
                 return true; // Return true to indicate successful execution
             }
             catch (Exception ex)
@@ -556,6 +597,7 @@ namespace PowerSell.Views.ClientView
                 return false; // Return false to indicate failure
             }
         }
+
 
         private async void BillButton_Click(object sender, RoutedEventArgs e)
         {

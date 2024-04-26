@@ -26,6 +26,7 @@ namespace PowerSell.Models
         // Navigation properties
         public ICollection<Orders> Orders { get; set; } // Assuming one-to-many relationship
         public ICollection<ServiceCategory> ServiceCategories { get; set; }
+           public virtual ServiceCategory Category { get; set; }
 
         // Total property to calculate the total price
         [NotMapped]

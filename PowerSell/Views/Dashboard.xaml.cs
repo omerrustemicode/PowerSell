@@ -27,54 +27,60 @@ namespace PowerSell.Views
             DataContext = this; // Set the DataContext to allow binding
         }
         private void LoadTablesFromDatabase()
+{
+    using (var dbContext = new PowerSellDbContext())
+    {
+        var tablesFromDb = dbContext.Tables.OrderByDescending(t => t.TableName).ToList();
+
+        // Clear existing items
+        Tables.Clear();
+
+        // Map tables from the database to your view model
+        foreach (var table in tablesFromDb)
         {
-           
-            using (var dbContext = new PowerSellDbContext())
+            var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
+            var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
+
+            // Calculate the total sum for the table outside of the inner loop
+            decimal totalSumForTable = ordersForTable.Sum(ol => ol.Total);
+
+            // Check if there are orders for the table
+            if (ordersForTable.Any())
             {
-                var tablesFromDb = dbContext.Tables.ToList();
+                // Collect OrderListId values for all orders related to the table
+                var orderListIds = ordersForTable.Select(o => o.OrderListId).ToList();
 
-                // Clear existing items
-                Tables.Clear();
+                // Check if any order in the table is ready (assuming IsReady is an integer representing readiness)
+                bool anyOrderReady = orderListIds.Any(orderListId =>
+                    dbContext.OrderList.Any(ol => ol.OrderListId == orderListId && ol.IsReady != null && ol.IsReady != 0));
 
-                // Map tables from the database to your view model
-                foreach (var table in tablesFromDb)
+                // Assign 1 if any order is ready, else assign 0
+                int? isReadyValue = anyOrderReady ? 1 : 0;
+
+                // Add a single row representing the total sum to viewModelTable.OrderList
+                viewModelTable.OrderList.Add(new OrderList
                 {
-                    var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
-                    var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
-
-                    // Check if there are orders for the table
-                    if (ordersForTable.Any())
-                    {
-                        // Get the OrderListId outside the LINQ query
-                        int orderListId = ordersForTable.First().OrderListId;
-
-                        var orderListForTable = dbContext.OrderList
-                            .Where(ol => ol.OrderListId == orderListId)
-                            .ToList();
-
-                        // Add order information to the view model table
-                        foreach (var orderList in orderListForTable)
-                        {
-                            viewModelTable.OrderList.Add(new OrderList
-                            {
-                                Total = orderList.Total,
-                                IsReady = orderList.IsReady
-                                // Add any other properties you need from the OrderList table
-                            }); ;
-                        }
-                    }
-                    else
-                    {
-                        // Handle case where there are no orders for the table
-                        // You can add default or placeholder data if needed
-                    }
-
-                    Tables.Add(viewModelTable);
-                    UpdateButtonColors();
-                }
+                    Total = totalSumForTable,
+                    IsReady = isReadyValue
+                    // Add any other properties you need from the OrderList table
+                });
             }
-            
+            else
+            {
+                // Handle case where there are no orders for the table
+                // You can add default or placeholder data if needed
+            }
+
+            Tables.Add(viewModelTable);
+            UpdateButtonColors();
         }
+    }
+}
+
+
+
+
+
 
 
         private void StartColorUpdateTimer()
@@ -92,7 +98,7 @@ namespace PowerSell.Views
         private void StartTableUpdateTimer()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Interval = TimeSpan.FromSeconds(3);
             timer.Tick += TableTimer_Tick;
             timer.Start();
         }
@@ -139,6 +145,9 @@ namespace PowerSell.Views
                                 {
                                     button.Background = Brushes.Green; // Set button color to Green
                                 }
+                                else if(hasPendingOrders = orderListForTable.Any(ol => ol.IsPaid == false && ol.ClientGetService==true && ol.IsReady==1)){
+                                    button.Background = Brushes.Yellow; // Set button color to Green
+                                }
                             }
 
                             break; // Exit the loop once the button is found
@@ -166,7 +175,8 @@ namespace PowerSell.Views
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Handle Reports button click event
+            Reports.Reports reportsDialog = new Reports.Reports();
+            reportsDialog.ShowDialog(); // Show the ReportsDialog as a dialog
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

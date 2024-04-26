@@ -13,7 +13,6 @@ namespace PowerSell.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderListId { get; set; }
-
         public decimal Total { get; set; }
         public string Message { get; set; }
         public string Transport { get; set; }
@@ -32,5 +31,6 @@ namespace PowerSell.Models
         public decimal? ServiceDIscount { get; set; } // Added nullable type indicator (?)
         public int? TableId { get; set; } // Added nullable type indicator (?)
         public virtual Tables Tables { get; set; }
+        public bool IsClosedCase { get; set; } = false;
     }
 }

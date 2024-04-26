@@ -296,8 +296,21 @@
     <Compile Include="Migrations\202404010632123_01-04-2024-OrderListUpdate.designer.cs">
       <DependentUpon>202404010632123_01-04-2024-OrderListUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404211526435_ChangedServicesAddedVirtual.cs" />
+    <Compile Include="Migrations\202404211526435_ChangedServicesAddedVirtual.designer.cs">
+      <DependentUpon>202404211526435_ChangedServicesAddedVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404211603091_DailyClosingCase.cs" />
+    <Compile Include="Migrations\202404211603091_DailyClosingCase.designer.cs">
+      <DependentUpon>202404211603091_DailyClosingCase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404250706556_OrderListAdd-IsClosedCase.cs" />
+    <Compile Include="Migrations\202404250706556_OrderListAdd-IsClosedCase.designer.cs">
+      <DependentUpon>202404250706556_OrderListAdd-IsClosedCase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\DailyClosingCase.cs" />
     <Compile Include="Models\OrderList.cs" />
     <Compile Include="Models\OrderManager.cs" />
     <Compile Include="Models\Orders.cs" />
@@ -308,6 +321,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\RelayCommand.cs" />
     <Compile Include="Services\SessionManager.cs" />
+    <Compile Include="Services\TextBoxHelper.cs" />
     <Compile Include="Views\Account\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -340,6 +354,9 @@
     </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToGo\ToGoWindow.xaml.cs">
       <DependentUpon>ToGoWindow.xaml</DependentUpon>
@@ -413,6 +430,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reports\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ToGo\ToGoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -480,6 +501,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404010632123_01-04-2024-OrderListUpdate.resx">
       <DependentUpon>202404010632123_01-04-2024-OrderListUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404211526435_ChangedServicesAddedVirtual.resx">
+      <DependentUpon>202404211526435_ChangedServicesAddedVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404211603091_DailyClosingCase.resx">
+      <DependentUpon>202404211603091_DailyClosingCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404250706556_OrderListAdd-IsClosedCase.resx">
+      <DependentUpon>202404250706556_OrderListAdd-IsClosedCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

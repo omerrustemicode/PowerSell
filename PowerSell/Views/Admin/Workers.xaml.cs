@@ -48,19 +48,32 @@ namespace PowerSell.Views.Admin
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            // Create a new user and add it to the database
-            User newUser = new User
+            // Check if an item is selected in the ComboBox
+            if (cboUserType.SelectedItem != null)
             {
-                UserName = txtUserName.Text,
-                Password = txtPassword.Password,
-                Email = txtEmail.Text,
-                RegisteredDate = DateTime.Now,
-                LastLogin = DateTime.Now,
-                UserType = cboUserType.SelectedValue?.ToString() // Assuming you have a ComboBox for UserType
-            };
+                // Cast the selected item to ComboBoxItem and access its Content property
+                ComboBoxItem selectedComboBoxItem = cboUserType.SelectedItem as ComboBoxItem;
 
-            AddUser(newUser);
+                // Create a new user and add it to the database
+                User newUser = new User
+                {
+                    UserName = txtUserName.Text,
+                    Password = txtPassword.Password,
+                    Email = txtEmail.Text,
+                    RegisteredDate = DateTime.Now,
+                    LastLogin = DateTime.Now,
+                    UserType = selectedComboBoxItem.Content.ToString()
+                };
+
+                AddUser(newUser);
+            }
+            else
+            {
+                // Handle case where no item is selected in the ComboBox
+                MessageBox.Show("Please select a user type.");
+            }
         }
+
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
