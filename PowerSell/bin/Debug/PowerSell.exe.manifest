@@ -558,14 +558,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PowerSell.exe" size="553912">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PowerSell.exe" size="560056">
       <assemblyIdentity name="PowerSell" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9mxk0tZ+aruTcqF0t1ipsvQqdZnSJGoeB3anuWFa17k=</dsig:DigestValue>
+        <dsig:DigestValue>Q4eg/a6P1nNtdlvW/+1HcESix+M46fr2I7MgqAA9F1k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -617,13 +617,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PowerSell.exe.config" size="1024">
+  <file name="PowerSell.exe.config" size="1018">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>bgchfgG0Jq+taBMJ2CwexCTFhnyo4P0AV1zWkND9lO8=</dsig:DigestValue>
+      <dsig:DigestValue>ZfVoAdzZSmp4JV9VuukOuz9GagNc4wFWWEnP1EEI+d8=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

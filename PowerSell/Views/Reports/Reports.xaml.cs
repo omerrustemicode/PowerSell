@@ -22,9 +22,12 @@ namespace PowerSell.Views.Reports
             // Get today's date
             DateTime today = DateTime.Today;
 
-            // Calculate today's date range
-            DateTime startDate = today.Date; // Midnight of today
-            DateTime endDate = startDate.AddDays(1).AddTicks(-1); // 23:59:59.9999999 of today
+            // Calculate the date range starting 30 days ago
+            DateTime startDate = DateTime.Today.AddDays(-30); // Start of the day 30 days ago
+            DateTime endDate = DateTime.Today; // End of today (current date)
+
+            // Adjust the time component to the end of the day for endDate
+            endDate = endDate.Date.AddDays(1).AddTicks(-1);
 
             // Load orders where IsPaid is true and ClientGetServiceDate is within today's date range
             var ordersToday = _dbContext.OrderList
@@ -39,7 +42,7 @@ namespace PowerSell.Views.Reports
             decimal totalSales = ordersToday.Sum(o => o.Total);
 
             // Display total sales in the label
-            TotalSalesLabel.Content = $"Total Sales Today: {totalSales:C}";
+            TotalSalesLabel.Content = $"Тотал: {totalSales:C}";
         }
 
         private async void CalculateSalesButton_Click(object sender, RoutedEventArgs e)

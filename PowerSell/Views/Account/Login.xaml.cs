@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using MahApps.Metro.Controls;
 using PowerSell.Models; // Assuming PowerSell.Models contains User and PowerSellDbContext classes
 using PowerSell.Services; // Import the SessionManager namespace
@@ -110,5 +111,19 @@ namespace PowerSell.Views.Account
             LoadingGrid.Visibility = Visibility.Collapsed;
             LoginGrid.Visibility = Visibility.Visible;
         }
+        private void NumberButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+                PasswordBox.Password += button.Content.ToString();
+            }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordBox.Password = string.Empty;
+        }
+
     }
 }

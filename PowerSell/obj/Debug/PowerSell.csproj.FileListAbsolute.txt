@@ -310,3 +310,5 @@ C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\Views\Repo
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\Views\Reports\Reports.baml
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.DailyClosingCase.resources
 C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.OrderListAddIsClosedCase.resources
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\Views\Account\dbwindow.g.cs
+C:\Users\LENOVO\Desktop\RepositoryPower\PowerSell\PowerSell\obj\Debug\Views\Account\dbwindow.baml

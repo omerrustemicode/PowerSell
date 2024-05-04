@@ -11,7 +11,7 @@
         </Grid.ColumnDefinitions>
         <Image Source="/Views/Logos/PowerSell_BG_Logo.jpeg" Stretch="Fill" />
         <!-- Tables Buttons using ListBox with UniformGrid -->
-        <ListBox x:Name="tablesListBox" ItemsSource="{Binding Tables}" Grid.Column="0" Background="#2C3E50" Margin="10,10,3,10" Visibility="Visible" TextBlock.TextAlignment="Center">
+        <ListBox x:Name="tablesListBox" ItemsSource="{Binding Tables}" Grid.Column="0" Background="#2C3E50" Margin="10,10,3,10" Visibility="Visible">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="15" Columns="8" />
@@ -20,8 +20,8 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button Width="180" Height="110" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
-                    BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextBlock.TextAlignment="Center">
+                    <Button Width="180" Height="110" FontSize="20" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
+                    BorderBrush="Transparent" BorderThickness="0" >
                         <Button.Content>
                             <StackPanel>
                                 <TextBlock Text="{Binding TableName}" />
@@ -56,9 +56,12 @@
         </ListBox>
         <!-- Right Side - Fixed Buttons -->
         <StackPanel Grid.Column="2" Background="#2C3E50">
-            <Button Content="To Go" Width="180" Height="100" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
-            <Button Content="Reports" Width="180" Height="100" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
-            <Button Content="Logout" Width="180" Height="100" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
+            <!-- Search Bar -->
+            <TextBox x:Name="searchTextBox" Width="180" Height="30" Margin="5" Background="White" TextChanged="SearchTextBox_TextChanged"/>
+            <Button Content="To Go" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
+            <Button Content="Reports" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
+            <Button Content="Logout" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
         </StackPanel>
+
     </Grid>
 </Window>

@@ -7,15 +7,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <Button Content="Calculate Sales" Width="120" Height="30" Margin="5" Click="CalculateSalesButton_Click"/>
             <Button Content="Close Case" Width="120" Height="30" Margin="5" Click="CloseCaseButton_Click"/>
             <Label x:Name="TotalSalesLabel" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5" Background="Black" FontSize="20"/>
         </StackPanel>
-
         <DataGrid x:Name="OrdersDataGrid" Grid.Row="1" AutoGenerateColumns="True" Margin="10"/>
-
-       
     </Grid>
 </Window>

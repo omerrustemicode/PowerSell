@@ -322,6 +322,9 @@
     <Compile Include="Services\RelayCommand.cs" />
     <Compile Include="Services\SessionManager.cs" />
     <Compile Include="Services\TextBoxHelper.cs" />
+    <Compile Include="Views\Account\dbwindow.xaml.cs">
+      <DependentUpon>dbwindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,10 @@
     <Compile Include="Views\ToGo\ToGoWindow.xaml.cs">
       <DependentUpon>ToGoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Account\dbwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Account\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

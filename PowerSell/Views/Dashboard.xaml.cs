@@ -107,7 +107,7 @@ namespace PowerSell.Views
 
             LoadTablesFromDatabase();
         }
-       
+
 
         private void UpdateButtonColors()
         {
@@ -139,14 +139,14 @@ namespace PowerSell.Views
                                 if (hasPendingOrders)
                                 {
                                     button.Background = Brushes.Red; // Set button color to Red
-                            
                                 }
-                                else if (hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 1))
+                                else if (orderListForTable.Any(ol => ol.IsReady == 1 && ol.ClientGetService == true && ol.IsPaid == null))
+                                {
+                                    button.Background = Brushes.YellowGreen; // Set button color to Yellow
+                                }
+                                else if (orderListForTable.Any(ol => ol.IsReady == 1))
                                 {
                                     button.Background = Brushes.Green; // Set button color to Green
-                                }
-                                else if(hasPendingOrders = orderListForTable.Any(ol => ol.IsPaid == false && ol.ClientGetService==true && ol.IsReady==1)){
-                                    button.Background = Brushes.Yellow; // Set button color to Green
                                 }
                             }
 
@@ -156,6 +156,7 @@ namespace PowerSell.Views
                 }
             }
         }
+
 
         private void TableButton_Click(object sender, RoutedEventArgs e)
         {
@@ -203,5 +204,12 @@ namespace PowerSell.Views
             }
             return null;
         }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = searchTextBox.Text.ToLower(); // Convert search text to lowercase for case-insensitive search
+            var filteredTables = Tables.Where(table => table.TableName.ToLower().Contains(searchText)).ToList();
+            tablesListBox.ItemsSource = filteredTables;
+        }
+
     }
 }
