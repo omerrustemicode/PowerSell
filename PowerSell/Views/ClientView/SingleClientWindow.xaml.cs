@@ -173,12 +173,17 @@ namespace PowerSell.Views.ClientView
             Button categoryButton = new Button
             {
                 Content = category.CategoryName,
-                Width = 150,
-                Height = 60,
+                Width = 200,
+                Height = 90,
+                FontSize = 20,
                 Margin = new Thickness(5),
-                Tag = category.CategoryId
+                Tag = category.CategoryId,
+           
             };
-
+            // Apply Material Design styles
+            categoryButton.Background = (Brush)new BrushConverter().ConvertFrom("#125535"); // Aqua color
+            categoryButton.Foreground = Brushes.White; // White text color
+            categoryButton.Style = (Style)App.Current.Resources["MaterialDesignFlatButton"];
             categoryButton.Click += CategoryButton_Click;
 
             return categoryButton;
@@ -189,13 +194,20 @@ namespace PowerSell.Views.ClientView
             Button subcategoryButton = new Button
             {
                 Content = subcategory.CategoryName,
-                Width = 150,
-                Height = 60,
+                Width = 200,
+                Height = 90,
+                FontSize=20,
                 Margin = new Thickness(5),
                 Tag = subcategory.CategoryId
             };
 
+            // Apply Material Design styles
+            subcategoryButton.Background = (Brush)new BrushConverter().ConvertFrom("#305500"); // Aqua color
+            subcategoryButton.Foreground = Brushes.White; // White text color
+            subcategoryButton.Style = (Style)App.Current.Resources["MaterialDesignFlatButton"];
             subcategoryButton.Click += SubcategoryButton_Click;
+
+      
 
             return subcategoryButton;
         }
@@ -233,9 +245,10 @@ namespace PowerSell.Views.ClientView
         {
             Button serviceButton = new Button
             {
-                Content = service.ServiceName,
-                Width = 130,
-                Height = 50,
+                Content = service.ServiceName + "\n" + service.ServicePrice,
+                Width = 200,
+                Height = 90,
+                FontSize = 20,
                 Margin = new Thickness(5),
                 DataContext = service // Set the DataContext to the Service object
             };
@@ -646,10 +659,7 @@ namespace PowerSell.Views.ClientView
                     if (order != null && order.Service != null)
                     {
                         TextBlock textBlock = new TextBlock();
-                        textBlock.Text = $"Service Name: {order.Service.ServiceName}\n" +
-                                            $"Quantity: {order.Quantity}\n" +
-                                            $"Price: ${order.ServicePrice}\n" +
-                                            "------------------------------------\n"; // Separator between items
+                        textBlock.Text = $"{order.Service.ServiceName} - {order.Quantity} {order.ServicePrice}";
                         textBlock.HorizontalAlignment = HorizontalAlignment.Center; // Center the text horizontally
                         stackPanel.Children.Add(textBlock);
                     }

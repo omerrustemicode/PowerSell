@@ -20,8 +20,8 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button Width="180" Height="110" FontSize="20" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
-                    BorderBrush="Transparent" BorderThickness="0" >
+                    <Button Width="180" Height="110" FontSize="16" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
+            BorderBrush="Transparent" BorderThickness="0" >
                         <Button.Content>
                             <StackPanel>
                                 <TextBlock Text="{Binding TableName}" />
@@ -30,9 +30,10 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
+                                                <!-- Make sure ClientName binding is correct -->
                                                 <TextBlock Text="{Binding Total}" />
-                                                <!-- Add other properties as needed -->
-                                                <!-- Add IsReady property from OrderList -->
+                                                <TextBlock Text="{Binding ClientName}" />
+                                                <!-- Add IsReady property from OrderList if needed -->
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -44,6 +45,7 @@
                         </Button.Effect>
                     </Button>
                 </DataTemplate>
+
             </ListBox.ItemTemplate>
             <!-- Disable vertical scrolling -->
             <ListBox.Template>
@@ -57,7 +59,7 @@
         <!-- Right Side - Fixed Buttons -->
         <StackPanel Grid.Column="2" Background="#2C3E50">
             <!-- Search Bar -->
-            <TextBox x:Name="searchTextBox" Width="180" Height="30" Margin="5" Background="White" TextChanged="SearchTextBox_TextChanged"/>
+            <TextBox x:Name="searchTextBox" Width="180" Height="30" Margin="5" Background="black" TextChanged="SearchTextBox_TextChanged"/>
             <Button Content="To Go" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
             <Button Content="Reports" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
             <Button Content="Logout" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>

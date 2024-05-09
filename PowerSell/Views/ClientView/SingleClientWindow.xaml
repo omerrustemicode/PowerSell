@@ -12,60 +12,67 @@
     </Window.Resources>
 
     <Grid>
-
-        <!-- Left Side -->
+        <!-- Adjusted Column Definitions for 30% and 70% -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridOrdersNew" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,443" ItemsSource="{Binding YourOrdersCollection}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}"/>
-                <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
-                <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!-- Left Side StackPanel -->
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <!-- Left Side Content - DataGrid -->
+            <DataGrid x:Name="dataGridOrdersNew" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dataGridOrdersNew_SelectionChanged" ItemsSource="{Binding YourOrdersCollection}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}"/>
+                    <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}"/>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <DataGrid x:Name="dataGridOrders" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" BorderBrush="White" SelectionChanged="dataGridOrders_SelectionChanged" Margin="-11,444,10,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}" />
-                <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                <DataGridTextColumn Header="Service Price" Binding="{Binding ServicePrice}" />
-                <!-- Add more columns here as needed -->
-            </DataGrid.Columns>
-        </DataGrid>
-        <!-- Left Side Content - DataGrid -->
+            <!-- StackPanel for buttons on a new line -->
+            <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand">
+                <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
+                <Button Content="Delete" Click="DeleteServiceButton_Click" Margin="2" Background="#3498DB" Width="100"/>
+                <Button Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB" Width="100"/>
+                <Button Content="{Binding NameLabel.Content}" Click="ShowClientDetails_Click" />
+                <Button Content="Message" Click="MessageButton_Click" Margin="2" Background="#3498DB" Width="100" RenderTransformOrigin="0.5,0.5"/>
+                <Label x:Name="NameLabel" Content="Name:" Visibility="Hidden" />
+                <Label x:Name="PhoneLabel" Content="Phone:" Visibility="Hidden" />
+                <Label x:Name="EmailLabel" Content="Email:" Visibility="Hidden"/>
+                <Label x:Name="MessageLabel" Content="Message:" Visibility="Visible"/>
+                <Label x:Name="TransportLabel" Content="Transport:" Visibility="Hidden"/>
+            </StackPanel>
 
-        <!-- StackPanel for buttons on a new line -->
-        <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand">
-            <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
-            <Button Content="Delete" Click="DeleteServiceButton_Click" Margin="2" Background="#3498DB" Width="100"/>
-            <Button Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB"  Width="100"/>
-            <Button Content="{Binding NameLabel.Content}" Click="ShowClientDetails_Click" />
-            <Button Content="Message" Click="MessageButton_Click" Margin="2" Background="#3498DB"  Width="100" RenderTransformOrigin="0.5,0.5"/>
-            <Label x:Name="NameLabel" Content="Name:" Visibility="Hidden" />
-            <Label x:Name="PhoneLabel" Content="Phone:" Visibility="Hidden" />
-            <Label x:Name="EmailLabel" Content="Email:" Visibility="Hidden"/>
-            <Label x:Name="MessageLabel" Content="Message:" Visibility="Visible"/>
-            <Label x:Name="TransportLabel" Content="Transport:" Visibility="Hidden"/>
+            <!-- Bottom DataGrid -->
+            <DataGrid x:Name="dataGridOrders" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" BorderBrush="White" SelectionChanged="dataGridOrders_SelectionChanged" Margin="0,10,10,10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}" />
+                    <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}" />
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                    <DataGridTextColumn Header="Service Price" Binding="{Binding ServicePrice}" />
+                    <!-- Add more columns here as needed -->
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
 
         <!-- Middle Line (GridSplitter) -->
-        <GridSplitter Grid.Column="1" Width="5" Background="#34495E" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+        <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="5" Background="#34495E" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
 
-        <!-- Right Side -->
-        <StackPanel Grid.Column="1" Background="#2C3E50" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="598">
+        <!-- Right Side StackPanel -->
+        <StackPanel Grid.Column="1" Background="#2C3E50" Grid.RowSpan="3" HorizontalAlignment="Stretch">
             <!-- Fixed-size buttons -->
             <WrapPanel>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Width="120" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="Transport_Btn"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Width="120" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="BillButton_Click"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Ready}" Width="120" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="ReadyButton_Click"/>
-                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Width="120" Height="30" Margin="5" Background="#3498DB" Foreground="White" Click="PrintService_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="Transport_Btn"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="BillButton_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Ready}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="ReadyButton_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Height="80" Background="#3498DB" Foreground="White" Click="PrintService_Click" Width="58"/>
             </WrapPanel>
 
             <!-- Separator Line with fixed width -->

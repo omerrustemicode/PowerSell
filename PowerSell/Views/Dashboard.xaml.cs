@@ -27,55 +27,69 @@ namespace PowerSell.Views
             DataContext = this; // Set the DataContext to allow binding
         }
         private void LoadTablesFromDatabase()
-{
-    using (var dbContext = new PowerSellDbContext())
-    {
-        var tablesFromDb = dbContext.Tables.OrderByDescending(t => t.TableName).ToList();
-
-        // Clear existing items
-        Tables.Clear();
-
-        // Map tables from the database to your view model
-        foreach (var table in tablesFromDb)
         {
-            var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
-            var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
-
-            // Calculate the total sum for the table outside of the inner loop
-            decimal totalSumForTable = ordersForTable.Sum(ol => ol.Total);
-
-            // Check if there are orders for the table
-            if (ordersForTable.Any())
+            using (var dbContext = new PowerSellDbContext())
             {
-                // Collect OrderListId values for all orders related to the table
-                var orderListIds = ordersForTable.Select(o => o.OrderListId).ToList();
+                var tablesFromDb = dbContext.Tables.OrderBy(t => t.TableName).ToList();
 
-                // Check if any order in the table is ready (assuming IsReady is an integer representing readiness)
-                bool anyOrderReady = orderListIds.Any(orderListId =>
-                    dbContext.OrderList.Any(ol => ol.OrderListId == orderListId && ol.IsReady != null && ol.IsReady != 0));
+                // Clear existing items
+                Tables.Clear();
 
-                // Assign 1 if any order is ready, else assign 0
-                int? isReadyValue = anyOrderReady ? 1 : 0;
-
-                // Add a single row representing the total sum to viewModelTable.OrderList
-                viewModelTable.OrderList.Add(new OrderList
+                // Map tables from the database to your view model
+                foreach (var table in tablesFromDb)
                 {
-                    Total = totalSumForTable,
-                    IsReady = isReadyValue
-                    // Add any other properties you need from the OrderList table
-                });
-            }
-            else
-            {
-                // Handle case where there are no orders for the table
-                // You can add default or placeholder data if needed
-            }
+                    var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
+                    var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
+                    var ordersForTables = dbContext.OrderList.Where(o => o.TableId == table.TableId).ToList();
 
-            Tables.Add(viewModelTable);
-            UpdateButtonColors();
+                    // Calculate the total sum for the table outside of the inner loop
+                    decimal totalSumForTable = ordersForTable.Sum(ol => ol.Total);
+
+                    // Fetch client data and map it to your view model
+                    var clientData = ordersForTables
+                      .Select(ol => ol.ClientName)
+                      .Distinct()
+                      .Select(clientName => new {
+                          ClientName = clientName,
+                          ClientPhone = dbContext.Client.FirstOrDefault(c => c.ClientName == clientName)?.ClientPhone
+                      })
+                      .ToList();
+
+
+                    // Check if there are orders for the table
+                    if (ordersForTable.Any())
+                    {
+                        // Collect OrderListId values for all orders related to the table
+                        var orderListIds = ordersForTable.Select(o => o.OrderListId).ToList();
+
+                        // Check if any order in the table is ready
+                        bool anyOrderReady = dbContext.OrderList
+                            .Any(ol => orderListIds.Contains(ol.OrderListId) && ol.IsReady != null && ol.IsReady != 0);
+
+                        // Assign 1 if any order is ready, else assign 0
+                        int? isReadyValue = anyOrderReady ? 1 : 0;
+
+                        viewModelTable.OrderList.Add(new OrderList
+                        {
+                            Total = totalSumForTable,
+                            IsReady = isReadyValue,
+                            ClientName = clientData.FirstOrDefault()?.ClientName + "\n" + clientData.FirstOrDefault()?.ClientPhone,
+                            // Selects the first client's name
+                                                                                 // Add any other properties you need from the OrderList table
+                        });
+                    }
+                    else
+                    {
+                        // Handle case where there are no orders for the table
+                        // You can add default or placeholder data if needed
+                    }
+
+                    Tables.Add(viewModelTable);
+                    UpdateButtonColors();
+                }
+            }
         }
-    }
-}
+
 
 
 
