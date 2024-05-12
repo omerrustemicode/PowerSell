@@ -99,6 +99,7 @@ namespace PowerSell.Views.ClientView
             {
                 SingleClientWindow singleClientWindow = App.Current.Windows.OfType<SingleClientWindow>().First();
                 singleClientWindow.UpdateMessageLabel(messageText); // Call method in SingleClientWindow to update the message label
+                this.Close();
             }
         }
 

@@ -15,6 +15,7 @@ namespace PowerSell.Models
         public string ClientPhone { get; set; }
         public string ClientEmail { get; set; }
         public DateTime ClientRegDate { get; set; }
+        public string DisplayName => $"{ClientName} - {ClientPhone}";
         public ObservableCollection<Orders> Services { get; set; } = new ObservableCollection<Orders>();
     }
 }

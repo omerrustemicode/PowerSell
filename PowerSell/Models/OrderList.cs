@@ -32,5 +32,6 @@ namespace PowerSell.Models
         public int? TableId { get; set; } // Added nullable type indicator (?)
         public virtual Tables Tables { get; set; }
         public bool IsClosedCase { get; set; } = false;
+        public int ClientId { get; set; }
     }
 }

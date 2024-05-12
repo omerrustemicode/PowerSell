@@ -74,6 +74,7 @@ namespace PowerSell.Views.ClientView
                     // Update the labels in SingleClientWindow with the new client information
                     if (singleClientWindow != null)
                     {
+                        singleClientWindow.ClientIdLabel.Content = newClient.ClientId;
                         singleClientWindow.NameLabel.Content = newClient.ClientName;
                         singleClientWindow.PhoneLabel.Content = newClient.ClientPhone;
                         singleClientWindow.EmailLabel.Content = newClient.ClientEmail;

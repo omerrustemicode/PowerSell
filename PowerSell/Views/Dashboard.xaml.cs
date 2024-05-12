@@ -9,12 +9,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using PowerSell.Services;
+using MahApps.Metro.Controls;
 
 namespace PowerSell.Views
 {
-    public partial class Dashboard : Window
+    public partial class Dashboard : MetroWindow
     {
         public ObservableCollection<Tables> Tables { get; set; } = new ObservableCollection<Tables>();
+        public ObservableCollection<OrderList> OrderLists { get; set; } = new ObservableCollection<OrderList>();
         private DispatcherTimer timer;
 
         public Dashboard()
@@ -40,43 +43,53 @@ namespace PowerSell.Views
                 {
                     var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
                     var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
-                    var ordersForTables = dbContext.OrderList.Where(o => o.TableId == table.TableId).ToList();
+                    var ordersForTables = dbContext.OrderList.Where(o => o.TableId == table.TableId && o.ClientGetServiceDate == null).ToList();
 
                     // Calculate the total sum for the table outside of the inner loop
                     decimal totalSumForTable = ordersForTable.Sum(ol => ol.Total);
 
                     // Fetch client data and map it to your view model
-                    var clientData = ordersForTables
-                      .Select(ol => ol.ClientName)
-                      .Distinct()
-                      .Select(clientName => new {
-                          ClientName = clientName,
-                          ClientPhone = dbContext.Client.FirstOrDefault(c => c.ClientName == clientName)?.ClientPhone
-                      })
-                      .ToList();
 
+                    var clientData = ordersForTables
+                        .Select(ol => ol.ClientId)
+                        .Distinct()
+                        .ToList() // Fetch distinct client IDs first to avoid redundant queries
+                        .Select(clientId => new
+                        {
+                            ClientId = clientId,
+                            Client = dbContext.Client.FirstOrDefault(c => c.ClientId == clientId) // Get the client directly
+                        })
+                        .Where(clientItem => clientItem.Client != null) // Filter out null clients
+                        .Select(clientItem => new
+                        {
+                            ClientId = clientItem.ClientId,
+                            ClientPhone = clientItem.Client.ClientPhone,
+                            ClientName = clientItem.Client.ClientName
+                        })
+                        .ToList();
 
                     // Check if there are orders for the table
                     if (ordersForTable.Any())
                     {
                         // Collect OrderListId values for all orders related to the table
                         var orderListIds = ordersForTable.Select(o => o.OrderListId).ToList();
-
                         // Check if any order in the table is ready
                         bool anyOrderReady = dbContext.OrderList
                             .Any(ol => orderListIds.Contains(ol.OrderListId) && ol.IsReady != null && ol.IsReady != 0);
-
                         // Assign 1 if any order is ready, else assign 0
                         int? isReadyValue = anyOrderReady ? 1 : 0;
+                        var firstClient = clientData.FirstOrDefault(); // Get the first client in clientData
 
-                        viewModelTable.OrderList.Add(new OrderList
+                        if (firstClient != null)
                         {
-                            Total = totalSumForTable,
-                            IsReady = isReadyValue,
-                            ClientName = clientData.FirstOrDefault()?.ClientName + "\n" + clientData.FirstOrDefault()?.ClientPhone,
-                            // Selects the first client's name
-                                                                                 // Add any other properties you need from the OrderList table
-                        });
+                            viewModelTable.OrderList.Add(new OrderList
+                            {
+                                Total = totalSumForTable,
+                                IsReady = isReadyValue,
+                                ClientName = $"{firstClient.ClientName}\n{firstClient.ClientPhone}",
+                                // Add any other properties you need from the OrderList table
+                            });
+                        }
                     }
                     else
                     {
@@ -89,14 +102,6 @@ namespace PowerSell.Views
                 }
             }
         }
-
-
-
-
-
-
-
-
         private void StartColorUpdateTimer()
         {
             timer = new DispatcherTimer();
@@ -118,7 +123,6 @@ namespace PowerSell.Views
         }
         private void TableTimer_Tick(object sender, EventArgs e)
         {
-
             LoadTablesFromDatabase();
         }
 
@@ -139,7 +143,7 @@ namespace PowerSell.Views
                         .Where(ol => orderListIds.Contains(ol.OrderListId))
                         .ToList();
 
-                    bool hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 0);
+                   // bool hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 0);
 
                     foreach (var item in tablesListBox.Items)
                     {
@@ -150,23 +154,29 @@ namespace PowerSell.Views
 
                             if (button != null)
                             {
-                                if (hasPendingOrders)
+                                if (orderListForTable.Any(ol => ol.IsReady == 0 && ol.ClientGetService == null && ol.IsPaid == null))
                                 {
-                                    button.Background = Brushes.Red; // Set button color to Red
+                                    button.Background = Brushes.Red; // Set button color to Red if there are pending orders
                                 }
-                                else if (orderListForTable.Any(ol => ol.IsReady == 1 && ol.ClientGetService == true && ol.IsPaid == null))
+                                else if (orderListForTable.Any(ol => ol.IsReady == 1 && ol.ClientGetService == null && ol.IsPaid == false))
                                 {
-                                    button.Background = Brushes.YellowGreen; // Set button color to Yellow
+                                    button.Background = Brushes.Green; // Set button color to Green if ready
                                 }
-                                else if (orderListForTable.Any(ol => ol.IsReady == 1))
+                                else if (orderListForTable.Any(ol => ol.IsReady == 0 && ol.ClientGetService == null && ol.IsPaid == true))
                                 {
-                                    button.Background = Brushes.Green; // Set button color to Green
+                                    button.Background = CustomColorHelper.CreateRedGreenGradientBrush(); // Set button color to YellowGreen
+                                }
+                                else if (orderListForTable.Any(ol => ol.IsReady == 1 && ol.ClientGetService == null && ol.IsPaid == true))
+                                {
+                                    button.Background = CustomColorHelper.CreateYellowGreenGradientBrush(); // Set button color to the middle color between red and green
+
                                 }
                             }
 
                             break; // Exit the loop once the button is found
                         }
                     }
+
                 }
             }
         }

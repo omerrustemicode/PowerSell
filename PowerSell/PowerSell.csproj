@@ -308,6 +308,10 @@
     <Compile Include="Migrations\202404250706556_OrderListAdd-IsClosedCase.designer.cs">
       <DependentUpon>202404250706556_OrderListAdd-IsClosedCase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405121606206_UpdatedOrderList.cs" />
+    <Compile Include="Migrations\202405121606206_UpdatedOrderList.designer.cs">
+      <DependentUpon>202405121606206_UpdatedOrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\DailyClosingCase.cs" />
@@ -319,6 +323,7 @@
     <Compile Include="Models\ServiceCategory.cs" />
     <Compile Include="Models\Tables.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Services\CustomColorHelper.cs" />
     <Compile Include="Services\RelayCommand.cs" />
     <Compile Include="Services\SessionManager.cs" />
     <Compile Include="Services\TextBoxHelper.cs" />
@@ -517,6 +522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404250706556_OrderListAdd-IsClosedCase.resx">
       <DependentUpon>202404250706556_OrderListAdd-IsClosedCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405121606206_UpdatedOrderList.resx">
+      <DependentUpon>202405121606206_UpdatedOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

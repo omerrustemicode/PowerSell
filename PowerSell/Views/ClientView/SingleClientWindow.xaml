@@ -40,14 +40,16 @@
             <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand">
                 <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
                 <Button Content="Delete" Click="DeleteServiceButton_Click" Margin="2" Background="#3498DB" Width="100"/>
-                <Button Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB" Width="100"/>
-                <Button Content="{Binding NameLabel.Content}" Click="ShowClientDetails_Click" />
+                <Button x:Name="AddButton" Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB" Width="100"/>
                 <Button Content="Message" Click="MessageButton_Click" Margin="2" Background="#3498DB" Width="100" RenderTransformOrigin="0.5,0.5"/>
-                <Label x:Name="NameLabel" Content="Name:" Visibility="Hidden" />
-                <Label x:Name="PhoneLabel" Content="Phone:" Visibility="Hidden" />
-                <Label x:Name="EmailLabel" Content="Email:" Visibility="Hidden"/>
-                <Label x:Name="MessageLabel" Content="Message:" Visibility="Visible"/>
-                <Label x:Name="TransportLabel" Content="Transport:" Visibility="Hidden"/>
+                <ComboBox x:Name="clientComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"
+                  SelectionChanged="clientComboBox_SelectionChanged"/>
+                <Label x:Name="ClientIdLabel" Content="" Visibility="Visible" />
+                <Label x:Name="NameLabel" Content="" Visibility="Visible" />
+                <Label x:Name="PhoneLabel" Content="" Visibility="Hidden" />
+                <Label x:Name="EmailLabel" Content="" Visibility="Hidden"/>
+                <Label x:Name="MessageLabel" Content="" Visibility="Visible"/>
+                <Label x:Name="TransportLabel" Content="" Visibility="Hidden"/>
             </StackPanel>
 
             <!-- Bottom DataGrid -->

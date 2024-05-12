@@ -517,3 +517,4 @@ C:\Users\PC\Desktop\Powersell backup\PowerSell\PowerSell\obj\Debug\PowerSell.app
 C:\Users\PC\Desktop\Powersell backup\PowerSell\PowerSell\obj\Debug\PowerSell.csproj.CopyComplete
 C:\Users\PC\Desktop\Powersell backup\PowerSell\PowerSell\obj\Debug\PowerSell.exe
 C:\Users\PC\Desktop\Powersell backup\PowerSell\PowerSell\obj\Debug\PowerSell.pdb
+C:\Users\PC\Desktop\Powersell backup\PowerSell\PowerSell\obj\Debug\PowerSell.Migrations.UpdatedOrderList.resources

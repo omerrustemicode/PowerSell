@@ -30,6 +30,8 @@ namespace PowerSell.Views.ClientView
         public int TableId { get; private set; }
         string userName = SessionManager.Instance.UserName;
         int userid = SessionManager.Instance.UserId;
+        string ClientName = "";
+        int ClientId;
         public SingleClientWindow(int tableId)
         {
             InitializeComponent();
@@ -37,7 +39,9 @@ namespace PowerSell.Views.ClientView
             YourServiceCategoriesCollection = new ObservableCollection<ServiceCategory>();
             LoadCategories();
             LoadOrdersData(dataGridOrders);
-
+            LoadClients(); // Call the method to load clients when the window is initialized
+            AddClientDisable();
+            ShowClientDetails(NameLabel, ClientIdLabel);
             YourCommandForButtonClick = new RelayCommand(ExecuteYourCommandForButtonClick);
         }
 
@@ -316,26 +320,108 @@ namespace PowerSell.Views.ClientView
             AddClient addClient = new AddClient(this);
             addClient.ShowDialog();
         }
-        private void ShowClientDetails_Click(object sender, RoutedEventArgs e)
-        {
-            string name = NameLabel.Content?.ToString(); // Get the client's name from the label
-            string phone = PhoneLabel.Content?.ToString(); // Get the client's phone from the label
-            string email = EmailLabel.Content?.ToString(); // Get the client's email from the label
 
-            // Display the client details in a message box
-            MessageBox.Show($"Name: {name}\nPhone: {phone}\nEmail: {email}", "Client Details", MessageBoxButton.OK, MessageBoxImage.Information);
+        public void ShowClientDetails(Label nameLabel, Label clientIdLabel)
+        {
+            try
+            {
+                using (var dbContext = new PowerSellDbContext())
+                {
+                    // Get the TableId from your application logic
+                    int tableId = TableId; // Implement GetTableId() method to fetch the TableId
+
+                    // Check if an OrderList exists for the current table
+                    var orderList = dbContext.OrderList.FirstOrDefault(ol => ol.TableId == tableId && ol.OrderListId > 0 && ol.ClientGetServiceDate == null);
+
+                    if (orderList != null)
+                    {
+                        nameLabel.Content = orderList.ClientName;
+                        clientIdLabel.Content = orderList.ClientId;
+                    }
+                    else
+                    {
+                        // Handle case when OrderList is not found
+                        nameLabel.Content = "No client details found";
+                        clientIdLabel.Content = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving client details: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+     
 
         // Method to update the UI with the newly added client
         public void UpdateClient(Client newClient)
         {
             // Update the labels with the new client information
+            ClientIdLabel.Content = newClient.ClientId;
             NameLabel.Content = newClient.ClientName;
             PhoneLabel.Content = newClient.ClientPhone;
             EmailLabel.Content = newClient.ClientEmail;
 
             // Reload the data grid to remove the added items
 
+        }
+        public void AddClientDisable()
+        {
+            try
+            {
+                using (var dbContext = new PowerSellDbContext())
+                {
+                    // Get the TableId from your application logic
+                    int tableId = TableId; // Implement GetTableId() method to fetch the TableId
+
+                    // Check if an OrderList exists for the current table with a null ClientGetServiceDate
+                    var orderList = dbContext.OrderList.FirstOrDefault(ol => ol.TableId == tableId && ol.OrderListId > 0 && ol.ClientGetServiceDate == null && ol.ClientId>1);
+
+                    if (orderList != null)
+                    {
+                        AddButton.IsEnabled = false; // Disable the AddButton
+                        clientComboBox.IsEnabled = false;
+                    }
+                    else
+                    {
+                        AddButton.IsEnabled = true; // Enable the AddButton
+                        clientComboBox.IsEnabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking OrderList: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void LoadClients()
+        {
+            try
+            {
+                // Retrieve the list of clients from the database
+                List<Client> clients = dbContext.Client.ToList();
+
+                // Set the ComboBox's ItemsSource to the list of clients
+                clientComboBox.ItemsSource = clients;
+
+                // Define how the ComboBox displays the client information (e.g., by ClientName)
+                clientComboBox.DisplayMemberPath = "DisplayName";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading clients: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void clientComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Handle selection changes in the ComboBox (e.g., update labels with selected client's details)
+            if (clientComboBox.SelectedItem is Client selectedClient)
+            {
+                NameLabel.Content = selectedClient.ClientName;
+                ClientIdLabel.Content = selectedClient.ClientId;
+                PhoneLabel.Content = selectedClient.ClientPhone;
+            }
         }
         private decimal CalculateTotal(IEnumerable<Service> services)
         {
@@ -351,58 +437,66 @@ namespace PowerSell.Views.ClientView
 
         private void PrintService_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridOrdersNew.Items.Count >0)
+            if (dataGridOrdersNew.Items.Count > 0)
             {
-                    try
+                try
+                {
+                    using (var dbContext = new PowerSellDbContext())
                     {
-                        using (var dbContext = new PowerSellDbContext())
+                        // Get the client name from NameLabel
+                        string clientName = NameLabel.Content?.ToString();
+                        int clientID = Convert.ToInt32(ClientIdLabel.Content?.ToString());
+
+                        // Call ShowClientDetails with the clientName
+                        ShowClientDetails(NameLabel,ClientIdLabel);
+
+                        // Instantiate OrderManager
+                        var orderManager = new OrderManager(dbContext);
+
+                        // Get the TableId and UserId from your application logic
+                        int tableId = TableId; // Implement GetTableId() method to fetch the TableId
+                        int userId = userid; // Implement GetUserId() method to fetch the UserId
+
+                        // Get the collection of Service objects from your data grid
+                        var services = dataGridOrdersNew.Items.Cast<Service>();
+
+                        // Create an OrderList object
+                        var orderList = new OrderList
                         {
+                            Total = CalculateTotal(services), // Calculate the total based on services
+                            Message = MessageLabel.Content?.ToString(), // Get the message from your UI elements
+                            Transport = TransportLabel.Content?.ToString(), // Get the transport details from your UI elements
+                            ClientName = clientName, // Use the client name obtained earlier
+                            ClientId = clientID,
+                            IsReady = 0,
 
-                            // Instantiate OrderManager
-                            var orderManager = new OrderManager(dbContext);
+                            ServiceDateCreated = DateTime.Now,
+                            TableId = tableId
+                        };
 
-                            // Get the TableId and UserId from your application logic
-                            int tableId = TableId; // Implement GetTableId() method to fetch the TableId
-                            int userId = userid; // Implement GetUserId() method to fetch the UserId
+                        // Add the OrderList to the database
+                        dbContext.OrderList.Add(orderList);
+                        dbContext.SaveChanges(); // Save changes to get the OrderListId
 
-                            // Get the collection of Service objects from your data grid
-                            var services = dataGridOrdersNew.Items.Cast<Service>();
-
-                            // Create an OrderList object
-                            var orderList = new OrderList
-                            {
-                                Total = CalculateTotal(services), // Calculate the total based on services
-                                Message = MessageLabel.Content.ToString(), // Get the message from your UI elements
-                                Transport = TransportLabel.Content.ToString(), // Get the transport details from your UI elements
-                                ClientName = NameLabel.Content?.ToString(),// Get the client name from your UI elements
-                                IsReady = 0,
-                                ServiceDateCreated = DateTime.Now,
-                                TableId = tableId
-                            };
-
-                            // Add the OrderList to the database
-                            dbContext.OrderList.Add(orderList);
-                            dbContext.SaveChanges(); // Save changes to get the OrderListId
-
-                            // Call PrintServiceClick method of OrderManager and pass OrderListId
-                            orderManager.PrintServiceClick(tableId, userId, services, orderList.OrderListId);
-                        }
-
-                        PrintButton_Click(sender, e);  // Call the print button click event
-                        this.Close();
-
+                        // Call PrintServiceClick method of OrderManager and pass OrderListId
+                        orderManager.PrintServiceClick(tableId, userId, services, orderList.OrderListId);
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error saving orders: " + ex.Message);
-                    }
-             }
-             else
-             {
-              MessageBox.Show("Нема Нарацки");
-              this.Close();
-             }
+
+                    PrintButton_Click(sender, e); // Call the print button click event
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving orders: " + ex.Message);
+                }
             }
+            else
+            {
+                MessageBox.Show("Нема Нарацки");
+                this.Close();
+            }
+        }
+
 
 
         private void ReadyButton_Click(object sender, RoutedEventArgs e)
@@ -704,7 +798,7 @@ namespace PowerSell.Views.ClientView
 
         public void UpdateMessageLabel(string message)
         {
-            MessageLabel.Content = "Message: " + message;
+            MessageLabel.Content = message;
             MessageLabel.Visibility = Visibility.Visible; // Show the MessageLabel
         }
 
