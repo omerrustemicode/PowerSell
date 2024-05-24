@@ -321,12 +321,17 @@
     <Compile Include="Models\OrdersConfirmed.cs" />
     <Compile Include="Models\PowerSellDbContext.cs" />
     <Compile Include="Models\ServiceCategory.cs" />
+    <Compile Include="Models\SP\TableOrderDetailView.cs" />
     <Compile Include="Models\Tables.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\CustomColorHelper.cs" />
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\RelayCommand.cs" />
     <Compile Include="Services\SessionManager.cs" />
     <Compile Include="Services\TextBoxHelper.cs" />
+    <Compile Include="ViewModels\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\dbwindow.xaml.cs">
       <DependentUpon>dbwindow.xaml</DependentUpon>
     </Compile>
@@ -360,6 +365,10 @@
     <Compile Include="Views\ClientView\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ClientView\Print\PrintSettingsLoader.cs" />
+    <Compile Include="Views\ClientView\ReturnProduct.xaml.cs">
+      <DependentUpon>ReturnProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
@@ -369,6 +378,10 @@
     <Compile Include="Views\ToGo\ToGoWindow.xaml.cs">
       <DependentUpon>ToGoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ViewModels\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Account\dbwindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -414,6 +427,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClientView\KeyboardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientView\ReturnProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -546,7 +563,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\logos\tufo.png" />
@@ -568,6 +584,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="psprint.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

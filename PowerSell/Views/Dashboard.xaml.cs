@@ -19,89 +19,62 @@ namespace PowerSell.Views
         public ObservableCollection<Tables> Tables { get; set; } = new ObservableCollection<Tables>();
         public ObservableCollection<OrderList> OrderLists { get; set; } = new ObservableCollection<OrderList>();
         private DispatcherTimer timer;
-
-        public Dashboard()
+        private readonly DataService _dataService;
+        public Dashboard(DataService dataService)
         {
             InitializeComponent();
-            LoadTablesFromDatabase();
-            StartColorUpdateTimer();
-            StartTableUpdateTimer();
-            UpdateButtonColors();
+            this.Loaded += Dashboard_Loaded;
+            _dataService = dataService;
             DataContext = this; // Set the DataContext to allow binding
         }
-        private void LoadTablesFromDatabase()
+        private void Dashboard_Loaded(object sender, RoutedEventArgs e)
         {
-            using (var dbContext = new PowerSellDbContext())
+            LoadTablesFromDatabase();
+            UpdateButtonColors();
+            StartColorUpdateTimer();
+            StartTableUpdateTimer();
+        }
+
+
+        public void LoadTablesFromDatabase()
+        {
+            var tableDetails = _dataService.GetTableOrderDetails();
+
+            Tables.Clear();
+
+            foreach (var detail in tableDetails)
             {
-                var tablesFromDb = dbContext.Tables.OrderBy(t => t.TableName).ToList();
 
-                // Clear existing items
-                Tables.Clear();
-
-                // Map tables from the database to your view model
-                foreach (var table in tablesFromDb)
+                if (detail.TotalSumForTable > 0)
                 {
-                    var viewModelTable = new Tables { TableId = table.TableId, TableName = table.TableName };
-                    var ordersForTable = dbContext.Orders.Where(o => o.TableId == table.TableId).ToList();
-                    var ordersForTables = dbContext.OrderList.Where(o => o.TableId == table.TableId && o.ClientGetServiceDate == null).ToList();
-
-                    // Calculate the total sum for the table outside of the inner loop
-                    decimal totalSumForTable = ordersForTable.Sum(ol => ol.Total);
-
-                    // Fetch client data and map it to your view model
-
-                    var clientData = ordersForTables
-                        .Select(ol => ol.ClientId)
-                        .Distinct()
-                        .ToList() // Fetch distinct client IDs first to avoid redundant queries
-                        .Select(clientId => new
-                        {
-                            ClientId = clientId,
-                            Client = dbContext.Client.FirstOrDefault(c => c.ClientId == clientId) // Get the client directly
-                        })
-                        .Where(clientItem => clientItem.Client != null) // Filter out null clients
-                        .Select(clientItem => new
-                        {
-                            ClientId = clientItem.ClientId,
-                            ClientPhone = clientItem.Client.ClientPhone,
-                            ClientName = clientItem.Client.ClientName
-                        })
-                        .ToList();
-
-                    // Check if there are orders for the table
-                    if (ordersForTable.Any())
+                    Tables.Add(new Tables
                     {
-                        // Collect OrderListId values for all orders related to the table
-                        var orderListIds = ordersForTable.Select(o => o.OrderListId).ToList();
-                        // Check if any order in the table is ready
-                        bool anyOrderReady = dbContext.OrderList
-                            .Any(ol => orderListIds.Contains(ol.OrderListId) && ol.IsReady != null && ol.IsReady != 0);
-                        // Assign 1 if any order is ready, else assign 0
-                        int? isReadyValue = anyOrderReady ? 1 : 0;
-                        var firstClient = clientData.FirstOrDefault(); // Get the first client in clientData
-
-                        if (firstClient != null)
-                        {
-                            viewModelTable.OrderList.Add(new OrderList
-                            {
-                                Total = totalSumForTable,
-                                IsReady = isReadyValue,
-                                ClientName = $"{firstClient.ClientName}\n{firstClient.ClientPhone}",
-                                // Add any other properties you need from the OrderList table
-                            });
-                        }
-                    }
-                    else
+                        TableId = detail.TableId,
+                        TableName = detail.TableName,
+                        OrderList = new ObservableCollection<OrderList>
+                {
+                    new OrderList
                     {
-                        // Handle case where there are no orders for the table
-                        // You can add default or placeholder data if needed
+                        Total = detail.TotalSumForTable ?? 0,
+                        IsReady = detail.IsReady,
+                        ClientName = $"{detail.ClientName}\n{detail.ClientPhone}"
                     }
-
-                    Tables.Add(viewModelTable);
-                    UpdateButtonColors();
+                }
+                    });
+                }
+                else
+                {
+                    Tables.Add(new Tables
+                    {
+                        TableId = detail.TableId,
+                        TableName = detail.TableName
+                    });
                 }
             }
         }
+
+
+
         private void StartColorUpdateTimer()
         {
             timer = new DispatcherTimer();
@@ -112,18 +85,19 @@ namespace PowerSell.Views
         private void ColorTimer_Tick(object sender, EventArgs e)
         {
             UpdateButtonColors();
-
+            timer.Stop();
         }
         private void StartTableUpdateTimer()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += TableTimer_Tick;
             timer.Start();
         }
         private void TableTimer_Tick(object sender, EventArgs e)
         {
             LoadTablesFromDatabase();
+            timer.Stop();
         }
 
 
@@ -143,22 +117,22 @@ namespace PowerSell.Views
                         .Where(ol => orderListIds.Contains(ol.OrderListId))
                         .ToList();
 
-                   // bool hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 0);
-
+                    // bool hasPendingOrders = orderListForTable.Any(ol => ol.IsReady == 0);
+                   
                     foreach (var item in tablesListBox.Items)
                     {
                         if (item is Tables tableModel && tableModel.TableId == table.TableId)
                         {
                             var container = tablesListBox.ItemContainerGenerator.ContainerFromItem(tableModel) as ListBoxItem;
                             var button = FindVisualChild<Button>(container);
-
+                           
                             if (button != null)
                             {
                                 if (orderListForTable.Any(ol => ol.IsReady == 0 && ol.ClientGetService == null && ol.IsPaid == null))
                                 {
                                     button.Background = Brushes.Red; // Set button color to Red if there are pending orders
                                 }
-                                else if (orderListForTable.Any(ol => ol.IsReady == 1 && ol.ClientGetService == null && ol.IsPaid == false))
+                                else if (orderListForTable.Any(ol => ol.IsReady == 1 && ol.ClientGetService == null && ol.IsPaid == null))
                                 {
                                     button.Background = Brushes.Green; // Set button color to Green if ready
                                 }
@@ -189,7 +163,13 @@ namespace PowerSell.Views
                 // Navigate to SingleClientWindow with TableId parameter
                 SingleClientWindow singleClientWindow = new SingleClientWindow(tableModel.TableId);
                 singleClientWindow.Show();
+                singleClientWindow.Closed += SingleClientWindow_Closed; // Attach event handler for Closed
             }
+        }
+        private void SingleClientWindow_Closed(object sender, EventArgs e)
+        {
+            LoadTablesFromDatabase(); // Reload the data from the database
+            UpdateButtonColors();     // Update the button colors
         }
 
         private void ToGoButton_Click(object sender, RoutedEventArgs e)
@@ -208,7 +188,11 @@ namespace PowerSell.Views
         {
             this.Close();
         }
-
+        public void ReturnBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ReturnProduct returnprod = new ReturnProduct();
+            returnprod.ShowDialog();
+        }
         private T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)

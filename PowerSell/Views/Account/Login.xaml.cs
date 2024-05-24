@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using MahApps.Metro.Controls;
 using PowerSell.Models; // Assuming PowerSell.Models contains User and PowerSellDbContext classes
 using PowerSell.Services; // Import the SessionManager namespace
+using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace PowerSell.Views.Account
 {
@@ -35,14 +37,15 @@ namespace PowerSell.Views.Account
             // Show the loading indicator
             LoadingGrid.Visibility = Visibility.Visible;
             LoginGrid.Visibility = Visibility.Collapsed;
-
             string password = PasswordBox.Password;
 
             // Simulate login delay (replace with actual login logic)
             await Task.Delay(2500);
 
-            // Validate username and password against database
-            User user = dbContext.Users.FirstOrDefault(u => u.Password == password);
+            // Call the stored procedure using SqlQuery
+            var user = dbContext.Database.SqlQuery<User>("EXEC ValidateUser @password",
+                new SqlParameter("@password", password))
+                .FirstOrDefault();
 
             if (user != null && user.UserType == "worker")
             {
@@ -53,11 +56,12 @@ namespace PowerSell.Views.Account
                 LoadingGrid.Visibility = Visibility.Collapsed;
                 LoginGrid.Visibility = Visibility.Visible;
 
-                Dashboard dashboard = new Dashboard(); // Pass user ID to Dashboard constructor
+                var dataService = new DataService(dbContext);
+                var dashboard = new Dashboard(dataService);
                 dashboard.Show();
                 Close(); // Close Login window
             }
-            else if(user !=null & user.UserType =="admin")
+            else if (user != null & user.UserType == "admin")
             {
                 // Set the user ID in the session manager
                 SessionManager.Instance.UserId = user.UserId;

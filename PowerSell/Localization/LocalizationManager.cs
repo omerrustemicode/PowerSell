@@ -16,5 +16,9 @@ namespace PowerSell.Localization
         public string Bill => _resourceManager.GetString("Bill");
         public string Ready => _resourceManager.GetString("Ready");
         public string PrintService => _resourceManager.GetString("PrintService");
+        public string Paid => _resourceManager.GetString("Paid");
+        public string DeleteButton => _resourceManager.GetString("DeleteButton");
+        public string AddButton => _resourceManager.GetString("AddButton");
+        public string Message => _resourceManager.GetString("Message");
     }
 }

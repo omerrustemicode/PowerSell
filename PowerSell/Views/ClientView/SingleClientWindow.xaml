@@ -35,13 +35,12 @@
                     <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
                 </DataGrid.Columns>
             </DataGrid>
-
+            <Label x:Name="TotalToOrder" Content="" Background="Green" Width="auto" FontSize="20" FontStyle="Normal"/>
             <!-- StackPanel for buttons on a new line -->
             <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand">
-                <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
-                <Button Content="Delete" Click="DeleteServiceButton_Click" Margin="2" Background="#3498DB" Width="100"/>
-                <Button x:Name="AddButton" Content="Add" Click="AddButton_Click" Margin="2" Background="#3498DB" Width="100"/>
-                <Button Content="Message" Click="MessageButton_Click" Margin="2" Background="#3498DB" Width="100" RenderTransformOrigin="0.5,0.5"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=DeleteButton}" Click="DeleteServiceButton_Click" Margin="2" Background="#3498DB" Width="100"/>
+                <Button x:Name="AddButton" Content="{Binding Source={StaticResource LocalizationManager}, Path=AddButton}" Click="AddButton_Click" Margin="2" Background="#3498DB" Width="100"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Message}" Click="MessageButton_Click" Margin="2" Background="#3498DB" Width="100" RenderTransformOrigin="0.5,0.5"/>
                 <ComboBox x:Name="clientComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"
                   SelectionChanged="clientComboBox_SelectionChanged"/>
                 <Label x:Name="ClientIdLabel" Content="" Visibility="Visible" />
@@ -58,12 +57,13 @@
                     <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}" />
                     <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}" />
                     <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                    <DataGridTextColumn Header="Service Price" Binding="{Binding ServicePrice}" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}" />
                     <!-- Add more columns here as needed -->
                 </DataGrid.Columns>
             </DataGrid>
+            <Label x:Name="TotalOrders" Content="" Background="Green" Width="auto" FontSize="20" FontStyle="Normal"/>
         </StackPanel>
-
+           
         <!-- Middle Line (GridSplitter) -->
         <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="5" Background="#34495E" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
 
@@ -73,6 +73,7 @@
             <WrapPanel>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Transport}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="Transport_Btn"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Bill}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="BillButton_Click"/>
+                <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Paid}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="PaidButton_Click"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=Ready}" Height="80" Margin="5" Background="#3498DB" Foreground="White" Click="ReadyButton_Click"/>
                 <Button Content="{Binding Source={StaticResource LocalizationManager}, Path=PrintService}" Height="80" Background="#3498DB" Foreground="White" Click="PrintService_Click" Width="58"/>
             </WrapPanel>

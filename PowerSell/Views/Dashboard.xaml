@@ -33,7 +33,8 @@
                                             <StackPanel>
                                                 <TextBlock Text="{Binding ClientName}" />
                                                 <!-- Make sure ClientName binding is correct -->
-                                                <TextBlock Text="{Binding Total}" />
+                                               
+                                                <TextBlock x:Name="TotalValueTxtb" Text="{Binding Total}" />
                                                 <!-- Add IsReady property from OrderList if needed -->
                                             </StackPanel>
                                         </DataTemplate>
@@ -67,6 +68,7 @@
                      TextChanged="SearchTextBox_TextChanged" />
             <Button Content="To Go" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
             <Button Content="Reports" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
+            <Button Content="Return Product" Width="180" Height="70" Background="#3498DB" Foreground="White" Click="ReturnBtn_Click"/>
             <Button Content="Logout" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
         </StackPanel>
 

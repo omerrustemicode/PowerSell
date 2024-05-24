@@ -1,4 +1,5 @@
 ﻿
+using PowerSell.Models.SP;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,7 +19,8 @@ namespace PowerSell.Models
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderList> OrderList { get; set; }
         public DbSet<DailyClosingCase> DailyClosingCase { get; set; }
- 
+       // public virtual DbSet<TableOrderDetailView> TableOrderDetailsView { get; set; }
+
         public DbSet<ServiceCategory> ServiceCategory { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<OrdersConfirmed> OrdersConfirmed { get; set; }
@@ -31,8 +33,7 @@ namespace PowerSell.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Example:
-            // modelBuilder.Entity<YourEntity>().HasMany(x => x.YourRelatedEntity).WithRequired(x => x.YourEntity);
-         
+        
         }
     }
 }

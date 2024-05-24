@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PrintSettings>
+  <Dimensions>
+    <Width>72.1</Width>
+    <Height>99999</Height>
+  </Dimensions>
+  <Content>
+    <Separator>--------------------------------------------------</Separator>
+    <ServiceName>Сервис Име: {ServiceName}</ServiceName>
+    <ServicePrice>Цена: ${ServicePrice}</ServicePrice>
+    <Quantity>Колицина: {Quantity}</Quantity>
+    <Total>Тотал: {Total}</Total>
+    <Employee>Работник: {UserName}</Employee>
+  </Content>
+</PrintSettings>

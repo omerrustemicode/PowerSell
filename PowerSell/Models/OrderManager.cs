@@ -40,6 +40,6 @@ namespace PowerSell.Models
                 throw new Exception("Error saving orders: " + ex.Message);
             }
         }
-
+     
     }
 }

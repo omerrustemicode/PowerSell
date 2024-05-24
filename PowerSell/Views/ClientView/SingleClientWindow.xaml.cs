@@ -18,6 +18,8 @@ using System.Drawing.Printing;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using DataGridTextColumn = MaterialDesignThemes.Wpf.DataGridTextColumn;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace PowerSell.Views.ClientView
 {
@@ -30,8 +32,7 @@ namespace PowerSell.Views.ClientView
         public int TableId { get; private set; }
         string userName = SessionManager.Instance.UserName;
         int userid = SessionManager.Instance.UserId;
-        string ClientName = "";
-        int ClientId;
+     
         public SingleClientWindow(int tableId)
         {
             InitializeComponent();
@@ -43,6 +44,8 @@ namespace PowerSell.Views.ClientView
             AddClientDisable();
             ShowClientDetails(NameLabel, ClientIdLabel);
             YourCommandForButtonClick = new RelayCommand(ExecuteYourCommandForButtonClick);
+            TotalToOrders();
+            UpdateTotalOrders();
         }
 
         private void LoadOrdersData(DataGrid dataGrid)
@@ -59,7 +62,7 @@ namespace PowerSell.Views.ClientView
             dataGrid.Columns.Add(new DataGridTextColumn
             {
                 Header = "Order ID",
-                Binding = new Binding("OrderId")
+                Binding = new Binding("OrdersId")
             });
 
             dataGrid.Columns.Add(new DataGridTextColumn
@@ -88,17 +91,15 @@ namespace PowerSell.Views.ClientView
 
         private List<OrderDTO> GetActiveOrdersByTableId(int tableId)
         {
-            return dbContext.Orders
-                .Include(o => o.Service)
-                .Where(o => o.TableId == tableId)
-                .Select(o => new OrderDTO
-                {
-                    OrdersId = o.OrdersId,
-                    ServiceName = o.Service.ServiceName,
-                    Quantity = o.Quantity,
-                    ServicePrice = o.ServicePrice,
-                })
-                .ToList();
+            using (var dbContext = new PowerSellDbContext())
+            {
+                var orders = dbContext.Database.SqlQuery<OrderDTO>(
+                    "EXEC GetActiveOrdersByTableId @TableId",
+                    new SqlParameter("@TableId", tableId)
+                ).ToList();
+
+                return orders;
+            }
         }
 
         private void LoadCategories()
@@ -282,6 +283,7 @@ namespace PowerSell.Views.ClientView
 
                     // Refresh the data grid to reflect the changes
                     dataGridOrdersNew.Items.Refresh();
+                    TotalToOrders();
                 }
                 else
                 {
@@ -296,8 +298,10 @@ namespace PowerSell.Views.ClientView
 
                     // Add the new ServiceOrder to the data grid
                     dataGridOrdersNew.Items.Add(newServiceOrder);
+                    TotalToOrders();
                 }
             }
+            TotalToOrders();
         }
 
         private void Transport_Btn(object sender, RoutedEventArgs e)
@@ -307,10 +311,12 @@ namespace PowerSell.Views.ClientView
 
         private void dataGridOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            TotalToOrders();
             // Handle selection changes if needed
         }
         private void dataGridOrdersNew_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            TotalToOrders();
             // Handle selection changes if needed
         }
 
@@ -321,7 +327,7 @@ namespace PowerSell.Views.ClientView
             addClient.ShowDialog();
         }
 
-        public void ShowClientDetails(Label nameLabel, Label clientIdLabel)
+        private void ShowClientDetails(Label nameLabel, Label clientIdLabel)
         {
             try
             {
@@ -330,28 +336,36 @@ namespace PowerSell.Views.ClientView
                     // Get the TableId from your application logic
                     int tableId = TableId; // Implement GetTableId() method to fetch the TableId
 
-                    // Check if an OrderList exists for the current table
-                    var orderList = dbContext.OrderList.FirstOrDefault(ol => ol.TableId == tableId && ol.OrderListId > 0 && ol.ClientGetServiceDate == null);
+                    // Initialize output parameters
+                    var clientNameParameter = new SqlParameter("@ClientName", SqlDbType.NVarChar, 100);
+                    clientNameParameter.Direction = ParameterDirection.Output;
 
-                    if (orderList != null)
-                    {
-                        nameLabel.Content = orderList.ClientName;
-                        clientIdLabel.Content = orderList.ClientId;
-                    }
-                    else
-                    {
-                        // Handle case when OrderList is not found
-                        nameLabel.Content = "No client details found";
-                        clientIdLabel.Content = "";
-                    }
+                    var clientIdParameter = new SqlParameter("@ClientId", SqlDbType.Int);
+                    clientIdParameter.Direction = ParameterDirection.Output;
+
+                    // Call the stored procedure
+                    dbContext.Database.ExecuteSqlCommand(
+                        "EXEC ShowClientDetailsByTableId @TableId, @ClientName OUT, @ClientId OUT",
+                        new SqlParameter("@TableId", tableId),
+                        clientNameParameter,
+                        clientIdParameter);
+
+                    // Retrieve output parameter values
+                    string clientName = clientNameParameter.Value?.ToString();
+                    int clientId = (int)(clientIdParameter.Value ?? 0);
+
+                    // Update the labels with client details
+                    nameLabel.Content = clientName ?? "No client details found";
+                    clientIdLabel.Content = clientId.ToString();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error retrieving client details: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Update the labels with client details
+                nameLabel.Content = "No client details found" + ex;
             }
         }
-     
+
 
         // Method to update the UI with the newly added client
         public void UpdateClient(Client newClient)
@@ -371,22 +385,25 @@ namespace PowerSell.Views.ClientView
             {
                 using (var dbContext = new PowerSellDbContext())
                 {
-                    // Get the TableId from your application logic
-                    int tableId = TableId; // Implement GetTableId() method to fetch the TableId
+                    int tableId = TableId; // Get the TableId from your application logic
 
-                    // Check if an OrderList exists for the current table with a null ClientGetServiceDate
-                    var orderList = dbContext.OrderList.FirstOrDefault(ol => ol.TableId == tableId && ol.OrderListId > 0 && ol.ClientGetServiceDate == null && ol.ClientId>1);
+                    // Create parameters for the stored procedure
+                    var tableIdParam = new SqlParameter("@TableId", tableId);
+                    var existsParam = new SqlParameter("@Exists", SqlDbType.Bit)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
 
-                    if (orderList != null)
-                    {
-                        AddButton.IsEnabled = false; // Disable the AddButton
-                        clientComboBox.IsEnabled = false;
-                    }
-                    else
-                    {
-                        AddButton.IsEnabled = true; // Enable the AddButton
-                        clientComboBox.IsEnabled = true;
-                    }
+                    // Execute the stored procedure
+                    dbContext.Database.ExecuteSqlCommand("CheckOrderList @TableId, @Exists OUTPUT",
+                        tableIdParam,
+                        existsParam);
+
+                    bool orderListExists = Convert.ToBoolean(existsParam.Value);
+
+                    // Update UI based on the stored procedure result
+                    AddButton.IsEnabled = !orderListExists;
+                    clientComboBox.IsEnabled = !orderListExists;
                 }
             }
             catch (Exception ex)
@@ -394,6 +411,7 @@ namespace PowerSell.Views.ClientView
                 MessageBox.Show("Error checking OrderList: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void LoadClients()
         {
             try
@@ -448,7 +466,7 @@ namespace PowerSell.Views.ClientView
                         int clientID = Convert.ToInt32(ClientIdLabel.Content?.ToString());
 
                         // Call ShowClientDetails with the clientName
-                        ShowClientDetails(NameLabel,ClientIdLabel);
+                        ShowClientDetails(NameLabel, ClientIdLabel);
 
                         // Instantiate OrderManager
                         var orderManager = new OrderManager(dbContext);
@@ -469,7 +487,6 @@ namespace PowerSell.Views.ClientView
                             ClientName = clientName, // Use the client name obtained earlier
                             ClientId = clientID,
                             IsReady = 0,
-
                             ServiceDateCreated = DateTime.Now,
                             TableId = tableId
                         };
@@ -477,6 +494,18 @@ namespace PowerSell.Views.ClientView
                         // Add the OrderList to the database
                         dbContext.OrderList.Add(orderList);
                         dbContext.SaveChanges(); // Save changes to get the OrderListId
+
+                        // Decrement the quantity of products
+                        foreach (var service in services)
+                        {
+                            var product = dbContext.Service.SingleOrDefault(p => p.ServiceId == service.ServiceId);
+                            if (product != null)
+                            {
+                                product.Quantity -= service.Quantity;
+                            }
+                        }
+
+                        dbContext.SaveChanges(); // Save changes to update product quantities
 
                         // Call PrintServiceClick method of OrderManager and pass OrderListId
                         orderManager.PrintServiceClick(tableId, userId, services, orderList.OrderListId);
@@ -499,6 +528,7 @@ namespace PowerSell.Views.ClientView
 
 
 
+
         private void ReadyButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -516,7 +546,7 @@ namespace PowerSell.Views.ClientView
                             int orderListId = ordersForTable.First().OrderListId; // Get OrderListId
 
                             var orderListForTable = dbContext.OrderList
-                                .Where(ol => ol.OrderListId == orderListId)
+                                .Where(ol =>ol.IsReady == 0 && ol.TableId == TableId)
                                 .ToList();
 
                             if (orderListForTable.Count > 0)
@@ -524,7 +554,10 @@ namespace PowerSell.Views.ClientView
                                 // Update IsReady status for the found orders
                                 foreach (var orderList in orderListForTable)
                                 {
-                                    orderList.IsReady = 1; // Set IsReady to 1
+                                    if (orderList.IsReady == 0)
+                                    {
+                                        orderList.IsReady = 1; // Set IsReady to 1
+                                    }
                                 }
 
                                 // Save changes to the database
@@ -570,9 +603,12 @@ namespace PowerSell.Views.ClientView
 
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            // Set the print size in millimeters
-            double printWidth = 72.1 * 10; // Convert inches to millimeters (1 inch = 25.4 mm)
-            double printHeight = 99999 * 10; // Set the height in millimeters
+            // Load print settings from XML
+            PrintSettings printSettings = PrintSettingsLoader.LoadPrintSettings("psprint.xml");
+
+            // Set the print size
+            double printWidth = printSettings.Width * 10; // Convert inches to millimeters (1 inch = 25.4 mm)
+            double printHeight = printSettings.Height * 10; // Set the height in millimeters
 
             // Create a visual to print (e.g., a StackPanel)
             StackPanel stackPanel = new StackPanel();
@@ -585,16 +621,17 @@ namespace PowerSell.Views.ClientView
                     // Create a TextBlock for each service and add it to the stack panel
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = $"\n" +
-                                     $"--------------------------------------------------\n" +
-                                     $"            Сервис Име: {service.ServiceName}\n" +
-                                     $"            Цена: ${service.ServicePrice}\n" +
-                                     $"            Колицина: {service.Quantity}\n" +
-                                     $"           Тотал: {service.Total}\n" +
-                                     $"         Работник: {userName}\n" +
-                                     "--------------------------------------------------"; // Separator between items
+                                     $"{printSettings.Separator}\n" +
+                                     $"{printSettings.ServiceName.Replace("{ServiceName}", service.ServiceName)}\n" +
+                                     $"{printSettings.ServicePrice.Replace("{ServicePrice}", service.ServicePrice.ToString())}\n" +
+                                     $"{printSettings.Quantity.Replace("{Quantity}", service.Quantity.ToString())}\n" +
+                                     $"{printSettings.Total.Replace("{Total}", service.Total.ToString())}\n" +
+                                     $"{printSettings.Employee.Replace("{UserName}", userName)}\n" +
+                                     $"{printSettings.Separator}"; // Separator between items
                     stackPanel.Children.Add(textBlock);
                 }
             }
+
 
             // Measure and arrange the stack panel for printing
             Size visualSize = new Size(printWidth, printHeight);
@@ -609,6 +646,7 @@ namespace PowerSell.Views.ClientView
             // Mark the event as handled to prevent additional printing
             e.Cancel = true;
         }
+
 
 
 
@@ -634,7 +672,8 @@ namespace PowerSell.Views.ClientView
                 while (!allPaid)
                 {
                     allPaid = true; // Assume all orders are paid unless proven otherwise
-
+                                    // Prompt the user for IsPaid status
+                    var result = MessageBox.Show($"Is order paid?", "Is Paid", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     foreach (var order in ordersToConfirm)
                     {
                         // Check if the order is already confirmed
@@ -642,8 +681,7 @@ namespace PowerSell.Views.ClientView
 
                         if (confirmedOrder == null)
                         {
-                            // Prompt the user for IsPaid status
-                            var result = MessageBox.Show($"Is order {order.OrdersId} paid?", "Is Paid", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                           
 
                             // Update ClientGetServiceDate in OrderList
                             var orderToUpdate = orderListsToConfirm.FirstOrDefault(o => o.OrderListId == order.OrderListId);
@@ -687,16 +725,17 @@ namespace PowerSell.Views.ClientView
                         return false;
                     }
                 }
-
-                await dbContext.SaveChangesAsync();
                 // Print the order details
                 PrintOrdersToPaper(ordersToConfirm);
+                await dbContext.SaveChangesAsync();
+              
 
                 // If insertion to OrdersConfirmed was successful and IsPaid is true, remove orders from Orders table
                 dbContext.Orders.RemoveRange(ordersToConfirm);
                 await dbContext.SaveChangesAsync();
-
+                this.Close();
                 return true; // Return true to indicate successful execution
+                
             }
             catch (Exception ex)
             {
@@ -710,6 +749,7 @@ namespace PowerSell.Views.ClientView
         {
             // Call the method to save orders to OrdersConfirmed and delete from Orders
             await SaveOrdersToConfirmed();
+            TotalToOrders();
 
             // Add other actions or messages as needed
         }
@@ -721,7 +761,7 @@ namespace PowerSell.Views.ClientView
                 MessageBox.Show("No orders to print.");
                 return;
             }
-
+      
             // Create a PrintDocument instance
             PrintDocument printDocument = new PrintDocument();
 
@@ -746,6 +786,18 @@ namespace PowerSell.Views.ClientView
                     Margin = new Thickness(0, 20, 0, 10) // Margin for spacing
                 };
                 stackPanel.Children.Add(paidLabel);
+                // Create a TextBlock for the "Paid" label
+                TextBlock orderinfo = new TextBlock
+                {
+                    Text = "Artikal - Kolicina - Cena",
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(0, 20, 0, 10) // Margin for spacing
+                };
+                TextBlock lines = new TextBlock();
+                lines.Text = "-----------------------------------";
+                stackPanel.Children.Add(orderinfo); 
+                stackPanel.Children.Add(lines);
 
                 // Iterate through the orders and create TextBlocks for each order
                 foreach (var order in orders)
@@ -755,10 +807,23 @@ namespace PowerSell.Views.ClientView
                         TextBlock textBlock = new TextBlock();
                         textBlock.Text = $"{order.Service.ServiceName} - {order.Quantity} {order.ServicePrice}";
                         textBlock.HorizontalAlignment = HorizontalAlignment.Center; // Center the text horizontally
+                        textBlock.Margin = new Thickness(0, 20, 0, 10);
                         stackPanel.Children.Add(textBlock);
                     }
                 }
-
+                TextBlock linesbottom = new TextBlock();
+                linesbottom.Text = "-----------------------------------";
+                stackPanel.Children.Add(lines);
+                var total = orders.Sum(t => t.ServicePrice * t.Quantity);
+                TextBlock totalpaid = new TextBlock
+                {
+                    Text = $"Total: {total}",
+                    FontSize=18,
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(0, 20, 0, 10) // Margin for spacing
+                };
+                stackPanel.Children.Add(totalpaid);
                 // Measure and arrange the stack panel for printing
                 Size visualSize = new Size(printWidth, printHeight);
                 stackPanel.Measure(visualSize);
@@ -788,6 +853,7 @@ namespace PowerSell.Views.ClientView
                 foreach (Service service in selectedServices)
                 {
                     dataGridOrdersNew.Items.Remove(service);
+                    TotalToOrders();
                 }
             }
             catch (Exception ex)
@@ -806,6 +872,105 @@ namespace PowerSell.Views.ClientView
         {
             var keyboardWindow = new KeyboardWindow();
             keyboardWindow.ShowDialog();
+        }
+
+        private void PaidButton_Click(object sender, RoutedEventArgs e)
+        {
+                try
+                {
+                    using (var dbContext = new PowerSellDbContext())
+                    {
+                        int tableId = TableId; // Get the TableId for which to update IsReady status
+
+                        if (tableId > 0)
+                        {
+                            var ordersForTable = dbContext.Orders.Where(o => o.TableId == TableId).ToList();
+
+                            if (ordersForTable.Any())
+                            {
+                                int orderListId = ordersForTable.First().OrderListId; // Get OrderListId
+
+                                var orderListForTable = dbContext.OrderList
+                                    .Where(ol => ol.IsPaid == null && ol.TableId == TableId)
+                                    .ToList();
+
+                                if (orderListForTable.Count > 0)
+                                {
+                                    // Update IsReady status for the found orders
+                                    foreach (var orderList in orderListForTable)
+                                    {
+                                        if (orderList.IsPaid == null)
+                                        {
+                                            orderList.IsPaid = true; // Set IsReady to 1
+                                        }
+                                    }
+
+                                    // Save changes to the database
+                                    dbContext.SaveChanges();
+
+                                    MessageBox.Show("SITE NARACKI E PLATENO.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("NEMA NARACKI DA PLATI");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No orders found for the specified TableId.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid TableId. Please try again.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating IsReady status: " + ex.Message);
+                }
+        }
+        public void TotalToOrders()
+        {
+            double totalSum = 0;
+
+            // Loop through each row in the DataGrid
+            foreach (var item in dataGridOrdersNew.Items)
+            {
+                // Use reflection to get the property value if item is not DataRowView
+                var totalProperty = item.GetType().GetProperty("Total");
+                if (totalProperty != null)
+                {
+                    var cellValue = totalProperty.GetValue(item)?.ToString();
+                  //  Console.WriteLine("Cell Value: " + cellValue); // Debugging output
+
+                    if (double.TryParse(cellValue, out double value))
+                    {
+                        totalSum += value;
+                       // Console.WriteLine("Parsed Value: " + value + " | Running Total: " + totalSum); // Debugging output
+                    }
+                    else
+                    {
+                      //  Console.WriteLine("Failed to parse: " + cellValue); // Log failed parse attempts
+                    }
+                }
+            }
+
+            // Display the sum in the Label
+            TotalToOrder.Content = "Total: " + totalSum.ToString("N2");
+            Console.WriteLine("Final Total: " + totalSum); // Debugging output
+        }
+        private void UpdateTotalOrders()
+        {
+            // Assuming the DataContext of the DataGrid is a collection of OrderDTO
+            var orders = dataGridOrders.Items.Cast<OrderDTO>();
+
+            // Calculate the total
+            decimal total = orders.Sum(order => order.Quantity * order.ServicePrice);
+
+            // Update the TotalOrders label
+            TotalOrders.Content = $"Total: {total:C}";
         }
     }
 }
