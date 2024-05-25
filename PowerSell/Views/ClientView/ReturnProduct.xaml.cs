@@ -56,8 +56,22 @@ namespace PowerSell.Views.ClientView
             if (dataGridProducts.SelectedItem != null && int.TryParse(txtQuantityToReturn.Text, out int quantityToReturn))
             {
                 var selectedProduct = dataGridProducts.SelectedItem as dynamic;
-                int productId = selectedProduct.ProductId;
-                int originalQuantity = selectedProduct.Quantity;
+
+                if (selectedProduct == null)
+                {
+                    MessageBox.Show("Please select a valid product.");
+                    return;
+                }
+
+                int? serviceIdNullable = selectedProduct.ServiceId;
+                if (!serviceIdNullable.HasValue)
+                {
+                    MessageBox.Show("Invalid Service ID.");
+                    return;
+                }
+
+                int serviceId = serviceIdNullable.Value;
+                decimal originalQuantity = selectedProduct.Quantity;
 
                 if (quantityToReturn > originalQuantity)
                 {
@@ -69,13 +83,13 @@ namespace PowerSell.Views.ClientView
                 {
                     using (var dbContext = new PowerSellDbContext())
                     {
-                        var product = dbContext.Service.SingleOrDefault(p => p.ServiceId == productId);
-                        var orderDetail = dbContext.Orders.SingleOrDefault(od => od.OrderListId == orderId && od.ServiceId == productId);
+                        var service = dbContext.Service.SingleOrDefault(p => p.ServiceId == serviceId);
+                        var orderDetail = dbContext.Orders.SingleOrDefault(od => od.OrderListId == orderId && od.ServiceId == serviceId);
 
-                        if (product != null && orderDetail != null)
+                        if (service != null && orderDetail != null)
                         {
                             // Update product quantity in stock
-                            product.Quantity += quantityToReturn;
+                            service.Quantity += quantityToReturn;
 
                             // Update order detail quantity
                             orderDetail.Quantity -= quantityToReturn;
