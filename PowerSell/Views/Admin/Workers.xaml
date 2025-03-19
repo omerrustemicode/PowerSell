@@ -58,6 +58,7 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="User Name" DisplayMemberBinding="{Binding UserName}"/>
+                            <GridViewColumn Header="Password" DisplayMemberBinding="{Binding Password}"/>
                             <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
                             <GridViewColumn Header="User Type" DisplayMemberBinding="{Binding UserType}"/>
                         </GridView>

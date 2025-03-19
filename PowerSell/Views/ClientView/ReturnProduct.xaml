@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PowerSell.Views.ClientView"
         mc:Ignorable="d"
-        Title="ReturnProduct" Height="450" Width="800" Background="#2C3E50">
+        Title="ReturnProduct" Height="450" Width="800">
     <Grid>
-        <TextBox Name="txtOrderListId" Width="200" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Name="txtOrderListId" Width="200" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Button Name="btnSearchOrder" Content="Search Order" Width="150" Height="30" Margin="220,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnSearchOrder_Click"/>
-        <DataGrid Name="dataGridProducts" AutoGenerateColumns="False" Height="300" Width="780" Margin="10,50,10,0" IsReadOnly="True" SelectionMode="Single" >
+        <DataGrid Name="dataGridProducts" AutoGenerateColumns="False" Height="300" Width="780" Margin="10,50,10,0" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Service ID" Binding="{Binding ServiceId}" Width="*"/>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}" Width="*"/>
+                <DataGridTextColumn Header="Client Name" Binding="{Binding ClientName}" Width="*"/>
+                <DataGridTextColumn Header="Service Price" Binding="{Binding ServicePrice}" Width="*"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox Name="txtQuantityToReturn" Width="200" Height="25" Margin="10,370,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Name="txtQuantityToReturn" Width="200" Height="25" Margin="10,370,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Button Name="btnReturnProduct" Content="Return Product" Width="150" Height="30" Margin="220,370,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnReturnProduct_Click"/>
     </Grid>
 </Window>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PrintSettings>
+  <Width>72.1</Width>
+  <Height>99999</Height>
+  <Separator>-----------------------------------</Separator>
+  <ServiceName>Service: {ServiceName}</ServiceName>
+  <ServicePrice>Price: {ServicePrice}</ServicePrice>
+  <Quantity>Qty: {Quantity}</Quantity>
+  <Total>Total: {Total}</Total>
+  <Employee>Employee: {UserName}</Employee>
+</PrintSettings>

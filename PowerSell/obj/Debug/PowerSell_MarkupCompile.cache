@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\PC\Desktop\Powersell backup\PowerSell\PowerSell\App.xaml
-18737887762
+181902627569
 
-83-1465198702
-65151215979
-ViewModels\CustomMessageBox.xaml;Views\Account\dbwindow.xaml;Views\Account\Login.xaml;Views\Admin\AdminDashboard.xaml;Views\Admin\Categories.xaml;Views\Admin\Home.xaml;Views\Admin\Reports.xaml;Views\Admin\Services.xaml;Views\Admin\Settings.xaml;Views\Admin\Tables.xaml;Views\Admin\Workers.xaml;Views\ClientView\AddClient.xaml;Views\ClientView\KeyboardWindow.xaml;Views\ClientView\ReturnProduct.xaml;Views\ClientView\SingleClientWindow.xaml;Views\Dashboard.xaml;Views\Reports\Reports.xaml;Views\ToGo\ToGoWindow.xaml;
+911058816630
+771990025100
+ViewModels\CustomMessageBox.xaml;Views\Account\Login.xaml;Views\Admin\AdminDashboard.xaml;Views\Admin\Categories.xaml;Views\Admin\Home.xaml;Views\Admin\PrinterSettings.xaml;Views\Admin\Reports.xaml;Views\Admin\Services.xaml;Views\Admin\Settings.xaml;Views\Admin\Tables.xaml;Views\Admin\Workers.xaml;Views\ClientView\AddClient.xaml;Views\ClientView\KeyboardWindow.xaml;Views\ClientView\ReturnProduct.xaml;Views\ClientView\SingleClientWindow.xaml;Views\Dashboard.xaml;Views\Reports\Reports.xaml;Views\ToGo\ToGoWindow.xaml;
 
 False
 

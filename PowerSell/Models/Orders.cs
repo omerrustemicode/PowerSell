@@ -21,6 +21,7 @@ namespace PowerSell.Models
         public virtual Tables Tables { get; set; }
         public int? ServiceId { get; set; } // Added nullable type indicator (?)
         public virtual Service Service { get; set; }
+        public OrderList OrderList { get; set; } // Navigation property
         public int? ClientId { get; set; } // Foreign key for Client table
         public virtual Client Client { get; set; } // Navigation property for Client
 

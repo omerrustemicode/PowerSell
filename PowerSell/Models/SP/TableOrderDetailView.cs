@@ -18,6 +18,8 @@ namespace PowerSell.Models.SP
         public int? IsReady { get; set; }
         public string ClientName { get; set; }
         public string ClientPhone { get; set; }
+        public double? XPosition { get; set; }
+        public double? YPosition { get; set; }
     }
 
 }

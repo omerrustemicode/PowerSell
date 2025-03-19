@@ -1,24 +1,13 @@
 ﻿using PowerSell.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PowerSell.Views.Admin
 {
-    /// <summary>
-    /// Interaction logic for Raports.xaml
-    /// </summary>
     public partial class Reports : UserControl
     {
         private PowerSellDbContext _context;
@@ -26,42 +15,102 @@ namespace PowerSell.Views.Admin
         public Reports()
         {
             InitializeComponent();
-            _context = new PowerSellDbContext(); // Initialize your DbContext
+            _context = new PowerSellDbContext();
+
+            LoadCategories();
+            LoadProducts();
+        }
+
+        private void LoadCategories()
+        {
+            var categories = _context.ServiceCategory.ToList();
+            cbCategory.ItemsSource = categories;
+            cbCategory.DisplayMemberPath = "CategoryName";
+            cbCategory.SelectedValuePath = "CategoryId";
+        }
+
+        private void LoadProducts()
+        {
+            var products = _context.Service.ToList();
+            cbProduct.ItemsSource = products;
+            cbProduct.DisplayMemberPath = "ServiceName";
+            cbProduct.SelectedValuePath = "ServiceId";
         }
 
         private void btnGenerateReport_Click(object sender, RoutedEventArgs e)
         {
-            DateTime startDate = dpStartDate.SelectedDate ?? DateTime.MinValue;
-            DateTime endDate = dpEndDate.SelectedDate ?? DateTime.MaxValue;
-
-            var orders = _context.OrdersConfirmed
-                .Where(o => o.ServiceDateCreated >= startDate && o.ServiceDateCreated <= endDate)
-            .ToList();
-
-            lvOrders.ItemsSource = orders;
-
-            // Calculate total
-            decimal total = orders.Sum(o => o.Quantity * o.ServicePrice);
-            txtTotal.Text = total.ToString();
-
-            // Calculate best-selling product (example logic)
-            var bestSellingProduct = orders.GroupBy(o => o.ServiceId)
-                .OrderByDescending(g => g.Sum(o => o.Quantity))
-                .FirstOrDefault();
-
-            if (bestSellingProduct != null)
+            if (dpStartDate.SelectedDate.HasValue && dpEndDate.SelectedDate.HasValue)
             {
-                int bestProductId = bestSellingProduct.Key ?? 0; // Assuming ServiceId is int
-                string productName = _context.Service.FirstOrDefault(s => s.ServiceId == bestProductId)?.ServiceName;
+                DateTime startDate = dpStartDate.SelectedDate.Value.Date;
+                DateTime endDate = dpEndDate.SelectedDate.Value.Date.AddDays(1).AddSeconds(-1);
 
-                if (!string.IsNullOrEmpty(productName))
+                var query = _context.OrdersConfirmed.AsQueryable();
+                query = query.Where(o => o.ClientGetServiceDate >= startDate && o.ClientGetServiceDate <= endDate);
+
+                if (cbCategory.SelectedItem != null)
                 {
-                    txtBestSellingProduct.Text = $"{productName} ({bestSellingProduct.Sum(o => o.Quantity)} units)";
+                    int selectedCategoryId = (int)cbCategory.SelectedValue;
+                    query = query.Where(o => o.Service.CategoryId == selectedCategoryId);
                 }
+
+                if (cbProduct.SelectedItem != null)
+                {
+                    int selectedProductId = (int)cbProduct.SelectedValue;
+                    query = query.Where(o => o.ServiceId == selectedProductId);
+                }
+
+                var orders = query.ToList();
+                var ordersWithService = orders.Select(o => new
+                {
+                    o.OrdersId,
+                    o.Quantity,
+                    o.ServicePrice,
+                    ServiceName = o.Service?.ServiceName ?? "N/A"
+                }).ToList();
+
+                lvOrders.ItemsSource = ordersWithService;
+                txtTotal.Text = orders.Sum(o => o.Quantity * o.ServicePrice).ToString("C");
+
+                var bestSellingProduct = orders.GroupBy(o => o.ServiceId)
+                    .OrderByDescending(g => g.Sum(o => o.Quantity))
+                    .FirstOrDefault();
+
+                txtBestSellingProduct.Text = bestSellingProduct != null
+                    ? $"{_context.Service.FirstOrDefault(s => s.ServiceId == bestSellingProduct.Key)?.ServiceName} ({bestSellingProduct.Sum(o => o.Quantity)} units)"
+                    : "No data";
             }
             else
             {
-                txtBestSellingProduct.Text = "No data";
+                MessageBox.Show("Please select valid start and end dates.");
+            }
+        }
+
+        private void btnExportPDF_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            FlowDocument doc = new FlowDocument();
+            doc.Blocks.Add(new Paragraph(new Run("Sales Report")));
+            doc.Blocks.Add(new Paragraph(new Run($"Date Range: {dpStartDate.SelectedDate?.ToShortDateString()} - {dpEndDate.SelectedDate?.ToShortDateString()}")));
+
+            foreach (var item in lvOrders.Items)
+            {
+                dynamic order = item;
+                doc.Blocks.Add(new Paragraph(new Run($"{order.OrdersId}: {order.ServiceName} - {order.Quantity} units, {order.ServicePrice:C}")));
+            }
+
+            doc.Blocks.Add(new Paragraph(new Run($"Total: {txtTotal.Text}")));
+            doc.Blocks.Add(new Paragraph(new Run($"Best-Selling Product: {txtBestSellingProduct.Text}")));
+
+            IDocumentPaginatorSource idpSource = doc;
+            printDialog.PrintDocument(idpSource.DocumentPaginator, "Sales Report");
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(lvOrders, "Printing Orders Report");
             }
         }
     }

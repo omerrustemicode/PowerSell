@@ -4,51 +4,59 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:local="clr-namespace:PowerSell.Views.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible">
-        <Grid Background="#FFF0F0F0">
+        <Grid Background="#282C34" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Date Range Selector -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20">
-                <Label Content="Select Date Range:" VerticalAlignment="Center"/>
-                <DatePicker x:Name="dpStartDate" SelectedDate="{x:Static sys:DateTime.Now}" Margin="10,0"/>
-                <Label Content="to" VerticalAlignment="Center" Margin="10,0"/>
-                <DatePicker x:Name="dpEndDate" SelectedDate="{x:Static sys:DateTime.Now}" Margin="0,0,10,0"/>
-                <Button Content="Generate Report" Click="btnGenerateReport_Click" Margin="10,0"/>
-            </StackPanel>
+            <!-- Filters with Border for Padding and CornerRadius -->
+            <Border Grid.Row="0" Background="#3A3F4B" CornerRadius="8" Padding="10" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Select Date Range:" Foreground="White" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="dpStartDate" SelectedDate="{x:Static sys:DateTime.Now}" Margin="10,0"/>
+                    <Label Content="to" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
+                    <DatePicker x:Name="dpEndDate" SelectedDate="{x:Static sys:DateTime.Now}" Margin="0,0,10,0"/>
+
+                    <Label Content="Category:" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
+                    <ComboBox x:Name="cbCategory" Width="150" Margin="10,0"/>
+
+                    <Label Content="Product:" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
+                    <ComboBox x:Name="cbProduct" Width="150" Margin="10,0"/>
+
+                    <Button Content="Generate Report" Click="btnGenerateReport_Click" Background="#0078D4" Foreground="White" Padding="6,3"/>
+                </StackPanel>
+            </Border>
 
             <!-- Report Data -->
-            <ListView x:Name="lvOrders" Grid.Row="1" Margin="20" Background="DarkGray" BorderBrush="DarkGray" BorderThickness="1">
+            <ListView x:Name="lvOrders" Grid.Row="1" Background="#1E1E1E" BorderBrush="Gray" BorderThickness="1">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrdersId}"/>
-                        <GridViewColumn Header="Service Name" DisplayMemberBinding="{Binding ServiceName}"/>
-                        <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}"/>
-                        <GridViewColumn Header="Service Price" DisplayMemberBinding="{Binding ServicePrice}"/>
-                        <!-- Add more columns as needed -->
+                        <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrdersId}" Width="100"/>
+                        <GridViewColumn Header="Service Name" DisplayMemberBinding="{Binding ServiceName}" Width="200"/>
+                        <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}" Width="100"/>
+                        <GridViewColumn Header="Service Price" DisplayMemberBinding="{Binding ServicePrice}" Width="120"/>
                     </GridView>
                 </ListView.View>
             </ListView>
 
-            <!-- Best-Selling Product -->
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20" Background="DarkGray">
-                <Label Content="Best-Selling Product:" VerticalAlignment="Center"/>
-                <TextBlock x:Name="txtBestSellingProduct" Margin="10,0"/>
-            </StackPanel>
+            <!-- Summary & Export Options with Border -->
+            <Border Grid.Row="2" Background="#3A3F4B" CornerRadius="8" Padding="10" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Best-Selling Product:" Foreground="White" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtBestSellingProduct" Foreground="White" FontWeight="Bold" Margin="10,0"/>
 
-            <!-- Total -->
-            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20" Background="DarkGray">
-                <Label Content="Total:" VerticalAlignment="Center"/>
-                <TextBlock x:Name="txtTotal" Margin="10,0"/>
-            </StackPanel>
+                    <Label Content="Total:" Foreground="White" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                    <TextBlock x:Name="txtTotal" Foreground="White" FontWeight="Bold" Margin="10,0"/>
+
+                    <Button Content="Export to PDF" Click="btnExportPDF_Click" Background="#4CAF50" Foreground="White" Padding="6,3" Margin="20,0"/>
+                    <Button Content="Print Report" Click="btnPrint_Click" Background="#D32F2F" Foreground="White" Padding="6,3" Margin="10,0"/>
+                </StackPanel>
+            </Border>
         </Grid>
     </ScrollViewer>
 </UserControl>

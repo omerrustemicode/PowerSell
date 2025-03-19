@@ -1,0 +1,794 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|c:\\users\\pc\\desktop\\powersell backup\\powersell\\powersell\\views\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\services\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\services\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\sp\\tableorderdetailview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\sp\\tableorderdetailview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\clientview\\singleclientwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\clientview\\singleclientwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\migrations\\202503080010241_adddragdroptable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\migrations\\202503080010241_adddragdroptable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\servicecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\servicecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\tables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\tables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\account\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\account\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\account\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\account\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\togo\\togowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\togo\\togowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\clientview\\singleclientwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\clientview\\singleclientwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\localization\\localizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\localization\\localizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\resources\\languages\\en.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\resources\\languages\\en.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\localization\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\localization\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\resources\\languages\\mk.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\resources\\languages\\mk.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\resources\\languages\\sq.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\resources\\languages\\sq.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\togo\\togowindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\togo\\togowindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\clientview\\print\\printsettingsloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\clientview\\print\\printsettingsloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\workers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\workers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\workers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\workers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\services\\textboxhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\services\\textboxhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\tables.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\tables.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\categories.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\categories.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\tables.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\tables.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\services.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\services.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\services.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\services.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\AppData\\Local\\Temp\\.vsdbgsrc\\c824721cd7d9c028e31d9faa77b348c59e49e6a99818a102ec7b7f9254f84219\\PropertyPathWorker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\reports.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\reports.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\reports.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\reports.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\admin\\categories.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\admin\\categories.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\psprint.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\psprint.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\powerselldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\powerselldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\ordersconfirmed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\ordersconfirmed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\returnedproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\returnedproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\clientview\\returnproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\clientview\\returnproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\ordermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\ordermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\powersell\\views\\clientview\\returnproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B6F2CCBB-6EE8-46F9-AB5E-6265D3C90249}|PowerSell\\PowerSell.csproj|solutionrelative:powersell\\views\\clientview\\returnproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Services\\DataService.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Services\\DataService.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Services\\DataService.cs",
+              "RelativeToolTip": "PowerSell\\Services\\DataService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T00:47:01.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Dashboard.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Dashboard.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Dashboard.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Dashboard.xaml.cs",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAUwGEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T23:57:19.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Strings.resx",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Localization\\Strings.resx",
+              "RelativeDocumentMoniker": "PowerSell\\Localization\\Strings.resx",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Localization\\Strings.resx",
+              "RelativeToolTip": "PowerSell\\Localization\\Strings.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-03-07T23:33:02.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "sq.json",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\resources\\Languages\\sq.json",
+              "RelativeDocumentMoniker": "PowerSell\\resources\\Languages\\sq.json",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\resources\\Languages\\sq.json",
+              "RelativeToolTip": "PowerSell\\resources\\Languages\\sq.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-07T23:30:31.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Account\\Login.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Account\\Login.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Account\\Login.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Account\\Login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-10T20:20:36.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dashboard.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Dashboard.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Dashboard.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Dashboard.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Dashboard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-21T21:16:16.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "202503080010241_AddDragDropTable.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Migrations\\202503080010241_AddDragDropTable.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Migrations\\202503080010241_AddDragDropTable.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Migrations\\202503080010241_AddDragDropTable.cs",
+              "RelativeToolTip": "PowerSell\\Migrations\\202503080010241_AddDragDropTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T00:10:30.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ToGoWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ToGo\\ToGoWindow.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ToGo\\ToGoWindow.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ToGo\\ToGoWindow.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\ToGo\\ToGoWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T21:29:29.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SingleClientWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\SingleClientWindow.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ClientView\\SingleClientWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\SingleClientWindow.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\ClientView\\SingleClientWindow.xaml.cs",
+              "ViewState": "AgIAALIDAAAAAAAAAAAuwNEDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T18:58:28.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TableOrderDetailView.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\SP\\TableOrderDetailView.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\SP\\TableOrderDetailView.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\SP\\TableOrderDetailView.cs",
+              "RelativeToolTip": "PowerSell\\Models\\SP\\TableOrderDetailView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T00:05:52.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Tables.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\Tables.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\Tables.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\Tables.cs",
+              "RelativeToolTip": "PowerSell\\Models\\Tables.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T00:02:45.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ServiceCategory.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\ServiceCategory.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\ServiceCategory.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\ServiceCategory.cs",
+              "RelativeToolTip": "PowerSell\\Models\\ServiceCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T00:04:09.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\Service.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\Service.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\Service.cs",
+              "RelativeToolTip": "PowerSell\\Models\\Service.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T00:04:10.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Tables.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Tables.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Tables.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Tables.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Tables.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T22:05:59.686Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Workers.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Workers.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Workers.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Workers.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Workers.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-10T20:24:57.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\App.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\App.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\App.xaml",
+              "RelativeToolTip": "PowerSell\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T21:47:08.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Account\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Account\\Login.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Account\\Login.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Account\\Login.xaml.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAuwIgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T20:20:45.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "LocalizationManager.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Localization\\LocalizationManager.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Localization\\LocalizationManager.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Localization\\LocalizationManager.cs",
+              "RelativeToolTip": "PowerSell\\Localization\\LocalizationManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T23:32:50.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SingleClientWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\SingleClientWindow.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ClientView\\SingleClientWindow.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\SingleClientWindow.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\ClientView\\SingleClientWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-13T18:58:26.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Reports.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Reports.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Reports.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Reports.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Reports.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-19T18:20:02.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "en.json",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Resources\\Languages\\en.json",
+              "RelativeDocumentMoniker": "PowerSell\\Resources\\Languages\\en.json",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Resources\\Languages\\en.json",
+              "RelativeToolTip": "PowerSell\\Resources\\Languages\\en.json",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-07T23:05:21.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "TextBoxHelper.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Services\\TextBoxHelper.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Services\\TextBoxHelper.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Services\\TextBoxHelper.cs",
+              "RelativeToolTip": "PowerSell\\Services\\TextBoxHelper.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAuwDMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T22:16:14.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PropertyPathWorker.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\.vsdbgsrc\\c824721cd7d9c028e31d9faa77b348c59e49e6a99818a102ec7b7f9254f84219\\PropertyPathWorker.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\c824721cd7d9c028e31d9faa77b348c59e49e6a99818a102ec7b7f9254f84219\\PropertyPathWorker.cs",
+              "ToolTip": "C:\\Users\\PC\\AppData\\Local\\Temp\\.vsdbgsrc\\c824721cd7d9c028e31d9faa77b348c59e49e6a99818a102ec7b7f9254f84219\\PropertyPathWorker.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\c824721cd7d9c028e31d9faa77b348c59e49e6a99818a102ec7b7f9254f84219\\PropertyPathWorker.cs [Read Only]",
+              "ViewState": "AgIAAGAEAAAAAAAAAAAmwLcEAAAEAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T21:58:48.451Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Home.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Home.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Home.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Home.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Home.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T21:51:55.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Workers.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Workers.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Workers.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Workers.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Workers.xaml.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAuwFsAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T20:24:21.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ToGoWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ToGo\\ToGoWindow.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ToGo\\ToGoWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ToGo\\ToGoWindow.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\ToGo\\ToGoWindow.xaml.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAewCgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T21:34:04.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "mk.json",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Resources\\Languages\\mk.json",
+              "RelativeDocumentMoniker": "PowerSell\\Resources\\Languages\\mk.json",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Resources\\Languages\\mk.json",
+              "RelativeToolTip": "PowerSell\\Resources\\Languages\\mk.json",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAqwCEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-07T23:05:40.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PrintSettingsLoader.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\Print\\PrintSettingsLoader.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ClientView\\Print\\PrintSettingsLoader.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\Print\\PrintSettingsLoader.cs",
+              "RelativeToolTip": "PowerSell\\Views\\ClientView\\Print\\PrintSettingsLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T22:58:56.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Categories.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Categories.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Categories.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Categories.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Categories.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T21:47:51.086Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "AdminDashboard.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\AdminDashboard.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\AdminDashboard.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\AdminDashboard.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\AdminDashboard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T21:51:48.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Services.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Services.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Services.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Services.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Services.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T21:56:15.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Services.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Services.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Services.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Services.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Services.xaml.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAuwJoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T22:03:54.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\App.config",
+              "RelativeDocumentMoniker": "PowerSell\\App.config",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\App.config",
+              "RelativeToolTip": "PowerSell\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-05T21:47:04.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "psprint.xml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\psprint.xml",
+              "RelativeDocumentMoniker": "PowerSell\\psprint.xml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\psprint.xml",
+              "RelativeToolTip": "PowerSell\\psprint.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-02-10T20:19:48.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Reports.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Reports.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Reports.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Reports.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Reports.xaml.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAuwHUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T18:20:05.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Categories.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Categories.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Categories.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Categories.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Categories.xaml.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAuwIQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T21:49:11.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Settings.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Settings.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Settings.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Settings.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Settings.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T22:05:45.728Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Settings.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Settings.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Settings.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Settings.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Settings.xaml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T22:05:49.144Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Tables.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Tables.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\Admin\\Tables.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\Admin\\Tables.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\Admin\\Tables.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAewBYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T22:06:52.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "OrdersConfirmed.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\OrdersConfirmed.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\OrdersConfirmed.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\OrdersConfirmed.cs",
+              "RelativeToolTip": "PowerSell\\Models\\OrdersConfirmed.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAcwDQAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJUSURBVDhP3ZC/TxpxGMbf73GAeIhXKz9SbWMQ\u002B8NcMMWgQtpGBwZjhybWGhs2p66t1SYdutXO7aTtaOLQgYmBkgh0aqjBhGgjlCiHSOU8hEPkDg7uete0Y/\u002BA9jO8eYfnGT4P/Pto1BORI/jC3AJpnDB2NZ1NwnrfSow8GtH7Xf5GNBpFnjnPJeY2Y/A/9Ytrr9d6Tm6ddJhdZpGO0RImyzKG7WNjHM8FGlgjSXQRSRNuSpKI/Fh0FnsP2cMhXuQDOkkXoI/osVK99FloCYE8nh\u002BDV4Dhob0QeVQ\u002BWtnOb7ttRpvWO\u002B7d1\u002BP6Vl2ss0OXhwxNsflsK7NFKRnIsJllwGAgX81bZUl\u002B7ADHLh5OhfFas3YNRzhM35z\u002BqkGaFzLIVVZgeXunvaj8G\u002B6r7nspJgVaTLsxS83eLXCF0/PG\u002Bac\u002B6Kvj4YMw2DptMHpl9EAQhUUf5UshhCR1G1WvwBaYbkO3qNPokMVoYXqJXkmv1YsYwioxiEmYGmxLbQAErUw1U/pTVuE4jqy1au83E5uDaTZtj2QiH5aCS2SaSTva0H4\u002BbBomca/VCwISIFvJdpTrZSq0GzpTy0yF4XfKO3S/tn/Fd923wl6wSNFbWxxfXF7/ss5luew7c9VcxadcU63iaTEXz8XvtOX22\u002BxZVlRGhAvxIp34kXgy6ZmM585zy2QHCTODMzRloWjlF4WGkIu9jLWQ6hncDU4cl4/fRL5HbigLg\u002BIMAz0DeybZNL86v3r6y\u002BcvYKozQRFxsod8ABI4K/WKkxd4pyALD3XfdKXfuf8XgJ/U5B69phRCXgAAAABJRU5ErkJggg==",
+              "WhenOpened": "2024-06-13T18:48:37.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "PowerSellDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\PowerSellDbContext.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\PowerSellDbContext.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\PowerSellDbContext.cs",
+              "RelativeToolTip": "PowerSell\\Models\\PowerSellDbContext.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwBkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T18:48:33.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "OrderList.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\OrderList.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\OrderList.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\OrderList.cs",
+              "RelativeToolTip": "PowerSell\\Models\\OrderList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T20:20:14.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "OrderManager.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\OrderManager.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\OrderManager.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\OrderManager.cs",
+              "RelativeToolTip": "PowerSell\\Models\\OrderManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJUSURBVDhP3ZC/TxpxGMbf73GAeIhXKz9SbWMQ\u002B8NcMMWgQtpGBwZjhybWGhs2p66t1SYdutXO7aTtaOLQgYmBkgh0aqjBhGgjlCiHSOU8hEPkDg7uete0Y/\u002BA9jO8eYfnGT4P/Pto1BORI/jC3AJpnDB2NZ1NwnrfSow8GtH7Xf5GNBpFnjnPJeY2Y/A/9Ytrr9d6Tm6ddJhdZpGO0RImyzKG7WNjHM8FGlgjSXQRSRNuSpKI/Fh0FnsP2cMhXuQDOkkXoI/osVK99FloCYE8nh\u002BDV4Dhob0QeVQ\u002BWtnOb7ttRpvWO\u002B7d1\u002BP6Vl2ss0OXhwxNsflsK7NFKRnIsJllwGAgX81bZUl\u002B7ADHLh5OhfFas3YNRzhM35z\u002BqkGaFzLIVVZgeXunvaj8G\u002B6r7nspJgVaTLsxS83eLXCF0/PG\u002Bac\u002B6Kvj4YMw2DptMHpl9EAQhUUf5UshhCR1G1WvwBaYbkO3qNPokMVoYXqJXkmv1YsYwioxiEmYGmxLbQAErUw1U/pTVuE4jqy1au83E5uDaTZtj2QiH5aCS2SaSTva0H4\u002BbBomca/VCwISIFvJdpTrZSq0GzpTy0yF4XfKO3S/tn/Fd923wl6wSNFbWxxfXF7/ss5luew7c9VcxadcU63iaTEXz8XvtOX22\u002BxZVlRGhAvxIp34kXgy6ZmM585zy2QHCTODMzRloWjlF4WGkIu9jLWQ6hncDU4cl4/fRL5HbigLg\u002BIMAz0DeybZNL86v3r6y\u002BcvYKozQRFxsod8ABI4K/WKkxd4pyALD3XfdKXfuf8XgJ/U5B69phRCXgAAAABJRU5ErkJggg==",
+              "WhenOpened": "2024-06-13T18:48:06.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\Orders.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\Orders.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\Orders.cs",
+              "RelativeToolTip": "PowerSell\\Models\\Orders.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAHAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJUSURBVDhP3ZC/TxpxGMbf73GAeIhXKz9SbWMQ\u002B8NcMMWgQtpGBwZjhybWGhs2p66t1SYdutXO7aTtaOLQgYmBkgh0aqjBhGgjlCiHSOU8hEPkDg7uete0Y/\u002BA9jO8eYfnGT4P/Pto1BORI/jC3AJpnDB2NZ1NwnrfSow8GtH7Xf5GNBpFnjnPJeY2Y/A/9Ytrr9d6Tm6ddJhdZpGO0RImyzKG7WNjHM8FGlgjSXQRSRNuSpKI/Fh0FnsP2cMhXuQDOkkXoI/osVK99FloCYE8nh\u002BDV4Dhob0QeVQ\u002BWtnOb7ttRpvWO\u002B7d1\u002BP6Vl2ss0OXhwxNsflsK7NFKRnIsJllwGAgX81bZUl\u002B7ADHLh5OhfFas3YNRzhM35z\u002BqkGaFzLIVVZgeXunvaj8G\u002B6r7nspJgVaTLsxS83eLXCF0/PG\u002Bac\u002B6Kvj4YMw2DptMHpl9EAQhUUf5UshhCR1G1WvwBaYbkO3qNPokMVoYXqJXkmv1YsYwioxiEmYGmxLbQAErUw1U/pTVuE4jqy1au83E5uDaTZtj2QiH5aCS2SaSTva0H4\u002BbBomca/VCwISIFvJdpTrZSq0GzpTy0yF4XfKO3S/tn/Fd923wl6wSNFbWxxfXF7/ss5luew7c9VcxadcU63iaTEXz8XvtOX22\u002BxZVlRGhAvxIp34kXgy6ZmM585zy2QHCTODMzRloWjlF4WGkIu9jLWQ6hncDU4cl4/fRL5HbigLg\u002BIMAz0DeybZNL86v3r6y\u002BcvYKozQRFxsod8ABI4K/WKkxd4pyALD3XfdKXfuf8XgJ/U5B69phRCXgAAAABJRU5ErkJggg==",
+              "WhenOpened": "2024-06-13T18:43:35.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ReturnedProducts.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\ReturnedProducts.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Models\\ReturnedProducts.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Models\\ReturnedProducts.cs",
+              "RelativeToolTip": "PowerSell\\Models\\ReturnedProducts.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJUSURBVDhP3ZC/TxpxGMbf73GAeIhXKz9SbWMQ\u002B8NcMMWgQtpGBwZjhybWGhs2p66t1SYdutXO7aTtaOLQgYmBkgh0aqjBhGgjlCiHSOU8hEPkDg7uete0Y/\u002BA9jO8eYfnGT4P/Pto1BORI/jC3AJpnDB2NZ1NwnrfSow8GtH7Xf5GNBpFnjnPJeY2Y/A/9Ytrr9d6Tm6ddJhdZpGO0RImyzKG7WNjHM8FGlgjSXQRSRNuSpKI/Fh0FnsP2cMhXuQDOkkXoI/osVK99FloCYE8nh\u002BDV4Dhob0QeVQ\u002BWtnOb7ttRpvWO\u002B7d1\u002BP6Vl2ss0OXhwxNsflsK7NFKRnIsJllwGAgX81bZUl\u002B7ADHLh5OhfFas3YNRzhM35z\u002BqkGaFzLIVVZgeXunvaj8G\u002B6r7nspJgVaTLsxS83eLXCF0/PG\u002Bac\u002B6Kvj4YMw2DptMHpl9EAQhUUf5UshhCR1G1WvwBaYbkO3qNPokMVoYXqJXkmv1YsYwioxiEmYGmxLbQAErUw1U/pTVuE4jqy1au83E5uDaTZtj2QiH5aCS2SaSTva0H4\u002BbBomca/VCwISIFvJdpTrZSq0GzpTy0yF4XfKO3S/tn/Fd923wl6wSNFbWxxfXF7/ss5luew7c9VcxadcU63iaTEXz8XvtOX22\u002BxZVlRGhAvxIp34kXgy6ZmM585zy2QHCTODMzRloWjlF4WGkIu9jLWQ6hncDU4cl4/fRL5HbigLg\u002BIMAz0DeybZNL86v3r6y\u002BcvYKozQRFxsod8ABI4K/WKkxd4pyALD3XfdKXfuf8XgJ/U5B69phRCXgAAAABJRU5ErkJggg==",
+              "WhenOpened": "2024-06-13T18:43:18.865Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ReturnProduct.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\ReturnProduct.xaml.cs",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ClientView\\ReturnProduct.xaml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\ReturnProduct.xaml.cs",
+              "RelativeToolTip": "PowerSell\\Views\\ClientView\\ReturnProduct.xaml.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAG8AAAAxAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHiSURBVDhPY2SAgpb1Vww4WNh2SguwM7EyMQYL/5I95ujI\u002BAcqjRMwMsTvNAAxfPWF1cwUeKfvvvqBz1GNb7\u002BW4Ocp25ZOffTt2zewQikpKYaAgACQgTccHR3hBrMw/GUsADGO3vok9P7LH66bL76xKIuy2hiJ/pdTVFT8DjLg9\u002B/fYMVv3rz5JCkpWXHs2LELVlZW30FijAwxO8VAjHIvaR0FEc6Vi469FEm3k2CwVeFk\u002BPvjM8O/f/8YXrx4wbBp0yaGHz9\u002B/PPz87vNw8OTCDT0NMglTAxL3F\u002BBsAQf67s/f/7\u002Bq/CUZbBV42HgYmVg4ObmZuDl5WXg4uJi\u002BP//P8O7d\u002B\u002BYgAapPn/\u002BvANopwbIYiYQAQIKrM8YlDleMehJsTBwMv8D2wwDrKysDGJiYgxA5zNwcHAwAb3At2HDBhaQHDNYBRBICAtIvH7\u002BJFZPR4ubhQUuDAZsbGwMMjIyDFpaWgxKSkoMt27devH06dON165dewF3wbNnz8D4zx/MmIO5QFpaGuwKEB8G4AaQC0YNQDIAFLKMjIzgVAeMIpwYJA\u002BKKVhMgBMDCAATyHcmJqYrW7duFQYZhAuAEtjXr19vgdSD\u002BHCV9fX1LMAkKgDMPAS9xc7O/geYsD41Njb\u002BAQB9hMCogeGQ7QAAAABJRU5ErkJggg==",
+              "WhenOpened": "2024-06-13T18:42:36.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ReturnProduct.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\ReturnProduct.xaml",
+              "RelativeDocumentMoniker": "PowerSell\\Views\\ClientView\\ReturnProduct.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Powersell backup\\PowerSell\\PowerSell\\Views\\ClientView\\ReturnProduct.xaml",
+              "RelativeToolTip": "PowerSell\\Views\\ClientView\\ReturnProduct.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-13T18:42:33.714Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

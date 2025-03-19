@@ -5,38 +5,64 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:PowerSell.Services"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="500" d:DesignWidth="800"
+             Background="#282C34">
+
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
-            <TextBox x:Name="txtServiceName" Margin="0,0,10,0"  local:TextBoxHelper.Placeholder="Enter Service Name" />
-            <TextBox x:Name="txtQuantity" Margin="0,0,10,0" local:TextBoxHelper.Placeholder="Enter Quantity" />
-            <TextBox x:Name="txtServicePrice" Margin="0,0,10,0" local:TextBoxHelper.Placeholder="Enter Price" />
-            <ComboBox x:Name="cmbCategory" Width="150" DisplayMemberPath="CategoryName" SelectedValuePath="CategoryId" />
-            <Button Content="Add Service" Click="AddService_Click"/>
-        </StackPanel>
+        <!-- Add Service Panel -->
+        <Border Background="#3A3F4B" CornerRadius="10" Margin="0,0,0,10" Padding="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox x:Name="txtServiceName" Width="150" Height="30" Margin="5"
+                         BorderBrush="Gray" ToolTip="Enter Service Name"/>
 
-        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
-            <Button Content="Edit Service" Click="EditService_Click"/>
-            <Button Content="Delete Service" Click="DeleteService_Click" Margin="10,0,0,0"/>
-        </StackPanel>
+                <TextBox x:Name="txtQuantity" Width="100" Height="30" Margin="5"
+                         BorderBrush="Gray" ToolTip="Enter Quantity"/>
 
-        <DataGrid x:Name="dataGridServices" Grid.Row="2" AutoGenerateColumns="False" SelectionChanged="dataGridServices_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Service ID" Binding="{Binding ServiceId}"/>
-                <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}"/>
-                <DataGridTextColumn Header="Category" Binding="{Binding CategoryName}"/>
-                <!-- Bind to CategoryName -->
-            </DataGrid.Columns>
-        </DataGrid>
+                <TextBox x:Name="txtServicePrice" Width="120" Height="30" Margin="5"
+                         BorderBrush="Gray" ToolTip="Enter Price"/>
+
+                <ComboBox x:Name="cmbCategory" Width="160" Height="30" Margin="5"
+                          DisplayMemberPath="CategoryName" SelectedValuePath="CategoryId"
+                          ToolTip="Select a Category"/>
+
+                <Button Content="Add Service" Click="AddService_Click"
+                        Background="#0078D4" Foreground="White"
+                        Margin="10,0,0,0" Padding="8,5"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Edit/Delete Buttons -->
+        <Border Background="#3A3F4B" CornerRadius="10" Margin="0,0,0,10" Padding="10" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Edit Service" Click="EditService_Click"
+                        Background="#F9A825" Foreground="White" Margin="5" Padding="8,5"/>
+                <Button Content="Delete Service" Click="DeleteService_Click"
+                        Background="#D32F2F" Foreground="White" Margin="5" Padding="8,5"/>
+            </StackPanel>
+        </Border>
+
+        <!-- DataGrid for Services -->
+        <Border Grid.Row="2" Background="#1E1E1E" CornerRadius="10" Padding="10">
+            <DataGrid x:Name="dataGridServices" AutoGenerateColumns="False"
+                      SelectionChanged="dataGridServices_SelectionChanged"
+                      Background="Transparent" Foreground="White"
+                      BorderBrush="Gray" BorderThickness="1"
+                      RowBackground="#333" AlternatingRowBackground="#444">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Service ID" Binding="{Binding ServiceId}" Width="100"/>
+                    <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}" Width="200"/>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding ServicePrice}" Width="120"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding CategoryName}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
 
     </Grid>
 </UserControl>

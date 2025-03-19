@@ -9,7 +9,7 @@ namespace PowerSell.Localization
         public LocalizationManager()
         {
             // Assuming that "Strings" is the base name of your resource file
-            _resourceManager = new ResourceManager("PowerSell.Localization.Strings", typeof(LocalizationManager).Assembly);
+            _resourceManager = new ResourceManager("PowerSell.Localization.en", typeof(LocalizationManager).Assembly);
         }
 
         public string Transport => _resourceManager.GetString("Transport");

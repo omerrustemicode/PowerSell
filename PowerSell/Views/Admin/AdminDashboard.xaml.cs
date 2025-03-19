@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using PowerSell.Services;
+using PowerSell.Views.ClientView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,10 @@ namespace PowerSell.Views.Admin
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             RightPanelContent.Content = new Settings(); // Load Settings.xaml into the RightPanelContent
+        }
+        private void PrinterSettings_Click(object sender, RoutedEventArgs e)
+        {
+            RightPanelContent.Content = new PrinterSettings(); // Load Settings.xaml into the RightPanelContent
         }
 
     }

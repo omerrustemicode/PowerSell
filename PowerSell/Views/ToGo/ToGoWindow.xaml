@@ -19,7 +19,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridOrdersNew" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,443" ItemsSource="{Binding YourOrdersCollection}">
+        <DataGrid x:Name="dataGridOrdersNew" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dataGridOrdersNew_SelectionChanged" Margin="0,0,6,0" ItemsSource="{Binding YourOrdersCollection}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}"/>
                 <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}"/>
@@ -28,21 +28,12 @@
                 <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-
-        <DataGrid x:Name="dataGridOrders" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" IsReadOnly="True" SelectionMode="Single" BorderBrush="White" SelectionChanged="dataGridOrders_SelectionChanged" Margin="-11,444,10,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}" />
-                <DataGridTextColumn Header="Service Name" Binding="{Binding ServiceName}" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                <DataGridTextColumn Header="Service Price" Binding="{Binding ServicePrice}" />
-                <!-- Add more columns here as needed -->
-            </DataGrid.Columns>
-        </DataGrid>
+        
         <!-- Left Side Content - DataGrid -->
-
+        <Label x:Name="TotalToOrder" Content="" Background="Green" Width="auto" Height="30" FontSize="20" FontStyle="Normal"/>
         <!-- StackPanel for buttons on a new line -->
-        <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand">
+        <StackPanel Orientation="Horizontal"  Background="#3498DB" Height="93" Opacity="0.7" Cursor="Hand" Grid.ColumnSpan="2" Margin="0,410,4,281">
+            
             <Button Content="Edit" Click="Button_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Delete" Click="DeleteServiceButton_Click" Margin="2" Background="#3498DB" Width="100"/>
             <Button Content="Message" Click="MessageButton_Click" Margin="2" Background="#3498DB"  Width="100" RenderTransformOrigin="0.5,0.5"/>

@@ -29,6 +29,7 @@
             <Button Content="Services" DockPanel.Dock="Top" Height="51" Click="ServicesButton_Click" />
             <Button Content="Categories" DockPanel.Dock="Top" Height="51" Click="CategoriesButton_Click" />
             <Button Content="Settings" DockPanel.Dock="Top" Height="51" Click="SettingsButton_Click" />
+            <Button Content="Printer Settings" DockPanel.Dock="Top" Height="51" Click="PrinterSettings_Click" />
         </DockPanel>
 
         <!-- ContentControl to load user controls with DataTemplates -->

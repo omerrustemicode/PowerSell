@@ -41,7 +41,7 @@ namespace PowerSell.Models
         public virtual Service Service { get; set; }
         public int? ClientId { get; set; } // Foreign key for Client table
         public virtual Client Client { get; set; } // Navigation property for Client
-
+        public OrderList OrderList { get; set; } // Navigation property
         // Collection of users associated with this service
         // Foreign key for User table
         public int? UserId { get; set; }

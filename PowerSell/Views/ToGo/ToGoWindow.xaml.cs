@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using DataGridTextColumn = MaterialDesignThemes.Wpf.DataGridTextColumn;
 using PowerSell.Views.ClientView;
+using RelayCommand = PowerSell.Services.RelayCommand;
 
 namespace PowerSell.Views.ToGo
 {
@@ -36,67 +37,40 @@ namespace PowerSell.Views.ToGo
             InitializeComponent();
             YourServiceCategoriesCollection = new ObservableCollection<ServiceCategory>();
             LoadCategories();
-            LoadOrdersData(dataGridOrders);
 
             YourCommandForButtonClick = new RelayCommand(ExecuteYourCommandForButtonClick);
         }
 
-        private void LoadOrdersData(DataGrid dataGrid)
+        public void TotalToOrders()
         {
-            List<OrderDTO> orders = GetActiveOrdersByTableId(TableId);
+            double totalSum = 0;
 
-            // Clear existing columns
-            dataGrid.Columns.Clear();
-
-            // Set AutoGenerateColumns to false
-            dataGrid.AutoGenerateColumns = false;
-
-            // Define columns you want to show
-            dataGrid.Columns.Add(new DataGridTextColumn
+            // Loop through each row in the DataGrid
+            foreach (var item in dataGridOrdersNew.Items)
             {
-                Header = "Order ID",
-                Binding = new Binding("OrderId")
-            });
-
-            dataGrid.Columns.Add(new DataGridTextColumn
-            {
-                Header = "Service Name",
-                Binding = new Binding("ServiceName")
-            });
-
-            dataGrid.Columns.Add(new DataGridTextColumn
-            {
-                Header = "Quantity",
-                Binding = new Binding("Quantity")
-            });
-
-            dataGrid.Columns.Add(new DataGridTextColumn
-            {
-                Header = "Service Price",
-                Binding = new Binding("ServicePrice")
-            });
-
-            // Set ItemsSource to display the selected columns
-            dataGrid.ItemsSource = orders;
-        }
-
-
-
-        private List<OrderDTO> GetActiveOrdersByTableId(int tableId)
-        {
-            return dbContext.Orders
-                .Include(o => o.Service)
-                .Where(o => o.TableId == tableId)
-                .Select(o => new OrderDTO
+                // Use reflection to get the property value if item is not DataRowView
+                var totalProperty = item.GetType().GetProperty("Total");
+                if (totalProperty != null)
                 {
-                    OrdersId = o.OrdersId,
-                    ServiceName = o.Service.ServiceName,
-                    Quantity = o.Quantity,
-                    ServicePrice = o.ServicePrice,
-                })
-                .ToList();
-        }
+                    var cellValue = totalProperty.GetValue(item)?.ToString();
+                    //  Console.WriteLine("Cell Value: " + cellValue); // Debugging output
 
+                    if (double.TryParse(cellValue, out double value))
+                    {
+                        totalSum += value;
+                        // Console.WriteLine("Parsed Value: " + value + " | Running Total: " + totalSum); // Debugging output
+                    }
+                    else
+                    {
+                        //  Console.WriteLine("Failed to parse: " + cellValue); // Log failed parse attempts
+                    }
+                }
+            }
+
+            // Display the sum in the Label
+            TotalToOrder.Content = "Total: " + totalSum.ToString("N2");
+            Console.WriteLine("Final Total: " + totalSum); // Debugging output
+        }
         private void LoadCategories()
         {
             ExecuteYourCommandForButtonClick(0); // Display top-level categories initially

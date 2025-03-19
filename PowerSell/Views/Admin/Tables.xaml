@@ -16,10 +16,28 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <TextBox x:Name="txtTableName" Width="200" Margin="0,0,10,0" />
             <Button Content="Add Table" Click="btnAddTable_Click"/>
-            <Button Content="Delete" Click="btnDeleteTable_Click" Margin="10,0,0,0"/>
         </StackPanel>
 
         <!-- Display Tables Section -->
-        <ListBox x:Name="lstTables" Grid.Row="1" Margin="10" DisplayMemberPath="TableName"/>
+        <DataGrid x:Name="dataGridTables" Grid.Row="1" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <!-- Table ID Column -->
+                <DataGridTextColumn Header="Table ID" Binding="{Binding TableId}" Width="100"/>
+
+                <!-- Table Name Column -->
+                <DataGridTextColumn Header="Table Name" Binding="{Binding TableName}" Width="200"/>
+
+                <!-- Delete Icon Column -->
+                <DataGridTemplateColumn Header="Actions" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!-- Delete Icon Button -->
+                            <Button Content="🗑" Click="btnDeleteTable_Click"  Background="Transparent" Foreground="Red" BorderThickness="0"
+  Margin="5,0,0,0" Cursor="Hand" FontSize="14"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

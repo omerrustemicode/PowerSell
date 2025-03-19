@@ -1,41 +1,52 @@
 ﻿<mah:MetroWindow x:Class="PowerSell.Views.Dashboard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Dashboard" Height="450" Width="800" WindowState="Maximized" Icon="/Views/logos/tufo.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Dashboard" 
+        WindowState="Maximized" 
+        Icon="/Views/logos/PowerSell_Logo.png" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResize" 
+        WindowStyle="SingleBorderWindow">
     <Grid>
-        <!-- Left Side -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="159*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" MinWidth="200" />
         </Grid.ColumnDefinitions>
-        <Image Source="/Views/Logos/PowerSell_BG_Logo.jpeg" Stretch="Fill" />
-        <!-- Tables Buttons using ListBox with UniformGrid -->
-        <ListBox x:Name="tablesListBox" ItemsSource="{Binding Tables}" Grid.Column="0" Background="#2C3E50" Margin="10,10,3,10" Visibility="Visible">
+
+        <Image Source="/Views/Logos/PowerSell_BG_Logo.jpeg" Stretch="Fill" Grid.ColumnSpan="3" />
+
+        <ListBox x:Name="tablesListBox" 
+         ItemsSource="{Binding Tables}" 
+         Grid.Column="0" 
+         Background="#2C3E50" 
+         Margin="10" 
+         ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+         ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="15" Columns="8" />
-                    <!-- Adjust Rows and Columns based on your preference -->
+                    <Canvas IsItemsHost="True" />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button Width="180" Height="110" FontSize="16" Margin="0" Background="#3498DB" Foreground="White" Click="TableButton_Click"
-            BorderBrush="Transparent" BorderThickness="0" >
+                    <Button MinWidth="100" MinHeight="80" 
+                    Margin="5" 
+                    Background="#3498DB" 
+                    Foreground="White" 
+                    Click="TableButton_Click"
+                    BorderBrush="Transparent" 
+                    BorderThickness="0">
                         <Button.Content>
                             <StackPanel TextBlock.TextAlignment="Center">
-                                <TextBlock Text="{Binding TableName}" />
-                                <!-- Display OrderList information -->
-                                <ItemsControl ItemsSource="{Binding OrderList}" >
+                                <TextBlock Text="{Binding TableName}" FontSize="16" FontWeight="Bold" />
+                                <ItemsControl ItemsSource="{Binding OrderList}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel>
-                                                <TextBlock Text="{Binding ClientName}" />
-                                                <!-- Make sure ClientName binding is correct -->
-                                               
-                                                <TextBlock x:Name="TotalValueTxtb" Text="{Binding Total}" />
-                                                <!-- Add IsReady property from OrderList if needed -->
+                                                <TextBlock Text="{Binding ClientName}" FontSize="14" />
+                                                <TextBlock x:Name="TotalValueTxtb" Text="{Binding Total, StringFormat='Total: {0:C}'}" FontSize="12" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -43,34 +54,92 @@
                             </StackPanel>
                         </Button.Content>
                         <Button.Effect>
-                            <DropShadowEffect BlurRadius="0" ShadowDepth="0" Color="#3498DB"/>
+                            <DropShadowEffect BlurRadius="0" ShadowDepth="0" Color="#3498DB" />
                         </Button.Effect>
                     </Button>
                 </DataTemplate>
-
             </ListBox.ItemTemplate>
-            <!-- Disable vertical scrolling -->
-            <ListBox.Template>
-                <ControlTemplate TargetType="ListBox">
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ListBox.Template>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Canvas.Left" Value="{Binding XPosition}" />
+                    <Setter Property="Canvas.Top" Value="{Binding YPosition}" />
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TableItem_PreviewMouseLeftButtonDown" />
+                    <EventSetter Event="MouseMove" Handler="TableItem_MouseMove" />
+                    <EventSetter Event="PreviewMouseLeftButtonUp" Handler="TableItem_PreviewMouseLeftButtonUp" />
+                </Style>
+            </ListBox.ItemContainerStyle>
         </ListBox>
-        <!-- Right Side - Fixed Buttons -->
-        <StackPanel Grid.Column="2" Background="#2C3E50">
-            <!-- Search Bar -->
-            <TextBox x:Name="searchTextBox" Width="180"
-                     Height="30" Margin="5" 
-                     Background="#3498DB" Foreground="White" 
-                     mah:TextBoxHelper.Watermark="Baraj preku broj na tabeli" mah:TextBoxHelper.ClearTextButton="True"
-                     TextChanged="SearchTextBox_TextChanged" />
-            <Button Content="To Go" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ToGoButton_Click"/>
-            <Button Content="Reports" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="ReportsButton_Click"/>
-            <Button Content="Return Product" Width="180" Height="70" Background="#3498DB" Foreground="White" Click="ReturnBtn_Click"/>
-            <Button Content="Logout" Width="180" Height="70" Margin="5" Background="#3498DB" Foreground="White" Click="LogoutButton_Click"/>
-        </StackPanel>
 
+        <GridSplitter Grid.Column="1" 
+                      Width="5" 
+                      Background="#34495E" 
+                      VerticalAlignment="Stretch" 
+                      HorizontalAlignment="Center" />
+
+        <StackPanel Grid.Column="2" 
+            Background="#2C3E50" 
+            Width="200" 
+            Margin="10" 
+            VerticalAlignment="Stretch">
+            <TextBox x:Name="searchTextBox" 
+             MinWidth="150" 
+             Height="30" 
+             Margin="5" 
+             Background="#3498DB" 
+             Foreground="White" 
+             mah:TextBoxHelper.Watermark="Baraj preku broj na tabeli" 
+             mah:TextBoxHelper.ClearTextButton="True"
+             TextChanged="SearchTextBox_TextChanged" />
+            <Button Content="To Go" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="ToGoButton_Click" />
+            <Button Content="Reports" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="ReportsButton_Click" />
+            <Button Content="Return Product" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="ReturnBtn_Click" />
+            <Button x:Name="LockUnlockButton" 
+            Content="Lock Tables" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="LockUnlockButton_Click" />
+            <Button Content="Save Table Position" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="SaveTablePositionButton_Click" />
+            <Button Content="Refresh" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="RefreshButton_Click" />
+            <Button Content="Logout" 
+            MinWidth="150" 
+            Height="50" 
+            Margin="5" 
+            Background="#3498DB" 
+            Foreground="White" 
+            Click="LogoutButton_Click" />
+        </StackPanel>
     </Grid>
 </mah:MetroWindow>

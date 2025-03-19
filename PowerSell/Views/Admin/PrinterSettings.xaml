@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="PowerSell.Views.ClientView.PrinterSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             Height="400" Width="500"
+             Background="{DynamicResource WindowBackgroundBrush}">
+    <UserControl.Resources>
+        <!-- Define a gradient brush for the background -->
+        <LinearGradientBrush x:Key="CustomBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6B7280" Offset="0.0"/>
+            <!-- Slate Gray -->
+            <GradientStop Color="#FF1E3A8A" Offset="1.0"/>
+            <!-- Dark Blue -->
+        </LinearGradientBrush>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <!-- Full background with overlay -->
+        <Border Background="{StaticResource CustomBackgroundBrush}" CornerRadius="10" Opacity="0.9">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="5" Color="Gray"/>
+            </Border.Effect>
+        </Border>
+
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <!-- Spacer -->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <!-- Spacer -->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock Grid.Row="0" Text="Printer Settings" 
+                       FontSize="24" FontWeight="Bold" 
+                       Foreground="White" HorizontalAlignment="Center" 
+                       Margin="0,0,0,10"/>
+
+            <!-- Print Order Printer Section -->
+            <Border Grid.Row="1" Background="White" CornerRadius="5" Padding="10" Opacity="0.95">
+                <StackPanel>
+                    <Label Content="Print Order Printer:" 
+                           FontSize="16" Foreground="#FF1E3A8A"/>
+                    <ComboBox x:Name="PrintOrderComboBox" Width="300" 
+                              Margin="0,5,0,0" 
+                              Style="{DynamicResource MetroComboBox}"
+                              SelectionChanged="PrintOrderComboBox_SelectionChanged"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Spacer -->
+            <Rectangle Grid.Row="2" Height="1" Fill="#E5E7EB"/>
+
+            <!-- Print Fiscal Printer Section -->
+            <Border Grid.Row="3" Background="White" CornerRadius="5" Padding="10" Opacity="0.95" Margin="0,20,0,0">
+                <StackPanel>
+                    <Label Content="Print Fiscal Printer:" 
+                           FontSize="16" Foreground="#FF1E3A8A"/>
+                    <ComboBox x:Name="PrintFiscComboBox" Width="300" 
+                              Margin="0,5,0,0" 
+                              Style="{DynamicResource MetroComboBox}"
+                              SelectionChanged="PrintFiscComboBox_SelectionChanged"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Spacer -->
+            <Rectangle Grid.Row="4" Height="1" Fill="#E5E7EB"/>
+
+            <!-- Save Button -->
+            <Button Grid.Row="6" x:Name="SaveButton" Content="Save Settings" 
+                    Width="150" Height="40" 
+                    HorizontalAlignment="Right" 
+                    Click="SaveButton_Click" 
+                    Style="{DynamicResource AccentSquareButtonStyle}">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#FF1E3A8A"/>
+                </Button.Effect>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

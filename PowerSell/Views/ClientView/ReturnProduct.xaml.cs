@@ -30,12 +30,14 @@ namespace PowerSell.Views.ClientView
         {
             using (var dbContext = new PowerSellDbContext())
             {
-                var orderDetails = dbContext.Orders
+                var orderDetails = dbContext.OrdersConfirmed
                     .Where(od => od.OrderListId == orderListId)
                     .Select(od => new
                     {
                         od.Service.ServiceId,
                         od.Service.ServiceName,
+                        od.Service.ServicePrice,
+                        od.OrderList.ClientName,
                         od.Quantity
                     }).ToList();
 

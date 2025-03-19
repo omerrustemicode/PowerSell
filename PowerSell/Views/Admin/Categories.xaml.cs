@@ -16,13 +16,14 @@ namespace PowerSell.Views.Admin
             InitializeComponent();
             _dbContext = new PowerSellDbContext();
             LoadCategories();
-            cmbParentCategory.ItemsSource = _categories.Where(c => c.Subcategories.Count == 0).ToList();
             treeCategories.SelectedItemChanged += treeCategories_SelectedItemChanged;
         }
 
         private void LoadCategories()
         {
             var categoriesFromDb = _dbContext.ServiceCategory.ToList();
+
+            // Create parent categories
             var parentCategories = categoriesFromDb
                 .Where(c => c.CategoryParentId == null)
                 .Select(c => new CategoryViewModel
@@ -33,6 +34,7 @@ namespace PowerSell.Views.Admin
                 })
                 .ToList();
 
+            // Add subcategories to parent categories
             foreach (var parent in parentCategories)
             {
                 parent.Subcategories.AddRange(categoriesFromDb
@@ -47,9 +49,9 @@ namespace PowerSell.Views.Admin
             }
 
             _categories = parentCategories;
-            cmbParentCategory.ItemsSource = categoriesFromDb; // Set ItemsSource to the list of categories
-            cmbParentCategory.DisplayMemberPath = "CategoryName"; // Set DisplayMemberPath to CategoryName
-            treeCategories.ItemsSource = _categories; // Set ItemsSource to _categories, which contains the parent categories
+            treeCategories.ItemsSource = _categories;
+            cmbParentCategory.ItemsSource = parentCategories;
+            cmbParentCategory.DisplayMemberPath = "CategoryName";
         }
 
         private void AddCategory_Click(object sender, RoutedEventArgs e)
@@ -60,7 +62,12 @@ namespace PowerSell.Views.Admin
                 ServiceCategory category = new ServiceCategory { CategoryName = categoryName };
                 _dbContext.ServiceCategory.Add(category);
                 _dbContext.SaveChanges();
-                LoadCategories(); // Reload categories to update the tree view and ComboBox
+                LoadCategories(); // Refresh UI
+                txtCategoryName.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Category name cannot be empty.");
             }
         }
 
@@ -76,17 +83,43 @@ namespace PowerSell.Views.Admin
                 };
                 _dbContext.ServiceCategory.Add(subcategory);
                 _dbContext.SaveChanges();
-                LoadCategories(); // Reload categories to update the tree view and ComboBox
+                LoadCategories(); // Refresh UI
+                txtSubcategoryName.Clear();
             }
             else
             {
-                MessageBox.Show("Please select a parent category.");
+                MessageBox.Show("Please enter a subcategory name and select a parent category.");
+            }
+        }
+
+        private void DeleteCategory_Click(object sender, RoutedEventArgs e)
+        {
+            if (treeCategories.SelectedItem is CategoryViewModel selectedCategory)
+            {
+                var categoryToDelete = _dbContext.ServiceCategory.FirstOrDefault(c => c.CategoryId == selectedCategory.CategoryId);
+
+                if (categoryToDelete != null)
+                {
+                    if (_dbContext.ServiceCategory.Any(c => c.CategoryParentId == categoryToDelete.CategoryId))
+                    {
+                        MessageBox.Show("Cannot delete a category with subcategories. Please delete subcategories first.");
+                        return;
+                    }
+
+                    _dbContext.ServiceCategory.Remove(categoryToDelete);
+                    _dbContext.SaveChanges();
+                    LoadCategories(); // Refresh UI
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a category to delete.");
             }
         }
 
         private void treeCategories_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            // Handle selected item changed event if needed
+            // Additional event handling if needed
         }
 
         public class CategoryViewModel

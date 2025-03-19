@@ -19,6 +19,7 @@ namespace PowerSell.Models
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderList> OrderList { get; set; }
         public DbSet<DailyClosingCase> DailyClosingCase { get; set; }
+        public DbSet<ReturnedProducts> ReturnedProducts { get; set; }
        // public virtual DbSet<TableOrderDetailView> TableOrderDetailsView { get; set; }
 
         public DbSet<ServiceCategory> ServiceCategory { get; set; }

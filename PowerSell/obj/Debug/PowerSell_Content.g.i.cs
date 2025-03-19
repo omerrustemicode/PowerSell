@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("psprintbill.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("services/printersettings.xml")]
 
 

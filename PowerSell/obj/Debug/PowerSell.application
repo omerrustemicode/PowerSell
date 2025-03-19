@@ -14,14 +14,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PowerSell.exe.manifest" size="36768">
+    <dependentAssembly dependencyType="install" codebase="PowerSell.exe.manifest" size="43745">
       <assemblyIdentity name="PowerSell.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9D/Gcyoy2PeKUY6El829GMA1ImW0yLN7Af57i4QZKgg=</dsig:DigestValue>
+        <dsig:DigestValue>STrjyVTTLYxpsR0s4mUKRxzRn4TDvPMLCvILPqp1Ces=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
